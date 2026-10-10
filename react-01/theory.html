@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>React — Занятие №1</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f1f5f9;
+            color: #1e293b;
+            line-height: 1.7;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 30px auto;
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        .header {
+            background: linear-gradient(135deg, #0ea5e9, #2563eb);
+            color: white;
+            padding: 32px;
+            border-radius: 18px;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            margin: 0 0 10px;
+            font-size: 42px;
+        }
+
+        .badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.15);
+            padding: 6px 14px;
+            border-radius: 20px;
+            margin: 8px 6px 0 0;
+        }
+
+        h2 {
+            color: #0369a1;
+            margin-top: 45px;
+            border-bottom: 3px solid #bae6fd;
+            padding-bottom: 10px;
+        }
+
+        h3 {
+            margin-top: 28px;
+        }
+
+        p,
+        li {
+            font-size: 18px;
+        }
+
+        pre {
+            background: #0f172a;
+            color: white;
+            padding: 22px;
+            border-radius: 14px;
+            overflow-x: auto;
+            line-height: 1.6;
+        }
+
+        code {
+            font-family: Consolas, monospace;
+        }
+
+        .info {
+            background: #e0f2fe;
+            border-left: 5px solid #0ea5e9;
+            padding: 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+
+        .important {
+            background: #dcfce7;
+            border-left: 5px solid #22c55e;
+            padding: 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+
+        .warning {
+            background: #fef3c7;
+            border-left: 5px solid #f59e0b;
+            padding: 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+
+        .question {
+            background: #ede9fe;
+            border-left: 5px solid #7c3aed;
+            padding: 18px;
+            border-radius: 10px;
+            margin: 15px 0;
+        }
+
+        .step {
+            background: #f8fafc;
+            padding: 25px;
+            border-radius: 15px;
+            margin: 20px 0;
+            border-left: 5px solid #0ea5e9;
+        }
+
+        .scheme {
+            background: #0f172a;
+            color: white;
+            text-align: center;
+            padding: 25px;
+            border-radius: 15px;
+            font-size: 20px;
+            margin: 20px 0;
+        }
+
+        @media(max-width: 700px) {
+            .container {
+                margin: 0;
+                padding: 20px;
+                border-radius: 0;
+            }
+
+            .header h1 {
+                font-size: 32px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="header">
+        <h1>React.js</h1>
+
+        <p>
+            Занятие №1 — компоненты, JSX, props и state
+        </p>
+
+        <span class="badge">React</span>
+        <span class="badge">JavaScript</span>
+        <span class="badge">3 часа</span>
+    </div>
+
+
+    <div class="important">
+        <strong>Цель занятия:</strong>
+        создать первое React-приложение и понять,
+        как работают компоненты, props и состояние.
+    </div>
+
+
+    <h2>1. Что такое React?</h2>
+
+    <p>
+        React — библиотека JavaScript
+        для создания пользовательских интерфейсов.
+    </p>
+
+    <p>
+        До этого мы создавали сайт примерно так:
+    </p>
+
+<pre><code>&lt;h1&gt;Мой сайт&lt;/h1&gt;
+
+&lt;p&gt;Какой-то текст&lt;/p&gt;
+
+&lt;button&gt;Нажми&lt;/button&gt;</code></pre>
+
+    <p>
+        В React страницу удобно делить
+        на небольшие части — <strong>компоненты</strong>.
+    </p>
+
+    <div class="scheme">
+        App
+        <br>↓<br>
+        Header
+        <br>↓<br>
+        GameCard
+        <br>↓<br>
+        Footer
+    </div>
+
+
+    <h2>2. Что такое компонент?</h2>
+
+    <p>
+        Компонент — это отдельная часть интерфейса.
+    </p>
+
+    <p>
+        Например:
+    </p>
+
+    <ul>
+        <li>шапка сайта;</li>
+        <li>карточка игры;</li>
+        <li>кнопка;</li>
+        <li>меню;</li>
+        <li>форма.</li>
+    </ul>
+
+    <div class="important">
+        Компонент можно написать один раз
+        и использовать много раз.
+    </div>
+
+
+    <h2>3. Создаём React-проект</h2>
+
+    <p>
+        Открываем терминал.
+    </p>
+
+<pre><code>npm create vite@latest</code></pre>
+
+    <p>
+        Выбираем:
+    </p>
+
+<pre><code>Project name:
+react-first-app
+
+Framework:
+React
+
+Variant:
+JavaScript</code></pre>
+
+    <p>
+        Потом:
+    </p>
+
+<pre><code>cd react-first-app
+
+npm install
+
+npm run dev</code></pre>
+
+    <div class="info">
+        После команды <code>npm run dev</code>
+        Vite покажет адрес сайта.
+        Обычно это:
+        <strong>http://localhost:5173</strong>
+    </div>
+
+
+    <h2>4. Какие файлы нам нужны?</h2>
+
+<pre><code>src/
+│
+├── App.jsx
+├── main.jsx
+└── index.css</code></pre>
+
+    <p>
+        Пока достаточно понимать:
+    </p>
+
+    <ul>
+        <li><code>App.jsx</code> — главный компонент;</li>
+        <li><code>main.jsx</code> — запускает React;</li>
+        <li><code>index.css</code> — стили.</li>
+    </ul>
+
+
+    <h2>5. Первый React-компонент</h2>
+
+    <p>
+        Открываем <code>App.jsx</code>.
+    </p>
+
+<pre><code>function App() {
+
+    return (
+        &lt;div&gt;
+
+            &lt;h1&gt;Привет, React!&lt;/h1&gt;
+
+            &lt;p&gt;
+                Это моё первое React-приложение.
+            &lt;/p&gt;
+
+        &lt;/div&gt;
+    );
+
+}
+
+export default App;</code></pre>
+
+
+    <h3>Разбираем</h3>
+
+<pre><code>function App()</code></pre>
+
+    <p>
+        Создаёт компонент.
+    </p>
+
+<pre><code>return</code></pre>
+
+    <p>
+        Возвращает то, что будет показано на странице.
+    </p>
+
+<pre><code>export default App;</code></pre>
+
+    <p>
+        Позволяет использовать компонент
+        в других файлах.
+    </p>
+
+
+    <h2>6. JSX</h2>
+
+    <p>
+        В React используется JSX.
+    </p>
+
+    <p>
+        JSX похож на HTML:
+    </p>
+
+<pre><code>&lt;h1&gt;Привет&lt;/h1&gt;</code></pre>
+
+    <p>
+        Но находится прямо внутри JavaScript.
+    </p>
+
+
+    <div class="warning">
+        В React вместо
+        <code>class</code>
+        используется
+        <code>className</code>.
+    </div>
+
+    <p>
+        HTML:
+    </p>
+
+<pre><code>&lt;div class="card"&gt;</code></pre>
+
+    <p>
+        React:
+    </p>
+
+<pre><code>&lt;div className="card"&gt;</code></pre>
+
+
+    <h2>7. JavaScript внутри JSX</h2>
+
+    <p>
+        JavaScript можно вставлять через фигурные скобки:
+    </p>
+
+<pre><code>function App() {
+
+    const name = "Максим";
+
+    return (
+        &lt;div&gt;
+
+            &lt;h1&gt;
+                Привет, {name}!
+            &lt;/h1&gt;
+
+        &lt;/div&gt;
+    );
+
+}</code></pre>
+
+    <p>
+        Можно даже:
+    </p>
+
+<pre><code>&lt;p&gt;
+    2 + 2 = {2 + 2}
+&lt;/p&gt;</code></pre>
+
+
+    <h2>8. Создаём свой компонент</h2>
+
+    <p>
+        Создадим папку:
+    </p>
+
+<pre><code>src/components</code></pre>
+
+    <p>
+        А внутри файл:
+    </p>
+
+<pre><code>GameCard.jsx</code></pre>
+
+
+    <p>Код:</p>
+
+<pre><code>function GameCard() {
+
+    return (
+        &lt;div&gt;
+
+            &lt;h2&gt;Clash Royale&lt;/h2&gt;
+
+            &lt;p&gt;
+                Карточная стратегическая игра.
+            &lt;/p&gt;
+
+        &lt;/div&gt;
+    );
+
+}
+
+export default GameCard;</code></pre>
+
+
+    <h2>9. Подключаем компонент</h2>
+
+    <p>
+        В <code>App.jsx</code>:
+    </p>
+
+<pre><code>import GameCard from "./components/GameCard";
+
+function App() {
+
+    return (
+        &lt;div&gt;
+
+            &lt;h1&gt;Мои игры&lt;/h1&gt;
+
+            &lt;GameCard /&gt;
+
+        &lt;/div&gt;
+    );
+
+}
+
+export default App;</code></pre>
+
+
+    <div class="important">
+        Компонент React можно использовать
+        почти как собственный HTML-тег:
+        <code>&lt;GameCard /&gt;</code>
+    </div>
+
+
+    <h2>10. Props</h2>
+
+    <p>
+        Сейчас все карточки будут одинаковыми.
+    </p>
+
+    <p>
+        Чтобы передавать данные в компонент,
+        используются <strong>props</strong>.
+    </p>
+
+
+    <p>В <code>App.jsx</code>:</p>
+
+<pre><code>&lt;GameCard
+    title="Clash Royale"
+    description="Карточная стратегия"
+/&gt;
+
+&lt;GameCard
+    title="League of Legends"
+    description="Командная MOBA"
+/&gt;
+
+&lt;GameCard
+    title="Elden Ring"
+    description="Action RPG"
+/&gt;</code></pre>
+
+
+    <p>
+        В <code>GameCard.jsx</code>:
+    </p>
+
+<pre><code>function GameCard({ title, description }) {
+
+    return (
+        &lt;div&gt;
+
+            &lt;h2&gt;{title}&lt;/h2&gt;
+
+            &lt;p&gt;{description}&lt;/p&gt;
+
+        &lt;/div&gt;
+    );
+
+}
+
+export default GameCard;</code></pre>
+
+
+    <div class="scheme">
+        App
+        <br>
+        ↓ передаёт props
+        <br>
+        GameCard
+        <br>
+        ↓
+        title + description
+    </div>
+
+
+    <h2>11. State</h2>
+
+    <p>
+        Теперь сделаем приложение интерактивным.
+    </p>
+
+    <p>
+        Нам понадобится:
+    </p>
+
+<pre><code>useState</code></pre>
+
+    <p>
+        Например, создадим счётчик:
+    </p>
+
+<pre><code>import { useState } from "react";
+
+function App() {
+
+    const [count, setCount] = useState(0);
+
+    return (
+        &lt;div&gt;
+
+            &lt;h1&gt;
+                Нажатий: {count}
+            &lt;/h1&gt;
+
+            &lt;button
+                onClick={() =&gt; setCount(count + 1)}
+            &gt;
+                Нажми
+            &lt;/button&gt;
+
+        &lt;/div&gt;
+    );
+
+}
+
+export default App;</code></pre>
+
+
+    <h3>Что означает эта строка?</h3>
+
+<pre><code>const [count, setCount] = useState(0);</code></pre>
+
+    <ul>
+        <li><code>count</code> — текущее значение;</li>
+        <li><code>setCount</code> — изменяет значение;</li>
+        <li><code>0</code> — начальное значение.</li>
+    </ul>
+
+
+    <h2>12. Событие onClick</h2>
+
+    <p>
+        В обычном JavaScript мы использовали:
+    </p>
+
+<pre><code>addEventListener("click", ...)</code></pre>
+
+    <p>
+        В React:
+    </p>
+
+<pre><code>&lt;button
+    onClick={() =&gt; alert("Привет!")}
+&gt;
+    Нажми
+&lt;/button&gt;</code></pre>
+
+
+    <h2>13. Карточка с лайками</h2>
+
+<pre><code>import { useState } from "react";
+
+function GameCard({ title, description }) {
+
+    const [likes, setLikes] = useState(0);
+
+    return (
+        &lt;div className="card"&gt;
+
+            &lt;h2&gt;{title}&lt;/h2&gt;
+
+            &lt;p&gt;{description}&lt;/p&gt;
+
+            &lt;p&gt;
+                Лайков: {likes}
+            &lt;/p&gt;
+
+            &lt;button
+                onClick={() =&gt; setLikes(likes + 1)}
+            &gt;
+                Лайк
+            &lt;/button&gt;
+
+        &lt;/div&gt;
+    );
+
+}
+
+export default GameCard;</code></pre>
+
+
+    <div class="important">
+        Каждый компонент <code>GameCard</code>
+        будет иметь свой собственный счётчик лайков.
+    </div>
+
+
+    <h2>14. CSS для карточек</h2>
+
+    <p>
+        В <code>index.css</code>:
+    </p>
+
+<pre><code>body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f1f5f9;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 20px;
+}
+
+.cards {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.card {
+    background: white;
+    padding: 20px;
+    width: 250px;
+    border-radius: 16px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+}
+
+button {
+    padding: 10px 18px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}</code></pre>
+
+
+    <h2>15. Что сегодня нужно запомнить?</h2>
+
+    <div class="scheme">
+        Component
+        +
+        Props
+        +
+        State
+        +
+        Event
+        =
+        React
+    </div>
+
+
+    <div class="question">
+        Что такое компонент?
+    </div>
+
+    <div class="question">
+        Для чего нужны props?
+    </div>
+
+    <div class="question">
+        Что делает useState?
+    </div>
+
+    <div class="question">
+        Чем class отличается от className?
+    </div>
+
+    <div class="question">
+        Что происходит при onClick?
+    </div>
+
+
+    <div class="important">
+        Теперь переходи к практической работе.
+    </div>
+
+</div>
+
+</body>
+
+</html>

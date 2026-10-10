@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>React — Практика</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f1f5f9;
+            color: #1e293b;
+            line-height: 1.7;
+        }
+
+        .container {
+            max-width: 950px;
+            margin: 30px auto;
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        .header {
+            background: linear-gradient(135deg, #f59e0b, #f97316);
+            color: white;
+            padding: 30px;
+            border-radius: 18px;
+        }
+
+        .header h1 {
+            margin: 0 0 10px;
+        }
+
+        h2 {
+            color: #b45309;
+            margin-top: 40px;
+            border-bottom: 3px solid #fde68a;
+            padding-bottom: 10px;
+        }
+
+        p,
+        li {
+            font-size: 18px;
+        }
+
+        pre {
+            background: #0f172a;
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
+            overflow-x: auto;
+        }
+
+        code {
+            font-family: Consolas, monospace;
+        }
+
+        .task {
+            background: #fffbeb;
+            border-left: 5px solid #f59e0b;
+            padding: 22px;
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+
+        .hint {
+            background: #eff6ff;
+            border-left: 5px solid #3b82f6;
+            padding: 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+
+        .check {
+            background: #dcfce7;
+            border-left: 5px solid #22c55e;
+            padding: 20px;
+            border-radius: 12px;
+            margin-top: 25px;
+        }
+
+        .warning {
+            background: #fee2e2;
+            border-left: 5px solid #ef4444;
+            padding: 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+
+        @media(max-width: 700px) {
+            .container {
+                margin: 0;
+                padding: 20px;
+                border-radius: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="header">
+        <h1>React — Практическая работа</h1>
+
+        <p>
+            Создаём приложение «Мои любимые игры»
+        </p>
+    </div>
+
+
+    <h2>Задача</h2>
+
+    <p>
+        Создай React-приложение,
+        которое показывает карточки твоих любимых игр.
+    </p>
+
+    <div class="task">
+        Каждая карточка должна содержать:
+
+        <ul>
+            <li>название игры;</li>
+            <li>жанр;</li>
+            <li>короткое описание;</li>
+            <li>счётчик лайков;</li>
+            <li>кнопку «Лайк».</li>
+        </ul>
+    </div>
+
+
+    <h2>1. Создай проект</h2>
+
+<pre><code>npm create vite@latest</code></pre>
+
+    <p>Выбери:</p>
+
+<pre><code>React
+JavaScript</code></pre>
+
+    <p>Затем:</p>
+
+<pre><code>cd имя-проекта
+
+npm install
+
+npm run dev</code></pre>
+
+
+    <h2>2. Подготовь структуру</h2>
+
+<pre><code>src/
+│
+├── components/
+│   └── GameCard.jsx
+│
+├── App.jsx
+├── main.jsx
+└── index.css</code></pre>
+
+
+    <h2>3. Создай GameCard</h2>
+
+    <p>
+        Компонент должен принимать:
+    </p>
+
+<pre><code>title
+genre
+description</code></pre>
+
+    <div class="hint">
+        Подсказка: данные передаются через props.
+    </div>
+
+<pre><code>function GameCard({
+    title,
+    genre,
+    description
+}) {
+
+    return (
+        &lt;div className="card"&gt;
+
+            &lt;h2&gt;
+                {title}
+            &lt;/h2&gt;
+
+            &lt;p&gt;
+                Жанр: {genre}
+            &lt;/p&gt;
+
+            &lt;p&gt;
+                {description}
+            &lt;/p&gt;
+
+        &lt;/div&gt;
+    );
+
+}
+
+export default GameCard;</code></pre>
+
+
+    <h2>4. Используй компонент три раза</h2>
+
+    <p>
+        В <code>App.jsx</code>:
+    </p>
+
+<pre><code>import GameCard from "./components/GameCard";
+
+function App() {
+
+    return (
+        &lt;div className="container"&gt;
+
+            &lt;h1&gt;
+                Во что я играю
+            &lt;/h1&gt;
+
+
+            &lt;div className="cards"&gt;
+
+                &lt;GameCard
+                    title="Clash Royale"
+                    genre="Strategy"
+                    description="Карточная PvP игра"
+                /&gt;
+
+                &lt;GameCard
+                    title="League of Legends"
+                    genre="MOBA"
+                    description="Командная соревновательная игра"
+                /&gt;
+
+                &lt;GameCard
+                    title="Elden Ring"
+                    genre="Action RPG"
+                    description="Большой мир и сложные боссы"
+                /&gt;
+
+            &lt;/div&gt;
+
+        &lt;/div&gt;
+    );
+
+}
+
+export default App;</code></pre>
+
+
+    <div class="warning">
+        Не обязательно использовать именно эти игры.
+        Выбери свои.
+    </div>
+
+
+    <h2>5. Добавь useState</h2>
+
+    <p>
+        Теперь у каждой карточки должен быть
+        свой счётчик лайков.
+    </p>
+
+    <p>
+        Добавь:
+    </p>
+
+<pre><code>import { useState } from "react";</code></pre>
+
+    <p>
+        Внутри компонента:
+    </p>
+
+<pre><code>const [likes, setLikes] = useState(0);</code></pre>
+
+
+    <h2>6. Покажи количество лайков</h2>
+
+<pre><code>&lt;p&gt;
+    Лайков: {likes}
+&lt;/p&gt;</code></pre>
+
+
+    <h2>7. Добавь кнопку</h2>
+
+<pre><code>&lt;button
+    onClick={() =&gt; setLikes(likes + 1)}
+&gt;
+    Лайк
+&lt;/button&gt;</code></pre>
+
+
+    <h2>8. Оформи сайт</h2>
+
+    <p>
+        В <code>index.css</code>:
+    </p>
+
+<pre><code>body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f1f5f9;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 20px;
+}
+
+.cards {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.card {
+    background: white;
+    padding: 20px;
+    width: 260px;
+    border-radius: 16px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+}
+
+button {
+    padding: 10px 16px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}</code></pre>
+
+
+    <h2>Проверка</h2>
+
+    <div class="check">
+
+        <p>☐ React-проект запускается</p>
+
+        <p>☐ Есть папка <code>components</code></p>
+
+        <p>☐ Есть <code>GameCard.jsx</code></p>
+
+        <p>☐ GameCard используется минимум 3 раза</p>
+
+        <p>☐ Используются props</p>
+
+        <p>☐ Передаётся название игры</p>
+
+        <p>☐ Передаётся жанр</p>
+
+        <p>☐ Передаётся описание</p>
+
+        <p>☐ Используется <code>useState</code></p>
+
+        <p>☐ Кнопка увеличивает количество лайков</p>
+
+        <p>☐ У каждой карточки свой счётчик</p>
+
+        <p>☐ Есть CSS</p>
+
+    </div>
+
+
+    <h2>Готово?</h2>
+
+    <p>
+        Покажи приложение преподавателю.
+    </p>
+
+    <p>
+        Если всё работает —
+        получи пароль от дополнительного задания.
+    </p>
+
+</div>
+
+</body>
+
+</html>

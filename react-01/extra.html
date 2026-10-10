@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>React — Дополнительное задание</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f5f3ff;
+            color: #1e293b;
+            line-height: 1.7;
+        }
+
+        .container {
+            max-width: 950px;
+            margin: 30px auto;
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        .header {
+            background: linear-gradient(135deg, #7c3aed, #9333ea);
+            color: white;
+            padding: 30px;
+            border-radius: 18px;
+        }
+
+        .header h1 {
+            margin: 0 0 10px;
+        }
+
+        h2 {
+            color: #6d28d9;
+            margin-top: 40px;
+            border-bottom: 3px solid #ddd6fe;
+            padding-bottom: 10px;
+        }
+
+        p,
+        li {
+            font-size: 18px;
+        }
+
+        pre {
+            background: #0f172a;
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
+            overflow-x: auto;
+        }
+
+        code {
+            font-family: Consolas, monospace;
+        }
+
+        .task {
+            background: #f5f3ff;
+            border-left: 5px solid #7c3aed;
+            padding: 22px;
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+
+        .hint {
+            background: #fef3c7;
+            border-left: 5px solid #f59e0b;
+            padding: 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+
+        .hard {
+            background: #fee2e2;
+            border-left: 5px solid #ef4444;
+            padding: 22px;
+            border-radius: 12px;
+            margin-top: 30px;
+        }
+
+        .check {
+            background: #dcfce7;
+            border-left: 5px solid #22c55e;
+            padding: 20px;
+            border-radius: 12px;
+            margin-top: 25px;
+        }
+
+        @media(max-width: 700px) {
+            .container {
+                margin: 0;
+                padding: 20px;
+                border-radius: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="header">
+        <h1>React — Дополнительное задание</h1>
+
+        <p>
+            Улучшаем компонент GameCard
+        </p>
+    </div>
+
+
+    <h2>Задача</h2>
+
+    <p>
+        Основное приложение уже работает.
+        Теперь сделай карточки более интерактивными.
+    </p>
+
+
+    <div class="task">
+        Нужно добавить:
+
+        <ol>
+            <li>кнопку увеличения лайков;</li>
+            <li>кнопку уменьшения лайков;</li>
+            <li>запрет отрицательных лайков;</li>
+            <li>кнопку показа описания;</li>
+            <li>условное отображение текста.</li>
+        </ol>
+    </div>
+
+
+    <h2>1. Добавь кнопку ➖</h2>
+
+    <p>
+        Сейчас есть:
+    </p>
+
+<pre><code>&lt;button
+    onClick={() =&gt; setLikes(likes + 1)}
+&gt;
+    Лайк
+&lt;/button&gt;</code></pre>
+
+    <p>
+        Добавь вторую кнопку:
+    </p>
+
+<pre><code>&lt;button
+    onClick={() =&gt; setLikes(likes - 1)}
+&gt;
+    Убрать лайк
+&lt;/button&gt;</code></pre>
+
+
+    <h2>2. Исправь проблему</h2>
+
+    <p>
+        Сейчас можно получить:
+    </p>
+
+<pre><code>Лайков: -1
+Лайков: -2
+Лайков: -3</code></pre>
+
+    <p>
+        Это неправильно.
+    </p>
+
+    <p>
+        Добавь проверку:
+    </p>
+
+<pre><code>&lt;button
+    onClick={() =&gt; {
+
+        if (likes &gt; 0) {
+            setLikes(likes - 1);
+        }
+
+    }}
+&gt;
+
+    Убрать лайк
+
+&lt;/button&gt;</code></pre>
+
+
+    <div class="hint">
+        Теперь количество лайков
+        не должно становиться меньше нуля.
+    </div>
+
+
+    <h2>3. Добавь ещё один state</h2>
+
+    <p>
+        Создай состояние:
+    </p>
+
+<pre><code>const [showDescription, setShowDescription]
+    = useState(false);</code></pre>
+
+    <p>
+        Здесь:
+    </p>
+
+    <ul>
+        <li><code>false</code> — описание скрыто;</li>
+        <li><code>true</code> — описание показано.</li>
+    </ul>
+
+
+    <h2>4. Добавь кнопку</h2>
+
+<pre><code>&lt;button
+    onClick={() =&gt;
+        setShowDescription(!showDescription)
+    }
+&gt;
+
+    Показать / скрыть описание
+
+&lt;/button&gt;</code></pre>
+
+
+    <h2>5. Условный рендеринг</h2>
+
+    <p>
+        Вместо:
+    </p>
+
+<pre><code>&lt;p&gt;
+    {description}
+&lt;/p&gt;</code></pre>
+
+    <p>
+        напиши:
+    </p>
+
+<pre><code>{showDescription &amp;&amp; (
+    &lt;p&gt;
+        {description}
+    &lt;/p&gt;
+)}</code></pre>
+
+
+    <div class="hint">
+        Это означает:
+
+        <br><br>
+
+        если <code>showDescription</code>
+        равно <code>true</code>,
+        показать описание.
+    </div>
+
+
+    <h2>6. Измени текст кнопки</h2>
+
+    <p>
+        Сейчас кнопка всегда пишет:
+    </p>
+
+<pre><code>Показать / скрыть описание</code></pre>
+
+    <p>
+        Попробуй сделать лучше:
+    </p>
+
+<pre><code>&lt;button
+    onClick={() =&gt;
+        setShowDescription(!showDescription)
+    }
+&gt;
+
+    {showDescription
+        ? "Скрыть описание"
+        : "Показать описание"}
+
+&lt;/button&gt;</code></pre>
+
+
+    <h2>7. Как теперь должен выглядеть GameCard?</h2>
+
+<pre><code>import { useState } from "react";
+
+function GameCard({
+    title,
+    genre,
+    description
+}) {
+
+    const [likes, setLikes] = useState(0);
+
+    const [showDescription, setShowDescription]
+        = useState(false);
+
+
+    return (
+        &lt;div className="card"&gt;
+
+
+            &lt;h2&gt;
+                {title}
+            &lt;/h2&gt;
+
+
+            &lt;p&gt;
+                Жанр: {genre}
+            &lt;/p&gt;
+
+
+            {showDescription &amp;&amp; (
+
+                &lt;p&gt;
+                    {description}
+                &lt;/p&gt;
+
+            )}
+
+
+            &lt;p&gt;
+                Лайков: {likes}
+            &lt;/p&gt;
+
+
+            &lt;button
+                onClick={() =&gt;
+                    setLikes(likes + 1)
+                }
+            &gt;
+                Лайк
+            &lt;/button&gt;
+
+
+            &lt;button
+                onClick={() =&gt; {
+
+                    if (likes &gt; 0) {
+                        setLikes(likes - 1);
+                    }
+
+                }}
+            &gt;
+                Убрать лайк
+            &lt;/button&gt;
+
+
+            &lt;button
+                onClick={() =&gt;
+                    setShowDescription(
+                        !showDescription
+                    )
+                }
+            &gt;
+
+                {showDescription
+                    ? "Скрыть описание"
+                    : "Показать описание"}
+
+            &lt;/button&gt;
+
+
+        &lt;/div&gt;
+    );
+
+}
+
+export default GameCard;</code></pre>
+
+
+    <h2>Проверка</h2>
+
+    <div class="check">
+
+        <p>☐ Лайк увеличивается</p>
+
+        <p>☐ Лайк уменьшается</p>
+
+        <p>☐ Лайки не уходят ниже 0</p>
+
+        <p>☐ Описание сначала скрыто</p>
+
+        <p>☐ Кнопка показывает описание</p>
+
+        <p>☐ Повторное нажатие скрывает описание</p>
+
+        <p>☐ Текст кнопки меняется</p>
+
+        <p>☐ Каждая карточка работает независимо</p>
+
+    </div>
+
+
+    <div class="hard">
+
+        <h2>HARD</h2>
+
+        <p>
+            Если всё сделал —
+            попробуй добавить картинку в карточку.
+        </p>
+
+        <p>
+            Передавай её через props:
+        </p>
+
+<pre><code>&lt;GameCard
+    title="Elden Ring"
+    genre="Action RPG"
+    description="Большой открытый мир"
+    image="https://..."
+/&gt;</code></pre>
+
+        <p>
+            В компоненте:
+        </p>
+
+<pre><code>function GameCard({
+    title,
+    genre,
+    description,
+    image
+})</code></pre>
+
+        <p>
+            И:
+        </p>
+
+<pre><code>&lt;img
+    src={image}
+    alt={title}
+/&gt;</code></pre>
+
+    </div>
+
+
+    <div class="hard">
+
+        <h2>SUPER HARD</h2>
+
+        <p>
+            Добавь ещё один prop:
+        </p>
+
+<pre><code>rating={9}</code></pre>
+
+        <p>
+            И покажи:
+        </p>
+
+<pre><code>&lt;p&gt;
+    Оценка: {rating}/10
+&lt;/p&gt;</code></pre>
+
+        <p>
+            Затем попробуй самостоятельно сделать так,
+            чтобы если рейтинг:
+        </p>
+
+<pre><code>rating &gt;= 9</code></pre>
+
+        <p>
+            рядом появлялось:
+        </p>
+
+<pre><code>Отличная игра</code></pre>
+
+    </div>
+
+
+    <h2>Итог</h2>
+
+    <p>
+        После дополнительного задания
+        ты уже используешь:
+    </p>
+
+    <ul>
+        <li>компоненты;</li>
+        <li>props;</li>
+        <li>несколько state;</li>
+        <li>onClick;</li>
+        <li>условия;</li>
+        <li>условный рендеринг.</li>
+    </ul>
+
+</div>
+
+</body>
+
+</html>
