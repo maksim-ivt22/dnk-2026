@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Практика №1 — Первый сайт</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f1f5f9;
+            color: #1e293b;
+            line-height: 1.7;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 30px auto;
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        .header {
+            background: linear-gradient(135deg, #f59e0b, #f97316);
+            color: white;
+            padding: 30px;
+            border-radius: 18px;
+        }
+
+        .header h1 {
+            margin-top: 0;
+        }
+
+        h2 {
+            color: #b45309;
+            margin-top: 40px;
+        }
+
+        p,
+        li {
+            font-size: 18px;
+        }
+
+        pre {
+            background: #0f172a;
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
+            overflow-x: auto;
+        }
+
+        code {
+            font-family: Consolas, monospace;
+        }
+
+        .task {
+            background: #fffbeb;
+            border-left: 5px solid #f59e0b;
+            padding: 22px;
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+
+        .hint {
+            background: #eff6ff;
+            border-left: 5px solid #3b82f6;
+            padding: 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+
+        .check {
+            background: #dcfce7;
+            border-left: 5px solid #22c55e;
+            padding: 20px;
+            border-radius: 12px;
+        }
+
+        @media(max-width: 700px) {
+
+            .container {
+                margin: 0;
+                padding: 20px;
+                border-radius: 0;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+<div class="container">
+
+
+    <div class="header">
+
+        <h1>Практическая работа №1</h1>
+
+        <p>
+            Создаём свою первую HTML-страницу.
+        </p>
+
+    </div>
+
+
+    <h2>Задача</h2>
+
+    <p>
+        Создай страницу
+        <strong>«Обо мне»</strong>.
+    </p>
+
+
+    <div class="task">
+
+        <h3>На странице должно быть:</h3>
+
+        <ol>
+
+            <li>Название вкладки браузера.</li>
+
+            <li>Главный заголовок с твоим именем.</li>
+
+            <li>Абзац о себе.</li>
+
+            <li>Ещё один заголовок.</li>
+
+            <li>Ещё один абзац.</li>
+
+        </ol>
+
+    </div>
+
+
+    <h2>1. Создай папку</h2>
+
+<pre><code>lesson-1-practice</code></pre>
+
+
+    <h2>2. Создай файл</h2>
+
+<pre><code>index.html</code></pre>
+
+
+    <h2>3. Напиши базовую структуру</h2>
+
+    <div class="hint">
+
+        Если забыл структуру,
+        можешь использовать эту подсказку.
+
+    </div>
+
+<pre><code>&lt;!DOCTYPE html&gt;
+
+&lt;html lang="ru"&gt;
+
+&lt;head&gt;
+
+    &lt;meta charset="UTF-8"&gt;
+
+    &lt;title&gt;
+        __________________
+    &lt;/title&gt;
+
+&lt;/head&gt;
+
+
+&lt;body&gt;
+
+
+
+&lt;/body&gt;
+
+
+&lt;/html&gt;</code></pre>
+
+
+    <h2>4. Добавь главный заголовок</h2>
+
+    <p>
+        Например:
+    </p>
+
+<pre><code>&lt;h1&gt;
+    Привет! Меня зовут Максим
+&lt;/h1&gt;</code></pre>
+
+    <p>
+        Но напиши своё имя.
+    </p>
+
+
+    <h2>5. Напиши о себе</h2>
+
+    <p>
+        Используй:
+    </p>
+
+<pre><code>&lt;p&gt;
+    Здесь текст о тебе.
+&lt;/p&gt;</code></pre>
+
+    <p>
+        Можно написать:
+    </p>
+
+    <ul>
+
+        <li>в каком классе ты учишься;</li>
+
+        <li>что тебе нравится;</li>
+
+        <li>почему ты пришёл на веб-программирование.</li>
+
+    </ul>
+
+
+    <h2>6. Добавь ещё один раздел</h2>
+
+    <p>
+        Например:
+    </p>
+
+<pre><code>&lt;h2&gt;
+    Что я хочу научиться делать
+&lt;/h2&gt;
+
+&lt;p&gt;
+    Я хочу научиться создавать сайты.
+&lt;/p&gt;</code></pre>
+
+
+    <h2>Проверка</h2>
+
+    <div class="check">
+
+        <p>☐ Файл называется <code>index.html</code></p>
+
+        <p>☐ Есть <code>&lt;title&gt;</code></p>
+
+        <p>☐ Есть <code>&lt;h1&gt;</code></p>
+
+        <p>☐ Есть <code>&lt;h2&gt;</code></p>
+
+        <p>☐ Есть минимум два <code>&lt;p&gt;</code></p>
+
+        <p>☐ Файл сохранён</p>
+
+        <p>☐ Страница открывается в браузере</p>
+
+    </div>
+
+
+    <h2>Готово?</h2>
+
+    <p>
+        Покажи страницу преподавателю.
+    </p>
+
+    <p>
+        Если всё правильно —
+        можешь перейти к дополнительному заданию.
+    </p>
+
+
+</div>
+
+</body>
+
+</html>

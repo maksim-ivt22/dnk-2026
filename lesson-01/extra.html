@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Дополнительное задание №1</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f5f3ff;
+            color: #1e293b;
+            line-height: 1.7;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 30px auto;
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        .header {
+            background: linear-gradient(135deg, #7c3aed, #9333ea);
+            color: white;
+            padding: 30px;
+            border-radius: 18px;
+        }
+
+        .header h1 {
+            margin-top: 0;
+        }
+
+        h2 {
+            color: #6d28d9;
+            margin-top: 40px;
+        }
+
+        p,
+        li {
+            font-size: 18px;
+        }
+
+        pre {
+            background: #0f172a;
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
+            overflow-x: auto;
+        }
+
+        code {
+            font-family: Consolas, monospace;
+        }
+
+        .task {
+            background: #f5f3ff;
+            border-left: 5px solid #7c3aed;
+            padding: 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+
+        .hint {
+            background: #fef3c7;
+            border-left: 5px solid #f59e0b;
+            padding: 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+
+        .hard {
+            background: #fee2e2;
+            border-left: 5px solid #ef4444;
+            padding: 20px;
+            border-radius: 12px;
+            margin-top: 30px;
+        }
+
+        @media(max-width: 700px) {
+
+            .container {
+                margin: 0;
+                padding: 20px;
+                border-radius: 0;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+<div class="container">
+
+
+    <div class="header">
+
+        <h1>Дополнительное задание №1</h1>
+
+        <p>
+            Основная работа готова?
+            Попробуй самостоятельно изучить
+            несколько новых HTML-тегов.
+        </p>
+
+    </div>
+
+
+    <h2>Задача</h2>
+
+    <p>
+        Улучши свою страницу
+        <strong>«Обо мне»</strong>.
+    </p>
+
+
+    <div class="task">
+
+        <h3>1. Добавь несколько уровней заголовков</h3>
+
+        <p>
+            Ты уже знаешь:
+        </p>
+
+<pre><code>&lt;h1&gt;Главный заголовок&lt;/h1&gt;</code></pre>
+
+        <p>
+            Попробуй:
+        </p>
+
+<pre><code>&lt;h2&gt;Заголовок раздела&lt;/h2&gt;
+
+&lt;h3&gt;Подзаголовок&lt;/h3&gt;</code></pre>
+
+    </div>
+
+
+    <div class="task">
+
+        <h3>2. Выдели важное слово</h3>
+
+        <p>
+            Попробуй самостоятельно понять,
+            что делает:
+        </p>
+
+<pre><code>&lt;strong&gt;
+    веб-программирование
+&lt;/strong&gt;</code></pre>
+
+        <p>
+            Добавь этот тег на свою страницу.
+        </p>
+
+    </div>
+
+
+    <div class="task">
+
+        <h3>3. Добавь раздел «Мои увлечения»</h3>
+
+        <p>
+            Пока можно просто использовать
+            отдельные абзацы:
+        </p>
+
+<pre><code>&lt;h2&gt;Мои увлечения&lt;/h2&gt;
+
+&lt;p&gt;Компьютерные игры&lt;/p&gt;
+
+&lt;p&gt;Музыка&lt;/p&gt;
+
+&lt;p&gt;Программирование&lt;/p&gt;</code></pre>
+
+    </div>
+
+
+    <div class="task">
+
+        <h3>4. Измени название вкладки</h3>
+
+        <p>
+            Вместо:
+        </p>
+
+<pre><code>&lt;title&gt;Мой сайт&lt;/title&gt;</code></pre>
+
+        <p>
+            придумай своё название.
+        </p>
+
+    </div>
+
+
+    <div class="hint">
+
+        Попробуй сделать страницу
+        минимум из трёх разделов:
+
+        <br><br>
+
+        «Обо мне»<br>
+        «Мои увлечения»<br>
+        «Что я хочу изучить»
+
+    </div>
+
+
+    <div class="hard">
+
+        <h2>HARD</h2>
+
+        <p>
+            Самостоятельно найди,
+            что делает тег:
+        </p>
+
+<pre><code>&lt;hr&gt;</code></pre>
+
+        <p>
+            Добавь его между разделами.
+        </p>
+
+        <p>
+            Затем самостоятельно узнай,
+            что делает:
+        </p>
+
+<pre><code>&lt;br&gt;</code></pre>
+
+        <p>
+            Попробуй его использовать.
+        </p>
+
+    </div>
+
+
+    <h2>Финальная задача</h2>
+
+    <p>
+        Попробуй сделать страницу примерно такой структуры:
+    </p>
+
+<pre><code>Моё имя
+
+Обо мне
+текст...
+
+----------------
+
+Мои увлечения
+текст...
+текст...
+текст...
+
+----------------
+
+Что я хочу изучить
+текст...</code></pre>
+
+
+    <p>
+        Главное — не внешний вид.
+    </p>
+
+    <p>
+        Главное, чтобы ты понимал,
+        <strong>какой HTML-код отвечает за каждый элемент страницы.</strong>
+    </p>
+
+
+</div>
+
+</body>
+
+</html>

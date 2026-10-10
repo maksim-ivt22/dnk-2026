@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Занятие №1 — Первый сайт</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f1f5f9;
+            color: #1e293b;
+            line-height: 1.7;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 30px auto;
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        .header {
+            background: linear-gradient(135deg, #2563eb, #7c3aed);
+            color: white;
+            padding: 30px;
+            border-radius: 18px;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            margin-top: 0;
+            font-size: 40px;
+        }
+
+        h2 {
+            color: #1d4ed8;
+            margin-top: 40px;
+            border-bottom: 3px solid #dbeafe;
+            padding-bottom: 10px;
+        }
+
+        h3 {
+            margin-top: 25px;
+        }
+
+        p,
+        li {
+            font-size: 18px;
+        }
+
+        pre {
+            background: #0f172a;
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
+            overflow-x: auto;
+            line-height: 1.6;
+        }
+
+        code {
+            font-family: Consolas, monospace;
+        }
+
+        .info {
+            background: #eff6ff;
+            border-left: 5px solid #3b82f6;
+            padding: 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+
+        .important {
+            background: #dcfce7;
+            border-left: 5px solid #22c55e;
+            padding: 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+
+        .warning {
+            background: #fef3c7;
+            border-left: 5px solid #f59e0b;
+            padding: 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+
+        .step {
+            background: #f8fafc;
+            padding: 25px;
+            border-radius: 15px;
+            margin: 20px 0;
+            border-left: 5px solid #2563eb;
+        }
+
+        .techs {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin: 25px 0;
+        }
+
+        .tech {
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .html {
+            background: #ffedd5;
+        }
+
+        .css {
+            background: #dbeafe;
+        }
+
+        .js {
+            background: #fef9c3;
+        }
+
+        .tech strong {
+            display: block;
+            font-size: 24px;
+            margin-bottom: 8px;
+        }
+
+        .question {
+            background: #ede9fe;
+            border-left: 5px solid #7c3aed;
+            padding: 18px;
+            border-radius: 10px;
+            margin: 15px 0;
+        }
+
+        @media(max-width: 700px) {
+
+            .container {
+                margin: 0;
+                padding: 20px;
+                border-radius: 0;
+            }
+
+            .techs {
+                grid-template-columns: 1fr;
+            }
+
+            .header h1 {
+                font-size: 30px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+<div class="container">
+
+
+    <div class="header">
+
+        <h1>Занятие №1 — Первый сайт</h1>
+
+        <p>
+            Как работает сайт, что такое HTML
+            и как создать свою первую веб-страницу.
+        </p>
+
+    </div>
+
+
+    <div class="important">
+
+        <strong>Если ты пропустил первое занятие:</strong>
+
+        <br><br>
+
+        Пройди эту страницу сверху вниз,
+        повторяй код у себя в VS Code
+        и обязательно выполняй примеры.
+
+    </div>
+
+
+    <h2>1. Что такое сайт?</h2>
+
+    <p>
+        Сайт — это набор страниц,
+        которые браузер показывает пользователю.
+    </p>
+
+    <p>
+        Например, браузеры:
+    </p>
+
+    <ul>
+        <li>Google Chrome</li>
+        <li>Firefox</li>
+        <li>Edge</li>
+        <li>Opera</li>
+        <li>Safari</li>
+    </ul>
+
+
+    <div class="info">
+
+        Когда мы открываем сайт,
+        браузер получает файлы сайта
+        и отображает их на экране.
+
+    </div>
+
+
+    <h2>2. Из чего состоит сайт?</h2>
+
+    <div class="techs">
+
+        <div class="tech html">
+
+            <strong>HTML</strong>
+
+            Содержание страницы
+
+        </div>
+
+
+        <div class="tech css">
+
+            <strong>CSS</strong>
+
+            Внешний вид
+
+        </div>
+
+
+        <div class="tech js">
+
+            <strong>JavaScript</strong>
+
+            Поведение страницы
+
+        </div>
+
+    </div>
+
+
+    <div class="important">
+
+        Можно представить человека:
+
+        <br><br>
+
+        HTML — скелет<br>
+        CSS — внешний вид<br>
+        JavaScript — действия
+
+    </div>
+
+
+    <h2>3. Сегодня изучаем HTML</h2>
+
+    <p>
+        HTML означает:
+    </p>
+
+    <p>
+        <strong>HyperText Markup Language</strong>
+    </p>
+
+    <p>
+        Это язык разметки веб-страниц.
+    </p>
+
+    <p>
+        HTML сообщает браузеру,
+        что находится на странице.
+    </p>
+
+    <p>
+        Например:
+    </p>
+
+<pre><code>&lt;h1&gt;Привет!&lt;/h1&gt;</code></pre>
+
+    <p>
+        Браузер понимает:
+        это главный заголовок.
+    </p>
+
+
+    <h2>4. Что понадобится?</h2>
+
+    <p>
+        Для работы нам нужны:
+    </p>
+
+    <ul>
+
+        <li>VS Code;</li>
+        <li>браузер;</li>
+        <li>папка для проекта.</li>
+
+    </ul>
+
+
+    <h2>5. Создаём первый проект</h2>
+
+
+    <div class="step">
+
+        <h3>Шаг 1</h3>
+
+        <p>
+            Создай на компьютере папку:
+        </p>
+
+<pre><code>first-site</code></pre>
+
+    </div>
+
+
+    <div class="step">
+
+        <h3>Шаг 2</h3>
+
+        <p>
+            Открой эту папку в VS Code.
+        </p>
+
+    </div>
+
+
+    <div class="step">
+
+        <h3>Шаг 3</h3>
+
+        <p>
+            Создай файл:
+        </p>
+
+<pre><code>index.html</code></pre>
+
+    </div>
+
+
+    <div class="warning">
+
+        Файл должен называться именно:
+
+        <strong>index.html</strong>
+
+        <br><br>
+
+        Не:
+
+        <code>index.txt</code>
+
+    </div>
+
+
+    <h2>6. Первый HTML-код</h2>
+
+    <p>
+        Напиши в файле:
+    </p>
+
+<pre><code>&lt;!DOCTYPE html&gt;
+
+&lt;html lang="ru"&gt;
+
+&lt;head&gt;
+
+    &lt;meta charset="UTF-8"&gt;
+
+    &lt;title&gt;Мой первый сайт&lt;/title&gt;
+
+&lt;/head&gt;
+
+
+&lt;body&gt;
+
+    &lt;h1&gt;Привет!&lt;/h1&gt;
+
+    &lt;p&gt;Это мой первый сайт.&lt;/p&gt;
+
+&lt;/body&gt;
+
+
+&lt;/html&gt;</code></pre>
+
+
+    <h2>7. Что означает этот код?</h2>
+
+
+    <h3>&lt;!DOCTYPE html&gt;</h3>
+
+    <p>
+        Сообщает браузеру,
+        что это современный HTML-документ.
+    </p>
+
+
+    <h3>&lt;html&gt;</h3>
+
+    <p>
+        Начало всей HTML-страницы.
+    </p>
+
+
+    <h3>&lt;head&gt;</h3>
+
+    <p>
+        Здесь находится информация
+        о странице.
+    </p>
+
+
+    <h3>&lt;title&gt;</h3>
+
+    <p>
+        Название вкладки браузера.
+    </p>
+
+
+    <h3>&lt;body&gt;</h3>
+
+    <p>
+        Здесь находится всё,
+        что пользователь видит на странице.
+    </p>
+
+
+    <h3>&lt;h1&gt;</h3>
+
+    <p>
+        Главный заголовок.
+    </p>
+
+
+    <h3>&lt;p&gt;</h3>
+
+    <p>
+        Обычный абзац текста.
+    </p>
+
+
+    <div class="important">
+
+        Главное для первого занятия:
+
+        <br><br>
+
+        <code>&lt;head&gt;</code>
+        — информация о странице.
+
+        <br>
+
+        <code>&lt;body&gt;</code>
+        — содержимое страницы.
+
+    </div>
+
+
+    <h2>8. Запускаем сайт</h2>
+
+    <ol>
+
+        <li>Сохрани файл: <strong>Ctrl + S</strong>.</li>
+
+        <li>Найди <code>index.html</code>.</li>
+
+        <li>Открой его браузером.</li>
+
+    </ol>
+
+    <p>
+        Ты должен увидеть:
+    </p>
+
+    <h3>Привет!</h3>
+
+    <p>
+        Это мой первый сайт.
+    </p>
+
+
+    <h2>9. Самое важное действие разработчика</h2>
+
+<pre><code>Изменил код
+      ↓
+Сохранил
+      ↓
+Обновил браузер
+      ↓
+Посмотрел результат</code></pre>
+
+
+    <div class="step">
+
+        <h3>Попробуй</h3>
+
+        <p>
+            Замени:
+        </p>
+
+<pre><code>&lt;h1&gt;Привет!&lt;/h1&gt;</code></pre>
+
+        <p>
+            на:
+        </p>
+
+<pre><code>&lt;h1&gt;Привет! Меня зовут Максим&lt;/h1&gt;</code></pre>
+
+        <p>
+            Сохрани файл и обнови браузер.
+        </p>
+
+    </div>
+
+
+    <h2>10. Быстрая проверка</h2>
+
+    <div class="question">
+        Как называется файл главной страницы?
+    </div>
+
+    <div class="question">
+        Где находится видимая часть сайта:
+        в head или body?
+    </div>
+
+    <div class="question">
+        Что делает тег &lt;h1&gt;?
+    </div>
+
+    <div class="question">
+        Что нужно сделать после изменения кода?
+    </div>
+
+
+    <h2>После этой теории</h2>
+
+    <p>
+        Ты должен уметь:
+    </p>
+
+    <ul>
+
+        <li>создать папку проекта;</li>
+
+        <li>создать <code>index.html</code>;</li>
+
+        <li>написать базовую структуру HTML;</li>
+
+        <li>добавить заголовок;</li>
+
+        <li>добавить текст;</li>
+
+        <li>открыть страницу в браузере.</li>
+
+    </ul>
+
+
+    <div class="important">
+
+        Теперь переходи к
+        <strong>практической работе №1</strong>.
+
+    </div>
+
+
+</div>
+
+</body>
+
+</html>
