@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Практика №2 — HTML</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f1f5f9;
+      color: #1e293b;
+      line-height: 1.7;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 30px auto;
+      background: white;
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 10px 35px rgba(0, 0, 0, 0.08);
+    }
+
+    h1 {
+      font-size: 42px;
+      margin-top: 0;
+    }
+
+    h2 {
+      color: #1d4ed8;
+      margin-top: 40px;
+      border-bottom: 3px solid #dbeafe;
+      padding-bottom: 10px;
+    }
+
+    h3 {
+      margin-top: 25px;
+    }
+
+    p,
+    li {
+      font-size: 18px;
+    }
+
+    code {
+      font-family: Consolas, monospace;
+    }
+
+    pre {
+      background: #0f172a;
+      color: #f8fafc;
+      padding: 22px;
+      border-radius: 14px;
+      overflow-x: auto;
+      font-size: 15px;
+      line-height: 1.6;
+      border-left: 6px solid #3b82f6;
+    }
+
+    .header {
+      background: linear-gradient(135deg, #2563eb, #7c3aed);
+      color: white;
+      padding: 32px;
+      border-radius: 18px;
+      margin-bottom: 30px;
+    }
+
+    .header h1 {
+      margin-bottom: 10px;
+    }
+
+    .badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.15);
+      padding: 6px 14px;
+      border: 1px solid rgba(255,255,255,0.3);
+      border-radius: 20px;
+      margin-right: 8px;
+      margin-top: 10px;
+    }
+
+    .goal {
+      background: #dcfce7;
+      border-left: 5px solid #22c55e;
+      padding: 20px;
+      border-radius: 12px;
+      margin: 25px 0;
+    }
+
+    .task {
+      background: #f8fafc;
+      border-left: 5px solid #3b82f6;
+      padding: 25px;
+      border-radius: 15px;
+      margin-top: 25px;
+    }
+
+    .required {
+      background: #eff6ff;
+      padding: 25px;
+      border-radius: 15px;
+      margin-top: 25px;
+    }
+
+    .required li {
+      margin-bottom: 12px;
+    }
+
+    .step {
+      background: white;
+      border: 2px solid #dbeafe;
+      padding: 20px;
+      border-radius: 14px;
+      margin: 15px 0;
+    }
+
+    .step-number {
+      display: inline-flex;
+      width: 38px;
+      height: 38px;
+      align-items: center;
+      justify-content: center;
+      background: #2563eb;
+      color: white;
+      border-radius: 50%;
+      font-weight: bold;
+      margin-right: 10px;
+    }
+
+    .hint {
+      background: #fef3c7;
+      border-left: 5px solid #f59e0b;
+      padding: 18px;
+      border-radius: 10px;
+      margin: 20px 0;
+    }
+
+    .danger {
+      background: #fee2e2;
+      border-left: 5px solid #ef4444;
+      padding: 18px;
+      border-radius: 10px;
+      margin: 20px 0;
+    }
+
+    .bonus {
+      background: linear-gradient(135deg, #7c3aed, #9333ea);
+      color: white;
+      padding: 25px;
+      border-radius: 16px;
+      margin-top: 30px;
+    }
+
+    .bonus h2 {
+      color: white;
+      border-color: rgba(255,255,255,0.3);
+      margin-top: 0;
+    }
+
+    .checklist {
+      background: #f0fdf4;
+      border: 2px solid #86efac;
+      padding: 25px;
+      border-radius: 15px;
+    }
+
+    .check-item {
+      margin: 12px 0;
+      font-size: 18px;
+    }
+
+    .finish {
+      background: #0f172a;
+      color: white;
+      padding: 30px;
+      border-radius: 18px;
+      margin-top: 35px;
+      text-align: center;
+    }
+
+    .finish h2 {
+      color: white;
+      border: none;
+      margin-top: 0;
+    }
+
+    @media (max-width: 700px) {
+      .container {
+        margin: 0;
+        border-radius: 0;
+        padding: 20px;
+      }
+
+      h1 {
+        font-size: 32px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <div class="header">
+    <h1>Практическая работа №2</h1>
+
+    <p>
+      Создаём самостоятельную HTML-страницу
+    </p>
+
+    <span class="badge">HTML</span>
+    <span class="badge">Занятие №2</span>
+    <span class="badge">Самостоятельная работа</span>
+  </div>
+
+
+  <div class="goal">
+
+    <h3>Цель работы</h3>
+
+    <p>
+      Создать свою веб-страницу на интересную вам тему
+      и использовать основные HTML-теги,
+      которые мы изучили сегодня.
+    </p>
+
+  </div>
+
+
+  <section class="task">
+
+    <h2>Задание</h2>
+
+    <p>
+      Создайте страницу на тему:
+      <strong>«Моё увлечение»</strong>.
+    </p>
+
+    <p>
+      Вы можете выбрать любую тему.
+    </p>
+
+    <ul>
+      <li>компьютерные игры;</li>
+      <li>спорт;</li>
+      <li>музыка;</li>
+      <li>фильмы;</li>
+      <li>сериалы;</li>
+      <li>аниме;</li>
+      <li>книги;</li>
+      <li>автомобили;</li>
+      <li>рисование;</li>
+      <li>программирование;</li>
+      <li>путешествия;</li>
+      <li>или свою тему.</li>
+    </ul>
+
+  </section>
+
+
+  <section class="required">
+
+    <h2>Что обязательно должно быть на странице?</h2>
+
+    <ol>
+
+      <li>
+        Главный заголовок <code>&lt;h1&gt;</code>
+      </li>
+
+      <li>
+        Минимум два абзаца <code>&lt;p&gt;</code>
+      </li>
+
+      <li>
+        Минимум два заголовка <code>&lt;h2&gt;</code>
+      </li>
+
+      <li>
+        Хотя бы один <code>&lt;h3&gt;</code>
+      </li>
+
+      <li>
+        Одно изображение <code>&lt;img&gt;</code>
+      </li>
+
+      <li>
+        Ненумерованный список <code>&lt;ul&gt;</code>
+      </li>
+
+      <li>
+        Нумерованный список <code>&lt;ol&gt;</code>
+      </li>
+
+      <li>
+        Ссылка <code>&lt;a&gt;</code>
+      </li>
+
+      <li>
+        Выделение текста через
+        <code>&lt;strong&gt;</code>
+        или
+        <code>&lt;em&gt;</code>
+      </li>
+
+    </ol>
+
+  </section>
+
+
+  <h2>Порядок выполнения</h2>
+
+
+  <div class="step">
+
+    <h3>
+      <span class="step-number">1</span>
+      Создайте папку
+    </h3>
+
+    <p>
+      Назовите её, например:
+    </p>
+
+<pre><code>lesson-2-practice</code></pre>
+
+  </div>
+
+
+  <div class="step">
+
+    <h3>
+      <span class="step-number">2</span>
+      Создайте index.html
+    </h3>
+
+    <p>
+      Внутри папки создайте файл:
+    </p>
+
+<pre><code>index.html</code></pre>
+
+  </div>
+
+
+  <div class="step">
+
+    <h3>
+      <span class="step-number">3</span>
+      Напишите структуру HTML
+    </h3>
+
+    <p>
+      Начните с базовой структуры.
+    </p>
+
+<pre><code>&lt;!DOCTYPE html&gt;
+
+&lt;html lang="ru"&gt;
+
+&lt;head&gt;
+
+    &lt;meta charset="UTF-8"&gt;
+
+    &lt;title&gt;
+        Название страницы
+    &lt;/title&gt;
+
+&lt;/head&gt;
+
+
+&lt;body&gt;
+
+
+
+&lt;/body&gt;
+
+&lt;/html&gt;</code></pre>
+
+    <div class="hint">
+      Всё содержимое страницы пишем
+      внутри <code>&lt;body&gt;</code>.
+    </div>
+
+  </div>
+
+
+  <div class="step">
+
+    <h3>
+      <span class="step-number">4</span>
+      Добавьте главный заголовок
+    </h3>
+
+    <p>
+      Например:
+    </p>
+
+<pre><code>&lt;h1&gt;
+    Моё увлечение — футбол
+&lt;/h1&gt;</code></pre>
+
+    <p>
+      Но не копируйте этот текст —
+      напишите свою тему.
+    </p>
+
+  </div>
+
+
+  <div class="step">
+
+    <h3>
+      <span class="step-number">5</span>
+      Расскажите о своём увлечении
+    </h3>
+
+    <p>
+      Напишите минимум два абзаца.
+    </p>
+
+<pre><code>&lt;p&gt;
+
+    Здесь ваш текст...
+
+&lt;/p&gt;
+
+
+&lt;p&gt;
+
+    Здесь второй абзац...
+
+&lt;/p&gt;</code></pre>
+
+    <div class="hint">
+      Можно рассказать:
+      когда вы заинтересовались этой темой,
+      почему она вам нравится и чем она интересна.
+    </div>
+
+  </div>
+
+
+  <div class="step">
+
+    <h3>
+      <span class="step-number">6</span>
+      Добавьте изображение
+    </h3>
+
+<pre><code>&lt;img
+    src="АДРЕС_КАРТИНКИ"
+    alt="ОПИСАНИЕ_КАРТИНКИ"
+&gt;</code></pre>
+
+    <p>
+      Не забудьте заполнить <code>alt</code>.
+    </p>
+
+  </div>
+
+
+  <div class="step">
+
+    <h3>
+      <span class="step-number">7</span>
+      Сделайте список
+    </h3>
+
+    <p>
+      Например:
+      «Почему мне нравится это увлечение».
+    </p>
+
+<pre><code>&lt;h2&gt;
+    Почему мне это нравится
+&lt;/h2&gt;
+
+&lt;ul&gt;
+
+    &lt;li&gt;Причина 1&lt;/li&gt;
+
+    &lt;li&gt;Причина 2&lt;/li&gt;
+
+    &lt;li&gt;Причина 3&lt;/li&gt;
+
+&lt;/ul&gt;</code></pre>
+
+  </div>
+
+
+  <div class="step">
+
+    <h3>
+      <span class="step-number">8</span>
+      Добавьте ТОП-3
+    </h3>
+
+    <p>
+      Сделайте нумерованный список.
+    </p>
+
+    <p>
+      Например:
+    </p>
+
+<pre><code>&lt;h2&gt;
+    Мой ТОП-3
+&lt;/h2&gt;
+
+&lt;ol&gt;
+
+    &lt;li&gt;Первое место&lt;/li&gt;
+
+    &lt;li&gt;Второе место&lt;/li&gt;
+
+    &lt;li&gt;Третье место&lt;/li&gt;
+
+&lt;/ol&gt;</code></pre>
+
+    <p>
+      Это может быть ТОП игр, фильмов,
+      спортсменов, книг, песен и т.д.
+    </p>
+
+  </div>
+
+
+  <div class="step">
+
+    <h3>
+      <span class="step-number">9</span>
+      Добавьте ссылку
+    </h3>
+
+<pre><code>&lt;a
+    href="https://..."
+    target="_blank"
+&gt;
+
+    Узнать больше
+
+&lt;/a&gt;</code></pre>
+
+    <div class="hint">
+      💡 Ссылка должна вести на сайт,
+      связанный с вашей темой.
+    </div>
+
+  </div>
+
+
+  <div class="step">
+
+    <h3>
+      <span class="step-number">10</span>
+      Выделите важный текст
+    </h3>
+
+    <p>
+      Используйте:
+    </p>
+
+<pre><code>&lt;strong&gt;
+    важный текст
+&lt;/strong&gt;</code></pre>
+
+    <p>или:</p>
+
+<pre><code>&lt;em&gt;
+    текст с акцентом
+&lt;/em&gt;</code></pre>
+
+  </div>
+
+
+  <h2>Каркас страницы</h2>
+
+  <p>
+    Если вы не знаете, с чего начать,
+    используйте этот каркас.
+  </p>
+
+  <div class="danger">
+    Не нужно просто копировать и сдавать его.
+    Заполните все места своим содержимым.
+  </div>
+
+<pre><code>&lt;!DOCTYPE html&gt;
+
+&lt;html lang="ru"&gt;
+
+&lt;head&gt;
+
+    &lt;meta charset="UTF-8"&gt;
+
+    &lt;title&gt;
+        __________________________
+    &lt;/title&gt;
+
+&lt;/head&gt;
+
+
+&lt;body&gt;
+
+
+    &lt;h1&gt;
+        __________________________
+    &lt;/h1&gt;
+
+
+    &lt;p&gt;
+        __________________________
+    &lt;/p&gt;
+
+
+    &lt;p&gt;
+        __________________________
+    &lt;/p&gt;
+
+
+    &lt;h2&gt;
+        __________________________
+    &lt;/h2&gt;
+
+
+    &lt;img
+        src="__________________________"
+        alt="__________________________"
+    &gt;
+
+
+    &lt;h2&gt;
+        __________________________
+    &lt;/h2&gt;
+
+
+    &lt;ul&gt;
+
+        &lt;li&gt;__________________________&lt;/li&gt;
+
+        &lt;li&gt;__________________________&lt;/li&gt;
+
+        &lt;li&gt;__________________________&lt;/li&gt;
+
+    &lt;/ul&gt;
+
+
+    &lt;h2&gt;
+        __________________________
+    &lt;/h2&gt;
+
+
+    &lt;ol&gt;
+
+        &lt;li&gt;__________________________&lt;/li&gt;
+
+        &lt;li&gt;__________________________&lt;/li&gt;
+
+        &lt;li&gt;__________________________&lt;/li&gt;
+
+    &lt;/ol&gt;
+
+
+    &lt;h3&gt;
+        Полезная ссылка
+    &lt;/h3&gt;
+
+
+    &lt;a
+        href="__________________________"
+        target="_blank"
+    &gt;
+
+        __________________________
+
+    &lt;/a&gt;
+
+
+&lt;/body&gt;
+
+&lt;/html&gt;</code></pre>
+
+
+  <h2>Проверка перед сдачей</h2>
+
+  <div class="checklist">
+
+    <div class="check-item">
+      ☐ Файл называется <code>index.html</code>
+    </div>
+
+    <div class="check-item">
+      ☐ Есть <code>&lt;h1&gt;</code>
+    </div>
+
+    <div class="check-item">
+      ☐ Есть минимум два <code>&lt;p&gt;</code>
+    </div>
+
+    <div class="check-item">
+      ☐ Есть <code>&lt;h2&gt;</code>
+    </div>
+
+    <div class="check-item">
+      ☐ Есть <code>&lt;h3&gt;</code>
+    </div>
+
+    <div class="check-item">
+      ☐ Картинка загружается
+    </div>
+
+    <div class="check-item">
+      ☐ У картинки заполнен <code>alt</code>
+    </div>
+
+    <div class="check-item">
+      ☐ Есть <code>&lt;ul&gt;</code>
+    </div>
+
+    <div class="check-item">
+      ☐ Есть <code>&lt;ol&gt;</code>
+    </div>
+
+    <div class="check-item">
+      ☐ Ссылка открывается
+    </div>
+
+    <div class="check-item">
+      ☐ Использован <code>&lt;strong&gt;</code> или <code>&lt;em&gt;</code>
+    </div>
+
+    <div class="check-item">
+      ☐ Все основные теги закрыты
+    </div>
+
+  </div>
+
+
+  <section class="bonus">
+
+    <h2>Дополнительное задание</h2>
+
+    <p>
+      Если основное задание уже готово,
+      попробуйте выполнить дополнительные уровни.
+    </p>
+
+    <h3>Уровень 1</h3>
+
+    <p>
+      Добавьте второе изображение.
+    </p>
+
+
+    <h3>Уровень 2</h3>
+
+    <p>
+      Добавьте новый раздел:
+    </p>
+
+<pre><code>&lt;h2&gt;
+    Интересный факт
+&lt;/h2&gt;</code></pre>
+
+
+    <h3>Уровень 3</h3>
+
+    <p>
+      Самостоятельно узнайте,
+      что делает тег:
+    </p>
+
+<pre><code>&lt;hr&gt;</code></pre>
+
+
+    <h3>Уровень 4</h3>
+
+    <p>
+      Создайте второй HTML-файл:
+    </p>
+
+<pre><code>about.html</code></pre>
+
+    <p>
+      И сделайте на него ссылку:
+    </p>
+
+<pre><code>&lt;a href="about.html"&gt;
+    Обо мне
+&lt;/a&gt;</code></pre>
+
+  </section>
+
+
+  <div class="finish">
+
+    <h2>Готово?</h2>
+
+    <p>
+      Откройте <code>index.html</code> в браузере
+      и проверьте все элементы.
+    </p>
+
+    <p>
+      Если всё работает —
+      покажите результат преподавателю.
+    </p>
+
+  </div>
+
+</div>
+
+</body>
+</html>

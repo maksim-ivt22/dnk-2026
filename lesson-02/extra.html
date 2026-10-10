@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Дополнительное задание — HTML</title>
+
+    <style>
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f5f3ff;
+            color: #1e293b;
+            line-height: 1.7;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        h1 {
+            color: #6d28d9;
+        }
+
+        h2 {
+            color: #7c3aed;
+            margin-top: 35px;
+        }
+
+        .secret {
+            background: linear-gradient(135deg, #7c3aed, #9333ea);
+            color: white;
+            padding: 25px;
+            border-radius: 16px;
+            margin-bottom: 30px;
+        }
+
+        .task {
+            background: #f5f3ff;
+            border-left: 5px solid #7c3aed;
+            padding: 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+
+        .hint {
+            background: #fef3c7;
+            border-left: 5px solid #f59e0b;
+            padding: 18px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        pre {
+            background: #0f172a;
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
+            overflow-x: auto;
+        }
+
+        code {
+            font-family: Consolas, monospace;
+        }
+
+        .check {
+            background: #dcfce7;
+            border-left: 5px solid #22c55e;
+            padding: 20px;
+            border-radius: 12px;
+        }
+
+        .hard {
+            background: #fee2e2;
+            border-left: 5px solid #ef4444;
+            padding: 20px;
+            border-radius: 12px;
+            margin-top: 30px;
+        }
+
+        a {
+            color: #6d28d9;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+<div class="container">
+
+
+    <div class="secret">
+
+        <h1 style="color: black;">Дополнительное задание</h1>
+
+        <p>
+            Ты уже закончил основную практику —
+            поэтому теперь попробуй сделать
+            небольшой сайт из
+            <strong>нескольких HTML-страниц</strong>.
+        </p>
+
+    </div>
+
+
+    <h2>Задача</h2>
+
+    <p>
+        Создай сайт
+        <strong>«Мои любимые игры»</strong>
+        из трёх страниц.
+    </p>
+
+
+    <div class="task">
+
+        <h3>Страница 1 — Главная</h3>
+
+        <p>
+            Файл:
+        </p>
+
+<pre><code>index.html</code></pre>
+
+        <p>
+            На странице должны быть:
+        </p>
+
+        <ul>
+
+            <li>заголовок сайта;</li>
+            <li>небольшой текст о тебе;</li>
+            <li>список любимых игр;</li>
+            <li>ссылки на две другие страницы.</li>
+
+        </ul>
+
+    </div>
+
+
+    <div class="task">
+
+        <h3>Страница 2 — Любимая игра</h3>
+
+        <p>
+            Создай файл:
+        </p>
+
+<pre><code>game.html</code></pre>
+
+        <p>
+            Добавь:
+        </p>
+
+        <ul>
+
+            <li>название любимой игры;</li>
+            <li>изображение;</li>
+            <li>описание игры;</li>
+            <li>список причин, почему она тебе нравится;</li>
+            <li>ссылку на официальный сайт игры;</li>
+            <li>ссылку обратно на главную страницу.</li>
+
+        </ul>
+
+    </div>
+
+
+    <div class="task">
+
+        <h3>Страница 3 — Обо мне</h3>
+
+        <p>
+            Создай:
+        </p>
+
+<pre><code>about.html</code></pre>
+
+        <p>
+            Добавь:
+        </p>
+
+        <ul>
+
+            <li>небольшой рассказ о себе;</li>
+            <li>свои интересы;</li>
+            <li>ТОП-3 игр, фильмов или увлечений;</li>
+            <li>ссылку обратно на главную страницу.</li>
+
+        </ul>
+
+    </div>
+
+
+    <h2>В результате</h2>
+
+    <p>
+        Папка проекта должна выглядеть так:
+    </p>
+
+<pre><code>my-games/
+
+├── index.html
+├── game.html
+└── about.html</code></pre>
+
+
+    <h2>Как соединить страницы?</h2>
+
+    <p>
+        С главной страницы можно перейти
+        на страницу игры:
+    </p>
+
+<pre><code>&lt;a href="game.html"&gt;
+    Моя любимая игра
+&lt;/a&gt;</code></pre>
+
+
+    <p>
+        И на страницу «Обо мне»:
+    </p>
+
+<pre><code>&lt;a href="about.html"&gt;
+    Обо мне
+&lt;/a&gt;</code></pre>
+
+
+    <p>
+        А чтобы вернуться обратно:
+    </p>
+
+<pre><code>&lt;a href="index.html"&gt;
+    ← На главную
+&lt;/a&gt;</code></pre>
+
+
+    <div class="hint">
+
+        Обрати внимание:
+        здесь нет адреса вида
+        <code>https://...</code>.
+
+        <br><br>
+
+        Мы можем делать ссылки
+        прямо на другие HTML-файлы
+        нашего сайта.
+
+    </div>
+
+
+    <h2>Обязательные условия</h2>
+
+    <div class="check">
+
+        <p>Перед тем как показать работу преподавателю, проверь:</p>
+
+        <p>☐ Есть три HTML-файла</p>
+
+        <p>☐ С главной страницы открывается <code>game.html</code></p>
+
+        <p>☐ С главной страницы открывается <code>about.html</code></p>
+
+        <p>☐ С других страниц можно вернуться на главную</p>
+
+        <p>☐ Есть изображение</p>
+
+        <p>☐ Есть <code>&lt;ul&gt;</code></p>
+
+        <p>☐ Есть <code>&lt;ol&gt;</code></p>
+
+        <p>☐ Есть внешняя ссылка на другой сайт</p>
+
+        <p>☐ Используются <code>&lt;h1&gt;</code>, <code>&lt;h2&gt;</code> и <code>&lt;p&gt;</code></p>
+
+    </div>
+
+
+    <div class="hard">
+
+        <h2>Уровень HARD</h2>
+
+        <p>
+            Если всё готово — попробуй без помощи преподавателя:
+        </p>
+
+        <ol>
+
+            <li>
+                Создать четвёртую страницу
+                <code>games.html</code>.
+            </li>
+
+            <li>
+                Добавить туда список из пяти игр.
+            </li>
+
+            <li>
+                Для каждой игры добавить ссылку
+                на официальный сайт.
+            </li>
+
+            <li>
+                Узнать самостоятельно,
+                что делает тег
+                <code>&lt;hr&gt;</code>.
+            </li>
+
+            <li>
+                Узнать самостоятельно,
+                как сделать картинку ссылкой.
+            </li>
+
+        </ol>
+
+    </div>
+
+
+    <h2>Суперзадание</h2>
+
+    <p>
+        Попробуй самостоятельно понять,
+        что произойдёт, если написать:
+    </p>
+
+<pre><code>&lt;a href="game.html"&gt;
+
+    &lt;img
+        src="game.jpg"
+        alt="Моя любимая игра"
+    &gt;
+
+&lt;/a&gt;</code></pre>
+
+    <p>
+        Сначала предположи результат,
+        а потом проверь его в браузере.
+    </p>
+
+
+</div>
+
+</body>
+
+</html>
