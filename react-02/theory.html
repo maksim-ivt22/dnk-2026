@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>React №2 — Массивы, map и формы</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f1f5f9;
+            color: #1e293b;
+            line-height: 1.7;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 30px auto;
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        .header {
+            background: linear-gradient(135deg, #0ea5e9, #2563eb);
+            color: white;
+            padding: 32px;
+            border-radius: 18px;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            margin: 0 0 10px;
+            font-size: 40px;
+        }
+
+        .badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.15);
+            padding: 6px 14px;
+            border-radius: 20px;
+            margin: 8px 6px 0 0;
+        }
+
+        h2 {
+            color: #0369a1;
+            margin-top: 45px;
+            border-bottom: 3px solid #bae6fd;
+            padding-bottom: 10px;
+        }
+
+        h3 {
+            margin-top: 28px;
+        }
+
+        p,
+        li {
+            font-size: 18px;
+        }
+
+        pre {
+            background: #0f172a;
+            color: white;
+            padding: 22px;
+            border-radius: 14px;
+            overflow-x: auto;
+            line-height: 1.6;
+        }
+
+        code {
+            font-family: Consolas, monospace;
+        }
+
+        .important {
+            background: #dcfce7;
+            border-left: 5px solid #22c55e;
+            padding: 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+
+        .info {
+            background: #e0f2fe;
+            border-left: 5px solid #0ea5e9;
+            padding: 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+
+        .warning {
+            background: #fef3c7;
+            border-left: 5px solid #f59e0b;
+            padding: 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+
+        .question {
+            background: #ede9fe;
+            border-left: 5px solid #7c3aed;
+            padding: 18px;
+            border-radius: 10px;
+            margin: 15px 0;
+        }
+
+        .scheme {
+            background: #0f172a;
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            font-family: Consolas, monospace;
+            font-size: 18px;
+            line-height: 1.8;
+            margin: 20px 0;
+        }
+
+        @media(max-width: 700px) {
+            .container {
+                margin: 0;
+                padding: 20px;
+                border-radius: 0;
+            }
+
+            .header h1 {
+                font-size: 30px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="header">
+
+        <h1>React №2</h1>
+
+        <p>
+            Массивы, map() и формы
+        </p>
+
+        <span class="badge">React</span>
+        <span class="badge">map()</span>
+        <span class="badge">Forms</span>
+        <span class="badge">useState</span>
+
+    </div>
+
+
+    <div class="important">
+        <strong>Цель:</strong>
+        научиться хранить данные в массиве,
+        выводить элементы через <code>map()</code>
+        и добавлять новые элементы через форму.
+    </div>
+
+
+    <h2>1. Повторяем прошлый урок</h2>
+
+    <p>
+        Мы уже умеем создавать компонент:
+    </p>
+
+<pre><code>function GameCard({ title, genre }) {
+
+    return (
+        &lt;div&gt;
+
+            &lt;h2&gt;{title}&lt;/h2&gt;
+
+            &lt;p&gt;
+                Жанр: {genre}
+            &lt;/p&gt;
+
+        &lt;/div&gt;
+    );
+
+}</code></pre>
+
+    <p>
+        И использовать его:
+    </p>
+
+<pre><code>&lt;GameCard
+    title="Elden Ring"
+    genre="Action RPG"
+/&gt;</code></pre>
+
+
+    <h2>2. Проблема</h2>
+
+    <p>
+        Если игр много, писать вручную:
+    </p>
+
+<pre><code>&lt;GameCard ... /&gt;
+&lt;GameCard ... /&gt;
+&lt;GameCard ... /&gt;
+&lt;GameCard ... /&gt;
+&lt;GameCard ... /&gt;</code></pre>
+
+    <p>
+        неудобно.
+    </p>
+
+    <p>
+        Лучше хранить данные в массиве.
+    </p>
+
+
+    <h2>3. Массив объектов</h2>
+
+<pre><code>const games = [
+
+    {
+        id: 1,
+        title: "Clash Royale",
+        genre: "Strategy"
+    },
+
+    {
+        id: 2,
+        title: "League of Legends",
+        genre: "MOBA"
+    },
+
+    {
+        id: 3,
+        title: "Elden Ring",
+        genre: "Action RPG"
+    }
+
+];</code></pre>
+
+    <div class="info">
+        Каждый объект — одна игра.
+        А массив хранит все игры вместе.
+    </div>
+
+
+    <h2>4. Что делает map()?</h2>
+
+    <p>
+        <code>map()</code> перебирает массив
+        и создаёт что-то для каждого элемента.
+    </p>
+
+<pre><code>games.map(game =&gt; {
+    console.log(game.title);
+});</code></pre>
+
+    <p>
+        В React можно создавать компоненты:
+    </p>
+
+<pre><code>{games.map(game =&gt; (
+
+    &lt;GameCard
+        title={game.title}
+        genre={game.genre}
+    /&gt;
+
+))}</code></pre>
+
+
+    <div class="scheme">
+массив games
+↓
+map()
+↓
+каждая игра
+↓
+GameCard
+    </div>
+
+
+    <h2>5. key</h2>
+
+    <p>
+        React просит у элементов списка
+        уникальный <code>key</code>.
+    </p>
+
+<pre><code>{games.map(game =&gt; (
+
+    &lt;GameCard
+        key={game.id}
+        title={game.title}
+        genre={game.genre}
+    /&gt;
+
+))}</code></pre>
+
+    <div class="important">
+        Обычно для <code>key</code>
+        используют уникальный <code>id</code>.
+    </div>
+
+
+    <h2>6. Храним массив в state</h2>
+
+    <p>
+        Если список будет изменяться,
+        храним его в <code>useState</code>.
+    </p>
+
+<pre><code>const [games, setGames] = useState([
+
+    {
+        id: 1,
+        title: "Clash Royale",
+        genre: "Strategy"
+    },
+
+    {
+        id: 2,
+        title: "Elden Ring",
+        genre: "Action RPG"
+    }
+
+]);</code></pre>
+
+
+    <h2>7. Теперь форма</h2>
+
+    <p>
+        Сделаем поле ввода:
+    </p>
+
+<pre><code>&lt;input
+    type="text"
+    placeholder="Название игры"
+/&gt;</code></pre>
+
+    <p>
+        Но React должен знать,
+        что пользователь ввёл.
+    </p>
+
+
+    <h2>8. State для input</h2>
+
+<pre><code>const [title, setTitle] = useState("");</code></pre>
+
+    <p>
+        Теперь связываем input со state:
+    </p>
+
+<pre><code>&lt;input
+    type="text"
+    value={title}
+    onChange={(event) =&gt;
+        setTitle(event.target.value)
+    }
+/&gt;</code></pre>
+
+
+    <h3>Что здесь происходит?</h3>
+
+<pre><code>event.target.value</code></pre>
+
+    <p>
+        Это текст,
+        который сейчас находится в input.
+    </p>
+
+
+    <div class="scheme">
+пользователь пишет
+↓
+onChange
+↓
+setTitle(...)
+↓
+title изменяется
+    </div>
+
+
+    <h2>9. Форма</h2>
+
+<pre><code>&lt;form&gt;
+
+    &lt;input
+        value={title}
+        onChange={(event) =&gt;
+            setTitle(event.target.value)
+        }
+    /&gt;
+
+    &lt;button&gt;
+        Добавить
+    &lt;/button&gt;
+
+&lt;/form&gt;</code></pre>
+
+
+    <h2>10. Проблема формы</h2>
+
+    <p>
+        По умолчанию форма пытается
+        перезагрузить страницу.
+    </p>
+
+    <p>
+        Поэтому:
+    </p>
+
+<pre><code>function handleSubmit(event) {
+
+    event.preventDefault();
+
+}</code></pre>
+
+    <div class="important">
+        <code>preventDefault()</code>
+        отменяет стандартное поведение формы.
+    </div>
+
+
+    <h2>11. Добавляем новый объект</h2>
+
+    <p>
+        Создаём новую игру:
+    </p>
+
+<pre><code>const newGame = {
+
+    id: Date.now(),
+
+    title: title,
+
+    genre: "Не указан"
+
+};</code></pre>
+
+
+    <h2>12. Добавляем объект в массив</h2>
+
+<pre><code>setGames([
+    ...games,
+    newGame
+]);</code></pre>
+
+    <p>
+        <code>...games</code> означает:
+        взять все старые элементы массива.
+    </p>
+
+    <p>
+        Потом добавляем:
+    </p>
+
+<pre><code>newGame</code></pre>
+
+
+    <div class="scheme">
+старые игры
++
+новая игра
+↓
+новый массив
+↓
+setGames(...)
+    </div>
+
+
+    <h2>13. Очищаем input</h2>
+
+    <p>
+        После добавления:
+    </p>
+
+<pre><code>setTitle("");</code></pre>
+
+
+    <h2>14. Полный пример App.jsx</h2>
+
+<pre><code>import { useState } from "react";
+import GameCard from "./components/GameCard";
+
+
+function App() {
+
+    const [games, setGames] = useState([
+
+        {
+            id: 1,
+            title: "Clash Royale",
+            genre: "Strategy"
+        },
+
+        {
+            id: 2,
+            title: "Elden Ring",
+            genre: "Action RPG"
+        }
+
+    ]);
+
+
+    const [title, setTitle] = useState("");
+
+
+    function handleSubmit(event) {
+
+        event.preventDefault();
+
+
+        const newGame = {
+
+            id: Date.now(),
+
+            title: title,
+
+            genre: "Не указан"
+
+        };
+
+
+        setGames([
+            ...games,
+            newGame
+        ]);
+
+
+        setTitle("");
+
+    }
+
+
+    return (
+
+        &lt;div className="container"&gt;
+
+
+            &lt;h1&gt;
+                Мои игры
+            &lt;/h1&gt;
+
+
+            &lt;form onSubmit={handleSubmit}&gt;
+
+                &lt;input
+                    type="text"
+                    value={title}
+                    onChange={(event) =&gt;
+                        setTitle(event.target.value)
+                    }
+                    placeholder="Название игры"
+                /&gt;
+
+
+                &lt;button type="submit"&gt;
+                    Добавить
+                &lt;/button&gt;
+
+            &lt;/form&gt;
+
+
+            &lt;div className="cards"&gt;
+
+                {games.map(game =&gt; (
+
+                    &lt;GameCard
+                        key={game.id}
+                        title={game.title}
+                        genre={game.genre}
+                    /&gt;
+
+                ))}
+
+            &lt;/div&gt;
+
+
+        &lt;/div&gt;
+
+    );
+
+}
+
+export default App;</code></pre>
+
+
+</div>
+
+</body>
+
+</html>

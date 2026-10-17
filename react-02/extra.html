@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>React №2 — Extra</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f5f3ff;
+            color: #1e293b;
+            line-height: 1.7;
+        }
+
+        .container {
+            max-width: 950px;
+            margin: 30px auto;
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        .header {
+            background: linear-gradient(135deg, #7c3aed, #9333ea);
+            color: white;
+            padding: 30px;
+            border-radius: 18px;
+        }
+
+        .header h1 {
+            margin: 0 0 10px;
+        }
+
+        h2 {
+            color: #6d28d9;
+            margin-top: 40px;
+            border-bottom: 3px solid #ddd6fe;
+            padding-bottom: 10px;
+        }
+
+        p,
+        li {
+            font-size: 18px;
+        }
+
+        pre {
+            background: #0f172a;
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
+            overflow-x: auto;
+        }
+
+        code {
+            font-family: Consolas, monospace;
+        }
+
+        .task {
+            background: #f5f3ff;
+            border-left: 5px solid #7c3aed;
+            padding: 22px;
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+
+        .hint {
+            background: #fef3c7;
+            border-left: 5px solid #f59e0b;
+            padding: 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+
+        .hard {
+            background: #fee2e2;
+            border-left: 5px solid #ef4444;
+            padding: 22px;
+            border-radius: 12px;
+            margin-top: 30px;
+        }
+
+        .check {
+            background: #dcfce7;
+            border-left: 5px solid #22c55e;
+            padding: 20px;
+            border-radius: 12px;
+        }
+
+        @media(max-width: 700px) {
+            .container {
+                margin: 0;
+                padding: 20px;
+                border-radius: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="header">
+
+        <h1>React №2 — Extra</h1>
+
+        <p>
+            Удаление, подсчёт и фильтрация списка
+        </p>
+
+    </div>
+
+
+    <h2>Задача</h2>
+
+    <p>
+        Твоё приложение уже умеет добавлять игры.
+        Теперь сделай его удобнее.
+    </p>
+
+
+    <div class="task">
+
+        Добавь:
+
+        <ol>
+            <li>удаление игры;</li>
+            <li>количество игр;</li>
+            <li>выбор жанра через select;</li>
+            <li>фильтрацию списка.</li>
+        </ol>
+
+    </div>
+
+
+    <h2>1. Удаление игры</h2>
+
+    <p>
+        Создай функцию:
+    </p>
+
+<pre><code>function deleteGame(id) {
+
+    const newGames = games.filter(
+        game =&gt; game.id !== id
+    );
+
+    setGames(newGames);
+
+}</code></pre>
+
+
+    <h3>Что делает filter()?</h3>
+
+    <p>
+        <code>filter()</code> создаёт новый массив,
+        оставляя только нужные элементы.
+    </p>
+
+
+    <p>
+        Передай функцию в GameCard:
+    </p>
+
+<pre><code>&lt;GameCard
+    key={game.id}
+    id={game.id}
+    title={game.title}
+    genre={game.genre}
+    deleteGame={deleteGame}
+/&gt;</code></pre>
+
+
+    <p>
+        В компоненте:
+    </p>
+
+<pre><code>function GameCard({
+    id,
+    title,
+    genre,
+    deleteGame
+}) {
+
+    return (
+
+        &lt;div className="card"&gt;
+
+            &lt;h2&gt;
+                {title}
+            &lt;/h2&gt;
+
+            &lt;p&gt;
+                {genre}
+            &lt;/p&gt;
+
+            &lt;button
+                onClick={() =&gt;
+                    deleteGame(id)
+                }
+            &gt;
+                🗑 Удалить
+            &lt;/button&gt;
+
+        &lt;/div&gt;
+
+    );
+
+}</code></pre>
+
+
+    <h2>2. Покажи количество игр</h2>
+
+<pre><code>&lt;p&gt;
+    Всего игр: {games.length}
+&lt;/p&gt;</code></pre>
+
+
+    <div class="hint">
+        <code>length</code> показывает
+        количество элементов массива.
+    </div>
+
+
+    <h2>3. Заменяем жанр на select</h2>
+
+<pre><code>&lt;select
+    value={genre}
+    onChange={(event) =&gt;
+        setGenre(event.target.value)
+    }
+&gt;
+
+    &lt;option value=""&gt;
+        Выбери жанр
+    &lt;/option&gt;
+
+    &lt;option value="Action RPG"&gt;
+        Action RPG
+    &lt;/option&gt;
+
+    &lt;option value="MOBA"&gt;
+        MOBA
+    &lt;/option&gt;
+
+    &lt;option value="Strategy"&gt;
+        Strategy
+    &lt;/option&gt;
+
+    &lt;option value="Shooter"&gt;
+        Shooter
+    &lt;/option&gt;
+
+&lt;/select&gt;</code></pre>
+
+
+    <h2>4. Добавляем фильтр</h2>
+
+    <p>
+        Создай:
+    </p>
+
+<pre><code>const [filter, setFilter] = useState("Все");</code></pre>
+
+
+    <p>
+        Добавь:
+    </p>
+
+<pre><code>&lt;select
+    value={filter}
+    onChange={(event) =&gt;
+        setFilter(event.target.value)
+    }
+&gt;
+
+    &lt;option value="Все"&gt;
+        Все
+    &lt;/option&gt;
+
+    &lt;option value="Action RPG"&gt;
+        Action RPG
+    &lt;/option&gt;
+
+    &lt;option value="MOBA"&gt;
+        MOBA
+    &lt;/option&gt;
+
+    &lt;option value="Strategy"&gt;
+        Strategy
+    &lt;/option&gt;
+
+&lt;/select&gt;</code></pre>
+
+
+    <h2>5. Фильтруем массив</h2>
+
+<pre><code>const visibleGames = filter === "Все"
+
+    ? games
+
+    : games.filter(
+        game =&gt; game.genre === filter
+    );</code></pre>
+
+
+    <p>
+        Теперь вместо:
+    </p>
+
+<pre><code>games.map(...)</code></pre>
+
+    <p>
+        используем:
+    </p>
+
+<pre><code>visibleGames.map(...)</code></pre>
+
+
+    <h2>6. Покажи сообщение, если игр нет</h2>
+
+<pre><code>{visibleGames.length === 0 &amp;&amp; (
+
+    &lt;p&gt;
+        Игры не найдены 
+    &lt;/p&gt;
+
+)}</code></pre>
+
+
+    <h2>Проверка</h2>
+
+    <div class="check">
+
+        <p>☐ Можно добавить игру</p>
+
+        <p>☐ Можно удалить игру</p>
+
+        <p>☐ Работает filter()</p>
+
+        <p>☐ Показывается games.length</p>
+
+        <p>☐ Жанр выбирается через select</p>
+
+        <p>☐ Можно фильтровать игры по жанру</p>
+
+        <p>☐ При пустом списке есть сообщение</p>
+
+    </div>
+
+
+    <div class="hard">
+
+        <h2>🚀 HARD</h2>
+
+        <p>
+            Добавь поиск по названию.
+        </p>
+
+        <p>
+            Создай:
+        </p>
+
+<pre><code>const [search, setSearch] = useState("");</code></pre>
+
+
+        <p>
+            Input:
+        </p>
+
+<pre><code>&lt;input
+    type="text"
+    value={search}
+    onChange={(event) =&gt;
+        setSearch(event.target.value)
+    }
+    placeholder="Поиск..."
+/&gt;</code></pre>
+
+
+        <p>
+            И попробуй:
+        </p>
+
+<pre><code>const searchedGames = visibleGames.filter(
+    game =&gt;
+
+        game.title
+            .toLowerCase()
+            .includes(
+                search.toLowerCase()
+            )
+);</code></pre>
+
+        <p>
+            После этого выводи:
+        </p>
+
+<pre><code>searchedGames.map(...)</code></pre>
+
+    </div>
+
+
+    <div class="hard">
+
+        <h2>SUPER HARD</h2>
+
+        <p>
+            Сделай кнопку:
+        </p>
+
+<pre><code>Очистить все игры</code></pre>
+
+        <p>
+            По нажатию:
+        </p>
+
+<pre><code>setGames([]);</code></pre>
+
+        <p>
+            Но перед очисткой попробуй использовать:
+        </p>
+
+<pre><code>confirm()</code></pre>
+
+        <p>
+            Например:
+        </p>
+
+<pre><code>if (confirm("Удалить все игры?")) {
+    setGames([]);
+}</code></pre>
+
+    </div>
+
+
+    <h2>Итог</h2>
+
+    <p>
+        После Extra ты уже используешь:
+    </p>
+
+    <ul>
+        <li><code>map()</code>;</li>
+        <li><code>filter()</code>;</li>
+        <li><code>length</code>;</li>
+        <li>формы;</li>
+        <li><code>input</code>;</li>
+        <li><code>select</code>;</li>
+        <li>добавление элементов;</li>
+        <li>удаление элементов;</li>
+        <li>поиск;</li>
+        <li>фильтрацию.</li>
+    </ul>
+
+</div>
+
+</body>
+
+</html>

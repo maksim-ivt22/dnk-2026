@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>React №2 — Практика</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f1f5f9;
+            color: #1e293b;
+            line-height: 1.7;
+        }
+
+        .container {
+            max-width: 950px;
+            margin: 30px auto;
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        .header {
+            background: linear-gradient(135deg, #f59e0b, #f97316);
+            color: white;
+            padding: 30px;
+            border-radius: 18px;
+        }
+
+        .header h1 {
+            margin: 0 0 10px;
+        }
+
+        h2 {
+            color: #b45309;
+            margin-top: 40px;
+            border-bottom: 3px solid #fde68a;
+            padding-bottom: 10px;
+        }
+
+        p,
+        li {
+            font-size: 18px;
+        }
+
+        pre {
+            background: #0f172a;
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
+            overflow-x: auto;
+        }
+
+        code {
+            font-family: Consolas, monospace;
+        }
+
+        .task {
+            background: #fffbeb;
+            border-left: 5px solid #f59e0b;
+            padding: 22px;
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+
+        .hint {
+            background: #eff6ff;
+            border-left: 5px solid #3b82f6;
+            padding: 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+
+        .check {
+            background: #dcfce7;
+            border-left: 5px solid #22c55e;
+            padding: 20px;
+            border-radius: 12px;
+        }
+
+        @media(max-width: 700px) {
+            .container {
+                margin: 0;
+                padding: 20px;
+                border-radius: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="header">
+
+        <h1>React №2 — Практика</h1>
+
+        <p>
+            Создаём приложение «Моя библиотека игр»
+        </p>
+
+    </div>
+
+
+    <h2>Задача</h2>
+
+    <p>
+        Сделай React-приложение,
+        в котором можно:
+    </p>
+
+    <ul>
+        <li>посмотреть список игр;</li>
+        <li>добавить новую игру;</li>
+        <li>указать жанр;</li>
+        <li>автоматически вывести новую карточку.</li>
+    </ul>
+
+
+    <h2>1. Начальный массив</h2>
+
+<pre><code>const [games, setGames] = useState([
+
+    {
+        id: 1,
+        title: "Clash Royale",
+        genre: "Strategy"
+    },
+
+    {
+        id: 2,
+        title: "League of Legends",
+        genre: "MOBA"
+    },
+
+    {
+        id: 3,
+        title: "Elden Ring",
+        genre: "Action RPG"
+    }
+
+]);</code></pre>
+
+
+    <h2>2. Выведи игры через map()</h2>
+
+<pre><code>{games.map(game =&gt; (
+
+    &lt;GameCard
+        key={game.id}
+        title={game.title}
+        genre={game.genre}
+    /&gt;
+
+))}</code></pre>
+
+
+    <div class="task">
+        Нельзя вручную писать
+        три <code>&lt;GameCard /&gt;</code>.
+        Все карточки должны создаваться через <code>map()</code>.
+    </div>
+
+
+    <h2>3. Добавь форму</h2>
+
+    <p>
+        Нужно два поля:
+    </p>
+
+    <ul>
+        <li>название игры;</li>
+        <li>жанр.</li>
+    </ul>
+
+
+    <p>
+        Создай состояния:
+    </p>
+
+<pre><code>const [title, setTitle] = useState("");
+
+const [genre, setGenre] = useState("");</code></pre>
+
+
+    <h2>4. Поле названия</h2>
+
+<pre><code>&lt;input
+    type="text"
+    value={title}
+    onChange={(event) =&gt;
+        setTitle(event.target.value)
+    }
+    placeholder="Название игры"
+/&gt;</code></pre>
+
+
+    <h2>5. Поле жанра</h2>
+
+<pre><code>&lt;input
+    type="text"
+    value={genre}
+    onChange={(event) =&gt;
+        setGenre(event.target.value)
+    }
+    placeholder="Жанр"
+/&gt;</code></pre>
+
+
+    <h2>6. Функция добавления</h2>
+
+<pre><code>function handleSubmit(event) {
+
+    event.preventDefault();
+
+
+    const newGame = {
+
+        id: Date.now(),
+
+        title: title,
+
+        genre: genre
+
+    };
+
+
+    setGames([
+        ...games,
+        newGame
+    ]);
+
+
+    setTitle("");
+
+    setGenre("");
+
+}</code></pre>
+
+
+    <h2>7. Подключи функцию к form</h2>
+
+<pre><code>&lt;form onSubmit={handleSubmit}&gt;
+
+    ...
+
+&lt;/form&gt;</code></pre>
+
+
+    <h2>8. Добавь кнопку</h2>
+
+<pre><code>&lt;button type="submit"&gt;
+    Добавить игру
+&lt;/button&gt;</code></pre>
+
+
+    <h2>9. Не добавляй пустую игру</h2>
+
+    <p>
+        В начало <code>handleSubmit</code> добавь:
+    </p>
+
+<pre><code>if (title.trim() === "") {
+    return;
+}</code></pre>
+
+
+    <div class="hint">
+        <code>trim()</code> убирает пробелы
+        в начале и конце строки.
+    </div>
+
+
+    <h2>10. Если жанр пустой</h2>
+
+    <p>
+        Можно сделать:
+    </p>
+
+<pre><code>genre: genre.trim() === ""
+    ? "Не указан"
+    : genre</code></pre>
+
+
+    <h2>11. GameCard</h2>
+
+<pre><code>function GameCard({ title, genre }) {
+
+    return (
+
+        &lt;div className="card"&gt;
+
+            &lt;h2&gt;
+                {title}
+            &lt;/h2&gt;
+
+            &lt;p&gt;
+                🎮 Жанр: {genre}
+            &lt;/p&gt;
+
+        &lt;/div&gt;
+
+    );
+
+}
+
+export default GameCard;</code></pre>
+
+
+    <h2>12. Немного CSS</h2>
+
+<pre><code>body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f1f5f9;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 20px;
+}
+
+form {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
+
+input {
+    padding: 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+}
+
+button {
+    padding: 12px 18px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.cards {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.card {
+    background: white;
+    width: 260px;
+    padding: 20px;
+    border-radius: 16px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+}</code></pre>
+
+
+    <h2>Проверка</h2>
+
+    <div class="check">
+
+        <p>☐ Игры хранятся в массиве</p>
+
+        <p>☐ Массив находится в useState</p>
+
+        <p>☐ Карточки создаются через map()</p>
+
+        <p>☐ У GameCard есть key</p>
+
+        <p>☐ Есть поле названия</p>
+
+        <p>☐ Есть поле жанра</p>
+
+        <p>☐ Используется onChange</p>
+
+        <p>☐ Используется onSubmit</p>
+
+        <p>☐ Есть preventDefault()</p>
+
+        <p>☐ Новая игра появляется на странице</p>
+
+        <p>☐ После добавления поля очищаются</p>
+
+        <p>☐ Пустая игра не добавляется</p>
+
+    </div>
+
+
+    <h2>Готово?</h2>
+
+    <p>
+        Добавь минимум три свои игры,
+        покажи приложение преподавателю
+        и получи пароль от Extra.
+    </p>
+
+</div>
+
+</body>
+
+</html>
