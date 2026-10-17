@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Занятие №3 — Структура HTML-сайта</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f1f5f9;
+            color: #1e293b;
+            line-height: 1.7;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 30px auto;
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        .header {
+            background: linear-gradient(135deg, #2563eb, #7c3aed);
+            color: white;
+            padding: 32px;
+            border-radius: 18px;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            margin: 0 0 10px;
+            font-size: 40px;
+        }
+
+        .badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.15);
+            padding: 6px 14px;
+            border-radius: 20px;
+            margin: 8px 6px 0 0;
+        }
+
+        h2 {
+            color: #1d4ed8;
+            margin-top: 45px;
+            border-bottom: 3px solid #dbeafe;
+            padding-bottom: 10px;
+        }
+
+        h3 {
+            margin-top: 28px;
+        }
+
+        p,
+        li {
+            font-size: 18px;
+        }
+
+        pre {
+            background: #0f172a;
+            color: white;
+            padding: 22px;
+            border-radius: 14px;
+            overflow-x: auto;
+            line-height: 1.6;
+        }
+
+        code {
+            font-family: Consolas, monospace;
+        }
+
+        .info {
+            background: #eff6ff;
+            border-left: 5px solid #3b82f6;
+            padding: 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+
+        .important {
+            background: #dcfce7;
+            border-left: 5px solid #22c55e;
+            padding: 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+
+        .warning {
+            background: #fef3c7;
+            border-left: 5px solid #f59e0b;
+            padding: 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+
+        .question {
+            background: #ede9fe;
+            border-left: 5px solid #7c3aed;
+            padding: 18px;
+            border-radius: 10px;
+            margin: 15px 0;
+        }
+
+        .scheme {
+            background: #0f172a;
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            font-family: Consolas, monospace;
+            font-size: 18px;
+            line-height: 1.8;
+        }
+
+        @media(max-width: 700px) {
+            .container {
+                margin: 0;
+                padding: 20px;
+                border-radius: 0;
+            }
+
+            .header h1 {
+                font-size: 30px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="header">
+
+        <h1>Занятие №3</h1>
+
+        <p>
+            Структура HTML-сайта
+        </p>
+
+        <span class="badge">HTML</span>
+        <span class="badge">Навигация</span>
+        <span class="badge">Несколько страниц</span>
+
+    </div>
+
+
+    <div class="important">
+        <strong>Сегодня:</strong>
+        научимся правильно делить страницу на части
+        и создадим структуру настоящего сайта.
+    </div>
+
+
+    <h2>1. Повторяем</h2>
+
+    <p>
+        Мы уже знаем:
+    </p>
+
+    <ul>
+        <li><code>&lt;h1&gt;</code> — заголовок;</li>
+        <li><code>&lt;p&gt;</code> — текст;</li>
+        <li><code>&lt;a&gt;</code> — ссылка;</li>
+        <li><code>&lt;img&gt;</code> — изображение;</li>
+        <li><code>&lt;ul&gt;</code> и <code>&lt;ol&gt;</code> — списки.</li>
+    </ul>
+
+
+    <h2>2. Почему нужна структура?</h2>
+
+    <p>
+        Большой сайт неудобно делать одной кучей тегов.
+    </p>
+
+    <p>
+        Поэтому страницу делят на логические части.
+    </p>
+
+
+    <div class="scheme">
+&lt;header&gt;
+    Шапка сайта
+&lt;/header&gt;
+<br>
+&lt;nav&gt;
+    Меню
+&lt;/nav&gt;
+<br>
+&lt;main&gt;
+
+    &lt;section&gt;
+        Раздел страницы
+    &lt;/section&gt;
+
+&lt;/main&gt;
+<br>
+&lt;footer&gt;
+    Подвал сайта
+&lt;/footer&gt;
+    </div>
+
+
+    <h2>3. header</h2>
+
+    <p>
+        <code>&lt;header&gt;</code> — верхняя часть страницы.
+    </p>
+
+    <p>
+        Здесь обычно находятся:
+    </p>
+
+    <ul>
+        <li>название сайта;</li>
+        <li>логотип;</li>
+        <li>краткое описание.</li>
+    </ul>
+
+<pre><code>&lt;header&gt;
+
+    &lt;h1&gt;Games&lt;/h1&gt;
+
+    &lt;p&gt;
+        Сайт о моих любимых играх
+    &lt;/p&gt;
+
+&lt;/header&gt;</code></pre>
+
+
+    <h2>4. nav</h2>
+
+    <p>
+        <code>&lt;nav&gt;</code> — навигация по сайту.
+    </p>
+
+<pre><code>&lt;nav&gt;
+
+    &lt;a href="index.html"&gt;
+        Главная
+    &lt;/a&gt;
+
+    &lt;a href="games.html"&gt;
+        Игры
+    &lt;/a&gt;
+
+    &lt;a href="about.html"&gt;
+        Обо мне
+    &lt;/a&gt;
+
+&lt;/nav&gt;</code></pre>
+
+
+    <div class="important">
+        <code>nav</code> обычно содержит ссылки,
+        по которым пользователь переходит
+        между страницами сайта.
+    </div>
+
+
+    <h2>5. main</h2>
+
+    <p>
+        <code>&lt;main&gt;</code> содержит
+        главное содержимое страницы.
+    </p>
+
+<pre><code>&lt;main&gt;
+
+    Здесь основная информация страницы
+
+&lt;/main&gt;</code></pre>
+
+
+    <div class="warning">
+        Обычно на странице используют
+        один главный <code>&lt;main&gt;</code>.
+    </div>
+
+
+    <h2>6. section</h2>
+
+    <p>
+        <code>&lt;section&gt;</code> —
+        отдельный смысловой раздел.
+    </p>
+
+<pre><code>&lt;main&gt;
+
+    &lt;section&gt;
+
+        &lt;h2&gt;Мои любимые игры&lt;/h2&gt;
+
+        &lt;p&gt;
+            Здесь информация об играх.
+        &lt;/p&gt;
+
+    &lt;/section&gt;
+
+
+    &lt;section&gt;
+
+        &lt;h2&gt;Последние игры&lt;/h2&gt;
+
+        &lt;p&gt;
+            Здесь другой раздел.
+        &lt;/p&gt;
+
+    &lt;/section&gt;
+
+&lt;/main&gt;</code></pre>
+
+
+    <h2>7. footer</h2>
+
+    <p>
+        <code>&lt;footer&gt;</code> —
+        нижняя часть страницы.
+    </p>
+
+<pre><code>&lt;footer&gt;
+
+    &lt;p&gt;
+        2026 — Мой первый сайт
+    &lt;/p&gt;
+
+&lt;/footer&gt;</code></pre>
+
+
+    <h2>8. Полная структура страницы</h2>
+
+<pre><code>&lt;!DOCTYPE html&gt;
+
+&lt;html lang="ru"&gt;
+
+&lt;head&gt;
+
+    &lt;meta charset="UTF-8"&gt;
+
+    &lt;title&gt;
+        Games
+    &lt;/title&gt;
+
+&lt;/head&gt;
+
+
+&lt;body&gt;
+
+
+    &lt;header&gt;
+
+        &lt;h1&gt;
+            Games
+        &lt;/h1&gt;
+
+        &lt;p&gt;
+            Сайт о моих любимых играх
+        &lt;/p&gt;
+
+    &lt;/header&gt;
+
+
+    &lt;nav&gt;
+
+        &lt;a href="index.html"&gt;
+            Главная
+        &lt;/a&gt;
+
+        &lt;a href="games.html"&gt;
+            Игры
+        &lt;/a&gt;
+
+        &lt;a href="about.html"&gt;
+            Обо мне
+        &lt;/a&gt;
+
+    &lt;/nav&gt;
+
+
+    &lt;main&gt;
+
+
+        &lt;section&gt;
+
+            &lt;h2&gt;
+                Добро пожаловать
+            &lt;/h2&gt;
+
+            &lt;p&gt;
+                Это мой сайт об играх.
+            &lt;/p&gt;
+
+        &lt;/section&gt;
+
+
+        &lt;section&gt;
+
+            &lt;h2&gt;
+                Во что я играю
+            &lt;/h2&gt;
+
+            &lt;ul&gt;
+
+                &lt;li&gt;Clash Royale&lt;/li&gt;
+                &lt;li&gt;League of Legends&lt;/li&gt;
+                &lt;li&gt;Elden Ring&lt;/li&gt;
+
+            &lt;/ul&gt;
+
+        &lt;/section&gt;
+
+
+    &lt;/main&gt;
+
+
+    &lt;footer&gt;
+
+        &lt;p&gt;
+            2026 — Games
+        &lt;/p&gt;
+
+    &lt;/footer&gt;
+
+
+&lt;/body&gt;
+
+&lt;/html&gt;</code></pre>
+
+
+    <h2>9. Несколько HTML-страниц</h2>
+
+    <p>
+        Сайт может состоять не из одного файла.
+    </p>
+
+    <p>
+        Например:
+    </p>
+
+<pre><code>my-site/
+
+├── index.html
+├── games.html
+└── about.html</code></pre>
+
+
+    <p>
+        Между страницами можно переходить:
+    </p>
+
+<pre><code>&lt;a href="index.html"&gt;
+    Главная
+&lt;/a&gt;
+
+&lt;a href="games.html"&gt;
+    Игры
+&lt;/a&gt;
+
+&lt;a href="about.html"&gt;
+    Обо мне
+&lt;/a&gt;</code></pre>
+
+
+    <h2>10. Один nav на всех страницах</h2>
+
+    <p>
+        На каждой странице можно использовать
+        одинаковое меню.
+    </p>
+
+<pre><code>&lt;nav&gt;
+
+    &lt;a href="index.html"&gt;
+        Главная
+    &lt;/a&gt;
+
+    &lt;a href="games.html"&gt;
+        Игры
+    &lt;/a&gt;
+
+    &lt;a href="about.html"&gt;
+        Обо мне
+    &lt;/a&gt;
+
+&lt;/nav&gt;</code></pre>
+
+
+    <div class="info">
+        Тогда пользователь сможет переходить
+        с любой страницы на любую другую.
+    </div>
+
+
+    <h2>11. Семантические теги</h2>
+
+    <p>
+        Теги:
+    </p>
+
+<pre><code>&lt;header&gt;
+&lt;nav&gt;
+&lt;main&gt;
+&lt;section&gt;
+&lt;footer&gt;</code></pre>
+
+    <p>
+        называются семантическими.
+    </p>
+
+    <p>
+        Их название объясняет,
+        какую роль выполняет часть страницы.
+    </p>
+
+    <h2>Итог</h2>
+
+    <div class="important">
+
+        Сегодня нужно запомнить:
+
+        <br><br>
+
+        <code>&lt;header&gt;</code> — шапка<br>
+
+        <code>&lt;nav&gt;</code> — меню<br>
+
+        <code>&lt;main&gt;</code> — главное содержимое<br>
+
+        <code>&lt;section&gt;</code> — раздел<br>
+
+        <code>&lt;footer&gt;</code> — нижняя часть сайта
+
+    </div>
+
+</div>
+
+</body>
+
+</html>

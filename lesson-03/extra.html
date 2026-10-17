@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Дополнительное задание №3</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f5f3ff;
+            color: #1e293b;
+            line-height: 1.7;
+        }
+
+        .container {
+            max-width: 950px;
+            margin: 30px auto;
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        .header {
+            background: linear-gradient(135deg, #7c3aed, #9333ea);
+            color: white;
+            padding: 30px;
+            border-radius: 18px;
+        }
+
+        .header h1 {
+            margin: 0 0 10px;
+        }
+
+        h2 {
+            color: #6d28d9;
+            margin-top: 40px;
+            border-bottom: 3px solid #ddd6fe;
+            padding-bottom: 10px;
+        }
+
+        p,
+        li {
+            font-size: 18px;
+        }
+
+        pre {
+            background: #0f172a;
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
+            overflow-x: auto;
+        }
+
+        code {
+            font-family: Consolas, monospace;
+        }
+
+        .task {
+            background: #f5f3ff;
+            border-left: 5px solid #7c3aed;
+            padding: 22px;
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+
+        .hint {
+            background: #fef3c7;
+            border-left: 5px solid #f59e0b;
+            padding: 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+
+        .hard {
+            background: #fee2e2;
+            border-left: 5px solid #ef4444;
+            padding: 22px;
+            border-radius: 12px;
+            margin-top: 30px;
+        }
+
+        .check {
+            background: #dcfce7;
+            border-left: 5px solid #22c55e;
+            padding: 20px;
+            border-radius: 12px;
+        }
+
+        @media(max-width: 700px) {
+            .container {
+                margin: 0;
+                padding: 20px;
+                border-radius: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+
+    <div class="header">
+
+        <h1>Дополнительное задание №3</h1>
+
+        <p>
+            Превращаем сайт в настоящий
+            небольшой многостраничный проект.
+        </p>
+
+    </div>
+
+
+    <h2>Задача</h2>
+
+    <p>
+        Основные три страницы уже готовы.
+    </p>
+
+    <p>
+        Теперь расширь сайт.
+    </p>
+
+
+    <div class="task">
+
+        Нужно добавить:
+
+        <ol>
+            <li>четвёртую страницу;</li>
+            <li>новый пункт меню;</li>
+            <li>несколько секций;</li>
+            <li>переходы между страницами;</li>
+            <li>папку для изображений.</li>
+        </ol>
+
+    </div>
+
+
+    <h2>1. Добавь страницу contacts.html</h2>
+
+    <p>
+        Создай:
+    </p>
+
+<pre><code>contacts.html</code></pre>
+
+    <p>
+        На ней должны быть:
+    </p>
+
+    <ul>
+        <li><code>header</code>;</li>
+        <li><code>nav</code>;</li>
+        <li><code>main</code>;</li>
+        <li>минимум один <code>section</code>;</li>
+        <li><code>footer</code>.</li>
+    </ul>
+
+
+    <h2>2. Обнови меню</h2>
+
+    <p>
+        Теперь меню должно быть таким:
+    </p>
+
+<pre><code>&lt;nav&gt;
+
+    &lt;a href="index.html"&gt;
+        Главная
+    &lt;/a&gt;
+
+    &lt;a href="games.html"&gt;
+        Игры
+    &lt;/a&gt;
+
+    &lt;a href="about.html"&gt;
+        Обо мне
+    &lt;/a&gt;
+
+    &lt;a href="contacts.html"&gt;
+        Контакты
+    &lt;/a&gt;
+
+&lt;/nav&gt;</code></pre>
+
+
+    <div class="hint">
+        Такое меню нужно добавить
+        на все страницы сайта.
+    </div>
+
+
+    <h2>3. Добавь страницу одной игры</h2>
+
+    <p>
+        Создай:
+    </p>
+
+<pre><code>elden-ring.html</code></pre>
+
+    <p>
+        Или выбери любую другую игру.
+    </p>
+
+    <p>
+        На странице должны быть:
+    </p>
+
+    <ul>
+        <li>название игры;</li>
+        <li>изображение;</li>
+        <li>описание;</li>
+        <li>жанр;</li>
+        <li>список причин, почему тебе нравится игра;</li>
+        <li>ссылка обратно на <code>games.html</code>.</li>
+    </ul>
+
+
+    <h2>4. Сделай ссылку с games.html</h2>
+
+    <p>
+        Например:
+    </p>
+
+<pre><code>&lt;a href="elden-ring.html"&gt;
+    Подробнее про Elden Ring
+&lt;/a&gt;</code></pre>
+
+
+    <h2>5. Сделай изображение ссылкой</h2>
+
+    <p>
+        Попробуй:
+    </p>
+
+<pre><code>&lt;a href="elden-ring.html"&gt;
+
+    &lt;img
+        src="images/elden-ring.jpg"
+        alt="Elden Ring"
+    &gt;
+
+&lt;/a&gt;</code></pre>
+
+
+    <div class="hint">
+        Теперь при нажатии на картинку
+        пользователь перейдёт
+        на страницу игры.
+    </div>
+
+
+    <h2>6. Улучши структуру папок</h2>
+
+    <p>
+        В конце проект может выглядеть так:
+    </p>
+
+<pre><code>game-zone/
+
+├── index.html
+├── games.html
+├── about.html
+├── contacts.html
+├── elden-ring.html
+│
+└── images/
+    ├── elden-ring.jpg
+    ├── clash-royale.jpg
+    └── lol.jpg</code></pre>
+
+
+    <h2>7. Добавь ссылки внутри страницы</h2>
+
+    <p>
+        Попробуй самостоятельно сделать ссылку:
+    </p>
+
+<pre><code>&lt;a href="#top"&gt;
+    Наверх
+&lt;/a&gt;</code></pre>
+
+    <p>
+        А в верхней части страницы:
+    </p>
+
+<pre><code>&lt;header id="top"&gt;</code></pre>
+
+
+    <div class="hint">
+        Такая ссылка не открывает другую страницу,
+        а перемещает пользователя
+        внутри текущей страницы.
+    </div>
+
+
+    <h2>Проверка</h2>
+
+    <div class="check">
+
+        <p>☐ Есть минимум 4 страницы</p>
+
+        <p>☐ Меню одинаковое на всех страницах</p>
+
+        <p>☐ Все ссылки работают</p>
+
+        <p>☐ Есть отдельная страница игры</p>
+
+        <p>☐ Есть папка <code>images</code></p>
+
+        <p>☐ Изображение может быть ссылкой</p>
+
+        <p>☐ Используются семантические теги</p>
+
+        <p>☐ Есть ссылка «Наверх»</p>
+
+    </div>
+
+
+    <div class="hard">
+
+        <h2>HARD</h2>
+
+        <p>
+            Создай ещё одну страницу:
+        </p>
+
+<pre><code>news.html</code></pre>
+
+        <p>
+            На ней сделай минимум
+            три раздела новостей:
+        </p>
+
+<pre><code>&lt;section&gt;
+
+    &lt;h2&gt;
+        Новость 1
+    &lt;/h2&gt;
+
+    &lt;p&gt;
+        Текст новости...
+    &lt;/p&gt;
+
+&lt;/section&gt;</code></pre>
+
+        <p>
+            Добавь страницу
+            в главное меню сайта.
+        </p>
+
+    </div>
+
+
+    <div class="hard">
+
+        <h2>SUPER HARD</h2>
+
+        <p>
+            Самостоятельно узнай,
+            для чего используется тег:
+        </p>
+
+<pre><code>&lt;article&gt;</code></pre>
+
+        <p>
+            Подумай:
+            можно ли использовать его
+            для отдельной новости
+            или карточки игры?
+        </p>
+
+        <p>
+            Попробуй заменить несколько
+            <code>&lt;section&gt;</code>
+            на <code>&lt;article&gt;</code>
+            там, где это подходит.
+        </p>
+
+    </div>
+
+
+    <h2>Итог</h2>
+
+    <p>
+        После этого задания у тебя уже будет
+        не одна HTML-страница,
+        а настоящий небольшой сайт:
+    </p>
+
+<pre><code>Главная
+   ↓
+Игры
+   ↓
+Страница игры
+
+Главная
+   ↓
+Обо мне
+
+Главная
+   ↓
+Контакты
+
+Главная
+   ↓
+Новости</code></pre>
+
+</div>
+
+</body>
+
+</html>

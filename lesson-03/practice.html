@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Практика №3 — Структура сайта</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f1f5f9;
+            color: #1e293b;
+            line-height: 1.7;
+        }
+
+        .container {
+            max-width: 950px;
+            margin: 30px auto;
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        .header {
+            background: linear-gradient(135deg, #f59e0b, #f97316);
+            color: white;
+            padding: 30px;
+            border-radius: 18px;
+        }
+
+        .header h1 {
+            margin: 0 0 10px;
+        }
+
+        h2 {
+            color: #b45309;
+            margin-top: 40px;
+            border-bottom: 3px solid #fde68a;
+            padding-bottom: 10px;
+        }
+
+        p,
+        li {
+            font-size: 18px;
+        }
+
+        pre {
+            background: #0f172a;
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
+            overflow-x: auto;
+        }
+
+        code {
+            font-family: Consolas, monospace;
+        }
+
+        .task {
+            background: #fffbeb;
+            border-left: 5px solid #f59e0b;
+            padding: 22px;
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+
+        .hint {
+            background: #eff6ff;
+            border-left: 5px solid #3b82f6;
+            padding: 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+
+        .check {
+            background: #dcfce7;
+            border-left: 5px solid #22c55e;
+            padding: 20px;
+            border-radius: 12px;
+            margin-top: 25px;
+        }
+
+        @media(max-width: 700px) {
+            .container {
+                margin: 0;
+                padding: 20px;
+                border-radius: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="header">
+
+        <h1>Практическая работа №3</h1>
+
+        <p>
+            Создаём многостраничный сайт
+            с правильной HTML-структурой.
+        </p>
+
+    </div>
+
+
+    <h2>Задача</h2>
+
+    <p>
+        Создай сайт
+        <strong>«Game Zone»</strong>
+        из трёх страниц.
+    </p>
+
+
+    <div class="task">
+
+        Используй на страницах:
+
+        <ul>
+            <li><code>&lt;header&gt;</code></li>
+            <li><code>&lt;nav&gt;</code></li>
+            <li><code>&lt;main&gt;</code></li>
+            <li><code>&lt;section&gt;</code></li>
+            <li><code>&lt;footer&gt;</code></li>
+        </ul>
+
+    </div>
+
+
+    <h2>1. Создай папку проекта</h2>
+
+<pre><code>game-zone</code></pre>
+
+
+    <h2>2. Создай три страницы</h2>
+
+<pre><code>game-zone/
+
+├── index.html
+├── games.html
+└── about.html</code></pre>
+
+
+    <h2>3. Главная страница</h2>
+
+    <p>
+        Открой:
+    </p>
+
+<pre><code>index.html</code></pre>
+
+    <p>
+        Используй такую структуру:
+    </p>
+
+<pre><code>&lt;body&gt;
+
+
+    &lt;header&gt;
+
+        &lt;h1&gt;
+            Games
+        &lt;/h1&gt;
+
+        &lt;p&gt;
+            Сайт о моих любимых играх
+        &lt;/p&gt;
+
+    &lt;/header&gt;
+
+
+    &lt;nav&gt;
+
+        &lt;a href="index.html"&gt;
+            Главная
+        &lt;/a&gt;
+
+        &lt;a href="games.html"&gt;
+            Игры
+        &lt;/a&gt;
+
+        &lt;a href="about.html"&gt;
+            Обо мне
+        &lt;/a&gt;
+
+    &lt;/nav&gt;
+
+
+    &lt;main&gt;
+
+
+        &lt;section&gt;
+
+            &lt;h2&gt;
+                Добро пожаловать
+            &lt;/h2&gt;
+
+            &lt;p&gt;
+                Напиши здесь свой текст.
+            &lt;/p&gt;
+
+        &lt;/section&gt;
+
+
+        &lt;section&gt;
+
+            &lt;h2&gt;
+                Сейчас я играю
+            &lt;/h2&gt;
+
+            &lt;ul&gt;
+
+                &lt;li&gt;Игра 1&lt;/li&gt;
+                &lt;li&gt;Игра 2&lt;/li&gt;
+                &lt;li&gt;Игра 3&lt;/li&gt;
+
+            &lt;/ul&gt;
+
+        &lt;/section&gt;
+
+
+    &lt;/main&gt;
+
+
+    &lt;footer&gt;
+
+        &lt;p&gt;
+            2026 — Games
+        &lt;/p&gt;
+
+    &lt;/footer&gt;
+
+
+&lt;/body&gt;</code></pre>
+
+
+    <h2>4. Страница games.html</h2>
+
+    <p>
+        На этой странице расскажи
+        о любимых играх.
+    </p>
+
+    <div class="task">
+
+        На странице должны быть:
+
+        <ul>
+            <li>тот же <code>header</code>;</li>
+            <li>то же меню <code>nav</code>;</li>
+            <li><code>main</code>;</li>
+            <li>минимум 2 <code>section</code>;</li>
+            <li>изображение;</li>
+            <li>список игр;</li>
+            <li><code>footer</code>.</li>
+        </ul>
+
+    </div>
+
+
+    <h2>5. Страница about.html</h2>
+
+    <p>
+        Сделай страницу «Обо мне».
+    </p>
+
+    <p>
+        Добавь:
+    </p>
+
+    <ul>
+        <li>имя;</li>
+        <li>несколько предложений о себе;</li>
+        <li>увлечения;</li>
+        <li>что хочешь научиться делать;</li>
+    </ul>
+
+
+    <h2>6. Меню должно работать</h2>
+
+    <p>
+        На всех трёх страницах:
+    </p>
+
+<pre><code>&lt;nav&gt;
+
+    &lt;a href="index.html"&gt;
+        Главная
+    &lt;/a&gt;
+
+    &lt;a href="games.html"&gt;
+        Игры
+    &lt;/a&gt;
+
+    &lt;a href="about.html"&gt;
+        Обо мне
+    &lt;/a&gt;
+
+&lt;/nav&gt;</code></pre>
+
+
+    <div class="hint">
+        Проверь каждую ссылку.
+        Нажми на неё и убедись,
+        что открывается нужная страница.
+    </div>
+
+
+    <h2>7. Добавь изображения</h2>
+
+    <p>
+        Можно создать папку:
+    </p>
+
+<pre><code>images</code></pre>
+
+    <p>
+        Тогда структура:
+    </p>
+
+<pre><code>game-zone/
+
+├── index.html
+├── games.html
+├── about.html
+│
+└── images/
+    ├── game1.jpg
+    └── game2.jpg</code></pre>
+
+    <p>
+        Подключение:
+    </p>
+
+<pre><code>&lt;img
+    src="images/game1.jpg"
+    alt="Описание игры"
+&gt;</code></pre>
+
+
+    <h2>Проверка</h2>
+
+    <div class="check">
+
+        <p>☐ Есть <code>index.html</code></p>
+
+        <p>☐ Есть <code>games.html</code></p>
+
+        <p>☐ Есть <code>about.html</code></p>
+
+        <p>☐ Есть <code>&lt;header&gt;</code></p>
+
+        <p>☐ Есть <code>&lt;nav&gt;</code></p>
+
+        <p>☐ Есть <code>&lt;main&gt;</code></p>
+
+        <p>☐ Есть минимум два <code>&lt;section&gt;</code></p>
+
+        <p>☐ Есть <code>&lt;footer&gt;</code></p>
+
+        <p>☐ Меню работает на всех страницах</p>
+
+        <p>☐ Есть картинка</p>
+
+        <p>☐ У картинки есть <code>alt</code></p>
+
+    </div>
+
+
+    <h2>Готово?</h2>
+
+    <p>
+        Покажи сайт преподавателю.
+    </p>
+
+    <p>
+        Если все страницы работают —
+        переходи к дополнительному заданию.
+    </p>
+
+</div>
+
+</body>
+
+</html>

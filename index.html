@@ -522,7 +522,7 @@
 
       <!-- УРОК 3 -->
 
-      <article class="lesson future">
+      <article class="lesson">
 
         <div class="lesson-number">
           Занятие №3
@@ -538,11 +538,32 @@
 
         <div class="links">
 
-          <span class="btn disabled">
-            ⏳ Материалы скоро появятся
-          </span>
+          <a
+              class="btn btn-theory"
+              href="lesson-03/theory.html"
+          >
+              📘 Теория
+          </a>
 
-        </div>
+          <a
+              class="btn btn-practice"
+              href="lesson-03/practice.html"
+          >
+              💻 Практика
+          </a>
+
+          <button
+              class="btn btn-extra"
+              onclick="openLockedPage(
+                  'lesson-03/extra.html',
+                  'lesson3'
+              )"
+          >
+              🔥 Дополнительное задание
+              <span class="lock">🔒</span>
+          </button>
+
+      </div>
 
       </article>
 
@@ -1183,6 +1204,8 @@
     lesson1: "html1",
 
     lesson2: "html2",
+
+    lesson3: "html3",
 
     react1: "react42"
 
