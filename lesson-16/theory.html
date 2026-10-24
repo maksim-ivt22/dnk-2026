@@ -1,0 +1,676 @@
+```html
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Занятие №16 — GitHub Pages</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f1f5f9;
+            color: #1e293b;
+            line-height: 1.7;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 30px auto;
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        .header {
+            background: linear-gradient(135deg, #334155, #0f172a);
+            color: white;
+            padding: 32px;
+            border-radius: 18px;
+        }
+
+        .header h1 {
+            margin: 0 0 10px;
+            font-size: 40px;
+        }
+
+        .badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.12);
+            padding: 6px 14px;
+            border-radius: 20px;
+            margin: 8px 6px 0 0;
+        }
+
+        h2 {
+            color: #334155;
+            margin-top: 45px;
+            border-bottom: 3px solid #cbd5e1;
+            padding-bottom: 10px;
+        }
+
+        h3 {
+            margin-top: 28px;
+        }
+
+        p,
+        li {
+            font-size: 18px;
+        }
+
+        pre {
+            background: #0f172a;
+            color: white;
+            padding: 22px;
+            border-radius: 14px;
+            overflow-x: auto;
+            line-height: 1.6;
+        }
+
+        code {
+            font-family: Consolas, monospace;
+        }
+
+        .important {
+            background: #dcfce7;
+            border-left: 5px solid #22c55e;
+            padding: 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+
+        .info {
+            background: #eff6ff;
+            border-left: 5px solid #3b82f6;
+            padding: 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+
+        .warning {
+            background: #fef3c7;
+            border-left: 5px solid #f59e0b;
+            padding: 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+
+        .question {
+            background: #f1f5f9;
+            border-left: 5px solid #64748b;
+            padding: 18px;
+            border-radius: 10px;
+            margin: 15px 0;
+        }
+
+        .scheme {
+            background: #0f172a;
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            font-family: Consolas, monospace;
+            font-size: 18px;
+            line-height: 1.8;
+        }
+
+        @media(max-width: 700px) {
+            .container {
+                margin: 0;
+                padding: 20px;
+                border-radius: 0;
+            }
+
+            .header h1 {
+                font-size: 30px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="header">
+
+        <h1>Занятие №16 — GitHub Pages</h1>
+
+        <p>
+            Публикуем собственный сайт в интернете
+        </p>
+
+        <span class="badge">GitHub Pages</span>
+        <span class="badge">Deploy</span>
+        <span class="badge">Hosting</span>
+
+    </div>
+
+
+    <div class="important">
+        <strong>Цель занятия:</strong>
+        опубликовать HTML/CSS/JavaScript-сайт
+        и получить настоящий адрес в интернете.
+    </div>
+
+
+    <h2>1. Что мы уже умеем?</h2>
+
+    <p>
+        На прошлом занятии мы научились:
+    </p>
+
+    <ul>
+        <li>создавать Git-репозиторий;</li>
+        <li>делать commit;</li>
+        <li>использовать push;</li>
+        <li>хранить проект на GitHub.</li>
+    </ul>
+
+    <p>
+        Но репозиторий на GitHub —
+        это ещё не опубликованный сайт.
+    </p>
+
+
+    <h2>2. Что такое GitHub Pages?</h2>
+
+    <p>
+        GitHub Pages — сервис,
+        который позволяет опубликовать
+        статический сайт прямо из GitHub-репозитория.
+    </p>
+
+    <div class="scheme">
+HTML + CSS + JavaScript
+↓<br>
+GitHub
+↓<br>
+GitHub Pages
+↓<br>
+сайт доступен в интернете
+    </div>
+
+
+    <h2>3. Какие сайты подходят?</h2>
+
+    <p>
+        GitHub Pages отлично подходит для:
+    </p>
+
+    <ul>
+        <li>HTML-сайтов;</li>
+        <li>CSS;</li>
+        <li>JavaScript;</li>
+        <li>портфолио;</li>
+        <li>лендингов;</li>
+        <li>учебных проектов.</li>
+    </ul>
+
+
+    <div class="warning">
+        GitHub Pages не запускает
+        серверный Python, Django или PHP.
+        Это статический хостинг.
+    </div>
+
+
+    <h2>4. Главный файл сайта</h2>
+
+    <p>
+        В проекте должен быть главный файл:
+    </p>
+
+<pre><code>index.html</code></pre>
+
+    <p>
+        Например:
+    </p>
+
+<pre><code>my-site/
+
+├── index.html
+├── style.css
+├── script.js
+└── images/
+    └── photo.jpg</code></pre>
+
+
+    <div class="important">
+        Для обычного HTML-сайта
+        index.html должен находиться
+        в корне публикуемой папки.
+    </div>
+
+
+    <h2>5. Сначала отправляем проект на GitHub</h2>
+
+<pre><code>git status
+
+git add .
+
+git commit -m "Подготовил сайт к публикации"
+
+git push</code></pre>
+
+
+    <h2>6. Открываем настройки Pages</h2>
+
+    <p>
+        На GitHub:
+    </p>
+
+    <ol>
+        <li>открой репозиторий;</li>
+        <li>открой Settings;</li>
+        <li>в меню найди Pages;</li>
+    </ol>
+
+
+    <h2>7. Build and deployment</h2>
+
+    <p>
+        В разделе:
+    </p>
+
+<pre><code>Build and deployment</code></pre>
+
+    <p>
+        в Source выбери:
+    </p>
+
+<pre><code>Deploy from a branch</code></pre>
+
+
+    <h2>8. Выбираем ветку</h2>
+
+    <p>
+        Обычно:
+    </p>
+
+<pre><code>Branch: main</code></pre>
+
+    <p>
+        Папка:
+    </p>
+
+<pre><code>/(root)</code></pre>
+
+    <p>
+        Затем:
+    </p>
+
+<pre><code>Save</code></pre>
+
+
+    <div class="scheme">
+main
+↓<br>
+/(root)
+↓<br>
+Save
+↓<br>
+GitHub Pages
+    </div>
+
+
+    <h2>9. Что означает /(root)?</h2>
+
+    <p>
+        Это корень репозитория.
+    </p>
+
+    <p>
+        Например:
+    </p>
+
+<pre><code>my-site/
+
+├── index.html
+├── style.css
+└── script.js</code></pre>
+
+    <p>
+        Тогда выбираем:
+    </p>
+
+<pre><code>main
+/(root)</code></pre>
+
+
+    <h2>10. Можно использовать папку docs</h2>
+
+    <p>
+        GitHub Pages также может публиковать
+        сайт из папки:
+    </p>
+
+<pre><code>docs/</code></pre>
+
+    <p>
+        Например:
+    </p>
+
+<pre><code>project/
+
+├── README.md
+│
+└── docs/
+    ├── index.html
+    └── style.css</code></pre>
+
+    <p>
+        Тогда в Pages выбираем:
+    </p>
+
+<pre><code>main
+/docs</code></pre>
+
+
+    <h2>11. Получаем адрес сайта</h2>
+
+    <p>
+        После публикации GitHub покажет ссылку.
+    </p>
+
+    <p>
+        Обычно адрес проекта выглядит примерно так:
+    </p>
+
+<pre><code>https://USERNAME.github.io/REPOSITORY/</code></pre>
+
+    <p>
+        Например:
+    </p>
+
+<pre><code>https://maxdev.github.io/game-zone/</code></pre>
+
+
+    <h2>12. Особый репозиторий USERNAME.github.io</h2>
+
+    <p>
+        Можно создать репозиторий:
+    </p>
+
+<pre><code>USERNAME.github.io</code></pre>
+
+    <p>
+        Тогда адрес будет:
+    </p>
+
+<pre><code>https://USERNAME.github.io/</code></pre>
+
+
+    <h2>13. Что происходит после push?</h2>
+
+    <p>
+        После изменения проекта:
+    </p>
+
+<pre><code>git add .
+
+git commit -m "Обновил главную страницу"
+
+git push</code></pre>
+
+    <p>
+        GitHub Pages автоматически
+        публикует новую версию.
+    </p>
+
+
+    <div class="scheme">
+изменили сайт
+↓
+commit
+↓
+push
+↓
+GitHub
+↓
+Pages обновляет сайт
+    </div>
+
+
+    <h2>14. Относительные пути</h2>
+
+    <p>
+        Очень важно правильно подключать файлы.
+    </p>
+
+    <p>
+        Хорошо:
+    </p>
+
+<pre><code>&lt;link
+    rel="stylesheet"
+    href="style.css"
+&gt;</code></pre>
+
+    <p>
+        Картинка:
+    </p>
+
+<pre><code>&lt;img
+    src="images/game.jpg"
+    alt="Игра"
+&gt;</code></pre>
+
+
+    <h2>15. Частая ошибка с путями</h2>
+
+    <p>
+        Для проекта GitHub Pages
+        такая запись иногда приводит к проблеме:
+    </p>
+
+<pre><code>href="/style.css"</code></pre>
+
+    <p>
+        А такая обычно удобнее:
+    </p>
+
+<pre><code>href="style.css"</code></pre>
+
+
+    <div class="important">
+        Для наших учебных сайтов
+        используем относительные пути.
+    </div>
+
+
+    <h2>16. Ссылки между страницами</h2>
+
+<pre><code>&lt;a href="index.html"&gt;
+    Главная
+&lt;/a&gt;
+
+&lt;a href="about.html"&gt;
+    Обо мне
+&lt;/a&gt;</code></pre>
+
+
+    <h2>17. Если страница лежит в папке</h2>
+
+<pre><code>site/
+
+├── index.html
+│
+└── pages/
+    └── about.html</code></pre>
+
+    <p>
+        С главной:
+    </p>
+
+<pre><code>&lt;a href="pages/about.html"&gt;
+    Обо мне
+&lt;/a&gt;</code></pre>
+
+
+    <h2>18. Ошибка 404</h2>
+
+    <p>
+        404 означает,
+        что страница или файл не найдены.
+    </p>
+
+    <p>
+        Причины:
+    </p>
+
+    <ul>
+        <li>неправильный путь;</li>
+        <li>неправильное имя файла;</li>
+        <li>файл не загружен на GitHub;</li>
+        <li>index.html лежит не там;</li>
+        <li>ошибка в регистре букв.</li>
+    </ul>
+
+
+    <h2>19. Регистр букв важен</h2>
+
+    <p>
+        Это разные файлы:
+    </p>
+
+<pre><code>About.html
+
+about.html</code></pre>
+
+    <p>
+        И:
+    </p>
+
+<pre><code>Images/photo.jpg
+
+images/photo.jpg</code></pre>
+
+
+    <div class="warning">
+        На Windows ошибка регистра
+        иногда незаметна локально,
+        но после публикации сайт может сломаться.
+    </div>
+
+
+    <h2>20. Где смотреть ошибки публикации?</h2>
+
+    <p>
+        В GitHub можно открыть:
+    </p>
+
+<pre><code>Actions</code></pre>
+
+    <p>
+        Там отображается процесс публикации Pages.
+    </p>
+
+
+    <h2>21. GitHub Pages и секретные данные</h2>
+
+    <p>
+        Всё, что попало в опубликованный frontend,
+        может увидеть пользователь.
+    </p>
+
+    <div class="warning">
+        Никогда не размещай в HTML или JavaScript
+        пароли, секретные API-ключи
+        и другие приватные данные.
+    </div>
+
+
+    <h2>22. Общая схема</h2>
+
+    <div class="scheme">
+VS Code
+↓
+git add .
+↓
+git commit
+↓
+git push
+↓
+GitHub repository
+↓
+GitHub Pages
+↓
+публичный сайт
+    </div>
+
+
+    <h2>23. Проверка</h2>
+
+    <div class="question">
+        Что такое GitHub Pages?
+    </div>
+
+    <div class="question">
+        Какой файл обычно является главной страницей?
+    </div>
+
+    <div class="question">
+        Что означает /(root)?
+    </div>
+
+    <div class="question">
+        Что произойдёт после нового git push?
+    </div>
+
+    <div class="question">
+        Что означает ошибка 404?
+    </div>
+
+    <div class="question">
+        Можно ли запустить Django через обычный GitHub Pages?
+    </div>
+
+
+    <h2>Итог</h2>
+
+    <div class="important">
+
+        Сегодня:
+
+        <br><br>
+
+        GitHub repository
+        <br>
+        ↓
+        Settings
+        <br>
+        ↓
+        Pages
+        <br>
+        ↓
+        Deploy from a branch
+        <br>
+        ↓
+        main
+        <br>
+        ↓
+        /(root)
+        <br>
+        ↓
+        опубликованный сайт
+
+    </div>
+
+</div>
+
+</body>
+
+</html>
+```

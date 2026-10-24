@@ -1,0 +1,479 @@
+```html
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Дополнительное задание №4 — CSS</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f5f3ff;
+            color: #1e293b;
+            line-height: 1.7;
+        }
+
+        .container {
+            max-width: 950px;
+            margin: 30px auto;
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        .header {
+            background: linear-gradient(135deg, #7c3aed, #9333ea);
+            color: white;
+            padding: 30px;
+            border-radius: 18px;
+        }
+
+        .header h1 {
+            margin: 0 0 10px;
+        }
+
+        h2 {
+            color: #6d28d9;
+            margin-top: 40px;
+            border-bottom: 3px solid #ddd6fe;
+            padding-bottom: 10px;
+        }
+
+        p,
+        li {
+            font-size: 18px;
+        }
+
+        pre {
+            background: #0f172a;
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
+            overflow-x: auto;
+        }
+
+        code {
+            font-family: Consolas, monospace;
+        }
+
+        .task {
+            background: #f5f3ff;
+            border-left: 5px solid #7c3aed;
+            padding: 22px;
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+
+        .hint {
+            background: #fef3c7;
+            border-left: 5px solid #f59e0b;
+            padding: 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+
+        .hard {
+            background: #fee2e2;
+            border-left: 5px solid #ef4444;
+            padding: 22px;
+            border-radius: 12px;
+            margin-top: 30px;
+        }
+
+        .check {
+            background: #dcfce7;
+            border-left: 5px solid #22c55e;
+            padding: 20px;
+            border-radius: 12px;
+        }
+
+        @media(max-width: 700px) {
+            .container {
+                margin: 0;
+                padding: 20px;
+                border-radius: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="header">
+
+        <h1>Дополнительное задание №4</h1>
+
+        <p>
+            Делаем собственную тему оформления сайта
+        </p>
+
+    </div>
+
+
+    <h2>Задача</h2>
+
+    <p>
+        Сделай сайт визуально похожим
+        на настоящий игровой сайт.
+    </p>
+
+    <p>
+        Теперь готового решения будет меньше.
+    </p>
+
+
+    <div class="task">
+
+        Нужно самостоятельно оформить:
+
+        <ol>
+            <li>всю страницу;</li>
+            <li>шапку;</li>
+            <li>меню;</li>
+            <li>разделы;</li>
+            <li>картинки;</li>
+            <li>ссылки.</li>
+        </ol>
+
+    </div>
+
+
+    <h2>1. Создай тему</h2>
+
+    <p>
+        Выбери один вариант:
+    </p>
+
+    <ul>
+        <li>тёмная тема;</li>
+        <li>синяя тема;</li>
+        <li>красно-чёрная тема;</li>
+        <li>зелёная тема;</li>
+        <li>игровая тема;</li>
+        <li>или придумай свою.</li>
+    </ul>
+
+
+    <h2>2. Оформи body</h2>
+
+    <p>
+        Например для тёмной темы:
+    </p>
+
+<pre><code>body {
+    background: #111827;
+    color: white;
+    font-family: Arial, sans-serif;
+}</code></pre>
+
+    <div class="hint">
+        Это только пример.
+        Можно выбрать свои цвета.
+    </div>
+
+
+    <h2>3. Оформи header</h2>
+
+    <p>
+        В HTML уже есть:
+    </p>
+
+<pre><code>&lt;header&gt;
+
+    &lt;h1&gt;
+        Games
+    &lt;/h1&gt;
+
+&lt;/header&gt;</code></pre>
+
+    <p>
+        Попробуй:
+    </p>
+
+<pre><code>header {
+    background: #2563eb;
+    color: white;
+    text-align: center;
+}</code></pre>
+
+
+    <h2>4. Оформи nav</h2>
+
+<pre><code>nav {
+    background: #1e293b;
+    text-align: center;
+}
+
+nav a {
+    color: white;
+}</code></pre>
+
+
+    <h2>5. Наведение мыши</h2>
+
+    <p>
+        Новый селектор:
+    </p>
+
+<pre><code>nav a:hover {
+    color: yellow;
+}</code></pre>
+
+    <div class="important task">
+        <code>:hover</code> применяется,
+        когда пользователь наводит мышь
+        на элемент.
+    </div>
+
+
+    <h2>6. Добавь hover для картинки</h2>
+
+<pre><code>img:hover {
+    border-radius: 50px;
+}</code></pre>
+
+    <p>
+        Посмотри, что произойдёт.
+    </p>
+
+
+    <h2>7. Добавь фон для section</h2>
+
+<pre><code>section {
+    background: white;
+}</code></pre>
+
+    <p>
+        Если сайт тёмный,
+        можно использовать:
+    </p>
+
+<pre><code>section {
+    background: #1e293b;
+}</code></pre>
+
+
+    <h2>8. Создай уникальные классы</h2>
+
+    <p>
+        Например:
+    </p>
+
+<pre><code>&lt;p class="rating"&gt;
+    10/10
+&lt;/p&gt;</code></pre>
+
+<pre><code>.rating {
+    color: #f59e0b;
+    font-size: 24px;
+}</code></pre>
+
+
+    <h2>9. Добавь класс danger</h2>
+
+    <p>
+        HTML:
+    </p>
+
+<pre><code>&lt;p class="danger"&gt;
+    Очень сложная игра
+&lt;/p&gt;</code></pre>
+
+    <p>
+        CSS придумай самостоятельно.
+    </p>
+
+
+    <h2>10. Сделай разные ссылки</h2>
+
+    <p>
+        Обычная ссылка:
+    </p>
+
+<pre><code>a {
+    color: #2563eb;
+}</code></pre>
+
+    <p>
+        При наведении:
+    </p>
+
+<pre><code>a:hover {
+    color: #7c3aed;
+}</code></pre>
+
+
+    <h2>11. Поэкспериментируй с border-radius</h2>
+
+<pre><code>border-radius: 0;
+
+border-radius: 10px;
+
+border-radius: 30px;
+
+border-radius: 50%;</code></pre>
+
+    <div class="task">
+        Попробуй каждое значение
+        и выбери лучшее.
+    </div>
+
+
+    <h2>12. Добавь новый CSS-класс самостоятельно</h2>
+
+    <p>
+        Придумай класс:
+    </p>
+
+<pre><code>.best-game {
+
+}</code></pre>
+
+    <p>
+        И оформи с его помощью
+        свою любимую игру.
+    </p>
+
+
+    <h2>Проверка</h2>
+
+    <div class="check">
+
+        <p>☐ Создана собственная цветовая тема</p>
+
+        <p>☐ Оформлен body</p>
+
+        <p>☐ Оформлен header</p>
+
+        <p>☐ Оформлен nav</p>
+
+        <p>☐ Оформлены ссылки</p>
+
+        <p>☐ Использован :hover</p>
+
+        <p>☐ Есть минимум 3 CSS-класса</p>
+
+        <p>☐ Используется border-radius</p>
+
+        <p>☐ Изображения имеют собственный стиль</p>
+
+        <p>☐ Дизайн отличается от примеров преподавателя</p>
+
+    </div>
+
+
+    <div class="hard">
+
+        <h2>HARD</h2>
+
+        <p>
+            Самостоятельно узнай,
+            что делает:
+        </p>
+
+<pre><code>border</code></pre>
+
+        <p>
+            И попробуй:
+        </p>
+
+<pre><code>border: 3px solid #2563eb;</code></pre>
+
+        <p>
+            Добавь рамку
+            к картинке или разделу.
+        </p>
+
+    </div>
+
+
+    <div class="hard">
+
+        <h2>SUPER HARD</h2>
+
+        <p>
+            Самостоятельно узнай,
+            что делает:
+        </p>
+
+<pre><code>box-shadow</code></pre>
+
+        <p>
+            Попробуй:
+        </p>
+
+<pre><code>box-shadow:
+    0 10px 30px rgba(0,0,0,0.2);</code></pre>
+
+        <p>
+            Используй тень минимум
+            для одного элемента сайта.
+        </p>
+
+    </div>
+
+
+    <div class="hard">
+
+        <h2>ULTRA</h2>
+
+        <p>
+            Найди самостоятельно,
+            что такое:
+        </p>
+
+<pre><code>transition</code></pre>
+
+        <p>
+            Попробуй сделать,
+            чтобы изменение цвета
+            при <code>:hover</code>
+            происходило плавно.
+        </p>
+
+        <p>
+            Подсказка:
+        </p>
+
+<pre><code>transition: 0.3s;</code></pre>
+
+    </div>
+
+
+    <h2>Итог</h2>
+
+    <p>
+        После Extra ты уже используешь:
+    </p>
+
+    <ul>
+        <li>селекторы тегов;</li>
+        <li>CSS-классы;</li>
+        <li>цвета;</li>
+        <li>фон;</li>
+        <li>шрифты;</li>
+        <li>размеры;</li>
+        <li>border-radius;</li>
+        <li>:hover;</li>
+        <li>border;</li>
+        <li>box-shadow;</li>
+        <li>transition.</li>
+    </ul>
+
+</div>
+
+</body>
+
+</html>
+```

@@ -1,0 +1,501 @@
+```html
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Git и GitHub — Extra</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f8fafc;
+            color: #1e293b;
+            line-height: 1.7;
+        }
+
+        .container {
+            max-width: 950px;
+            margin: 30px auto;
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        .header {
+            background: linear-gradient(135deg, #475569, #0f172a);
+            color: white;
+            padding: 30px;
+            border-radius: 18px;
+        }
+
+        .header h1 {
+            margin: 0 0 10px;
+        }
+
+        h2 {
+            color: #334155;
+            margin-top: 40px;
+            border-bottom: 3px solid #cbd5e1;
+            padding-bottom: 10px;
+        }
+
+        p,
+        li {
+            font-size: 18px;
+        }
+
+        pre {
+            background: #0f172a;
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
+            overflow-x: auto;
+        }
+
+        code {
+            font-family: Consolas, monospace;
+        }
+
+        .task {
+            background: #f1f5f9;
+            border-left: 5px solid #64748b;
+            padding: 22px;
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+
+        .hint {
+            background: #eff6ff;
+            border-left: 5px solid #3b82f6;
+            padding: 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+
+        .hard {
+            background: #fef2f2;
+            border-left: 5px solid #ef4444;
+            padding: 22px;
+            border-radius: 12px;
+            margin-top: 30px;
+        }
+
+        .check {
+            background: #dcfce7;
+            border-left: 5px solid #22c55e;
+            padding: 20px;
+            border-radius: 12px;
+        }
+
+        @media(max-width: 700px) {
+            .container {
+                margin: 0;
+                padding: 20px;
+                border-radius: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="header">
+
+        <h1>Git и GitHub — Extra</h1>
+
+        <p>
+            Clone, pull, ветки и работа с отдельной версией проекта
+        </p>
+
+    </div>
+
+
+    <h2>Задача</h2>
+
+    <p>
+        Основной проект уже находится на GitHub.
+    </p>
+
+    <p>
+        Теперь попробуй несколько возможностей,
+        которые используются в реальной разработке.
+    </p>
+
+
+    <div class="task">
+
+        Нужно:
+
+        <ol>
+            <li>склонировать репозиторий;</li>
+            <li>создать новую ветку;</li>
+            <li>сделать изменение в новой ветке;</li>
+            <li>создать commit;</li>
+            <li>переключиться между ветками;</li>
+            <li>получить изменения через pull.</li>
+        </ol>
+
+    </div>
+
+
+    <h2>1. Clone</h2>
+
+    <p>
+        Создай отдельную папку,
+        не внутри текущего проекта.
+    </p>
+
+    <p>
+        В терминале выполни:
+    </p>
+
+<pre><code>git clone АДРЕС_РЕПОЗИТОРИЯ</code></pre>
+
+    <p>
+        Например:
+    </p>
+
+<pre><code>git clone https://github.com/username/my-web-project.git</code></pre>
+
+
+    <h2>2. Открой склонированный проект</h2>
+
+    <p>
+        Перейди в папку:
+    </p>
+
+<pre><code>cd my-web-project</code></pre>
+
+    <p>
+        Проверь:
+    </p>
+
+<pre><code>git status</code></pre>
+
+
+    <div class="hint">
+        Репозиторий уже настроен.
+        Повторно выполнять
+        <code>git init</code>
+        не нужно.
+    </div>
+
+
+    <h2>3. Посмотри remote</h2>
+
+<pre><code>git remote -v</code></pre>
+
+    <p>
+        Ты увидишь адрес GitHub-репозитория.
+    </p>
+
+
+    <h2>4. Что такое ветка?</h2>
+
+    <p>
+        Ветка позволяет делать изменения
+        отдельно от основной версии.
+    </p>
+
+<pre><code>main
+ |
+ |---- feature-about</code></pre>
+
+
+    <h2>5. Посмотри ветки</h2>
+
+<pre><code>git branch</code></pre>
+
+
+    <h2>6. Создай новую ветку</h2>
+
+<pre><code>git switch -c feature-about</code></pre>
+
+    <p>
+        Проверяем:
+    </p>
+
+<pre><code>git branch</code></pre>
+
+
+    <div class="task">
+        Звёздочка рядом с названием
+        показывает текущую ветку.
+    </div>
+
+
+    <h2>7. Сделай изменение</h2>
+
+    <p>
+        Добавь на сайт новый раздел,
+        например «О проекте».
+    </p>
+
+<pre><code>&lt;section&gt;
+
+    &lt;h2&gt;
+        О проекте
+    &lt;/h2&gt;
+
+    &lt;p&gt;
+        Этот раздел создан
+        в отдельной Git-ветке.
+    &lt;/p&gt;
+
+&lt;/section&gt;</code></pre>
+
+
+    <h2>8. Сохрани изменение</h2>
+
+<pre><code>git add .
+
+git commit -m "Добавил раздел о проекте"</code></pre>
+
+
+    <h2>9. Сравни с main</h2>
+
+    <p>
+        Переключись:
+    </p>
+
+<pre><code>git switch main</code></pre>
+
+    <p>
+        Открой файл.
+    </p>
+
+    <p>
+        Новый раздел должен исчезнуть.
+    </p>
+
+
+    <h2>10. Вернись в feature-about</h2>
+
+<pre><code>git switch feature-about</code></pre>
+
+    <p>
+        Раздел снова появится.
+    </p>
+
+
+    <div class="hint">
+        Теперь видно,
+        зачем нужны ветки:
+        разные версии проекта могут существовать отдельно.
+    </div>
+
+
+    <h2>11. Отправь ветку на GitHub</h2>
+
+<pre><code>git push -u origin feature-about</code></pre>
+
+    <p>
+        Открой GitHub
+        и проверь появление новой ветки.
+    </p>
+
+
+    <h2>12. Pull</h2>
+
+    <p>
+        Вернись:
+    </p>
+
+<pre><code>git switch main</code></pre>
+
+    <p>
+        Получи последние изменения:
+    </p>
+
+<pre><code>git pull</code></pre>
+
+
+    <h2>13. git diff</h2>
+
+    <p>
+        Измени любой файл,
+        но пока не делай commit.
+    </p>
+
+    <p>
+        Выполни:
+    </p>
+
+<pre><code>git diff</code></pre>
+
+    <p>
+        Git покажет,
+        что именно изменилось.
+    </p>
+
+
+    <h2>14. Отмена локального изменения</h2>
+
+    <p>
+        Измени строку в файле
+        специально для эксперимента.
+    </p>
+
+    <p>
+        Затем:
+    </p>
+
+<pre><code>git restore ИМЯ_ФАЙЛА</code></pre>
+
+    <p>
+        Например:
+    </p>
+
+<pre><code>git restore index.html</code></pre>
+
+
+    <div class="task">
+        Проверь,
+        что несохранённое изменение исчезло.
+    </div>
+
+
+    <h2>15. Полезные команды</h2>
+
+<pre><code>git branch
+
+git switch main
+
+git switch -c new-branch
+
+git remote -v
+
+git diff
+
+git restore index.html
+
+git pull
+
+git clone ...</code></pre>
+
+
+    <h2>Проверка</h2>
+
+    <div class="check">
+
+        <p>Репозиторий склонирован</p>
+
+        <p>git init повторно не использовался</p>
+
+        <p>Проверен git remote -v</p>
+
+        <p>Создана новая ветка</p>
+
+        <p>В новой ветке сделано изменение</p>
+
+        <p>Создан commit</p>
+
+        <p>Выполнено переключение между ветками</p>
+
+        <p>Ветка отправлена на GitHub</p>
+
+        <p>Использован git pull</p>
+
+        <p>Использован git diff</p>
+
+        <p>Проверен git restore</p>
+
+    </div>
+
+
+    <div class="hard">
+
+        <h2>HARD — Pull Request</h2>
+
+        <p>
+            Открой GitHub.
+        </p>
+
+        <p>
+            Найди свою ветку:
+        </p>
+
+<pre><code>feature-about</code></pre>
+
+        <p>
+            Создай Pull Request
+            из этой ветки в:
+        </p>
+
+<pre><code>main</code></pre>
+
+        <p>
+            В описании напиши,
+            какие изменения были сделаны.
+        </p>
+
+        <p>
+            После этого посмотри,
+            какие файлы GitHub показывает
+            как изменённые.
+        </p>
+
+    </div>
+
+
+    <div class="hard">
+
+        <h2>SUPER HARD — Merge</h2>
+
+        <p>
+            После проверки Pull Request
+            объедини ветку с main.
+        </p>
+
+        <p>
+            Затем локально:
+        </p>
+
+<pre><code>git switch main
+
+git pull</code></pre>
+
+        <p>
+            Проверь,
+            что изменения из новой ветки
+            появились в main.
+        </p>
+
+    </div>
+
+
+    <h2>Итог</h2>
+
+    <p>
+        После Extra ты уже знаком с:
+    </p>
+
+    <ul>
+        <li>clone;</li>
+        <li>pull;</li>
+        <li>remote;</li>
+        <li>ветками;</li>
+        <li>switch;</li>
+        <li>diff;</li>
+        <li>restore;</li>
+        <li>Pull Request;</li>
+        <li>merge.</li>
+    </ul>
+
+</div>
+
+</body>
+
+</html>
+```

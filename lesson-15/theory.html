@@ -1,0 +1,677 @@
+```html
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Занятие №15 — Git и GitHub</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f1f5f9;
+            color: #1e293b;
+            line-height: 1.7;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 30px auto;
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        .header {
+            background: linear-gradient(135deg, #334155, #0f172a);
+            color: white;
+            padding: 32px;
+            border-radius: 18px;
+        }
+
+        .header h1 {
+            margin: 0 0 10px;
+            font-size: 40px;
+        }
+
+        .badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.12);
+            padding: 6px 14px;
+            border-radius: 20px;
+            margin: 8px 6px 0 0;
+        }
+
+        h2 {
+            color: #334155;
+            margin-top: 45px;
+            border-bottom: 3px solid #cbd5e1;
+            padding-bottom: 10px;
+        }
+
+        h3 {
+            margin-top: 28px;
+        }
+
+        p,
+        li {
+            font-size: 18px;
+        }
+
+        pre {
+            background: #0f172a;
+            color: white;
+            padding: 22px;
+            border-radius: 14px;
+            overflow-x: auto;
+            line-height: 1.6;
+        }
+
+        code {
+            font-family: Consolas, monospace;
+        }
+
+        .important {
+            background: #dcfce7;
+            border-left: 5px solid #22c55e;
+            padding: 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+
+        .info {
+            background: #eff6ff;
+            border-left: 5px solid #3b82f6;
+            padding: 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+
+        .warning {
+            background: #fef3c7;
+            border-left: 5px solid #f59e0b;
+            padding: 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+
+        .question {
+            background: #f1f5f9;
+            border-left: 5px solid #64748b;
+            padding: 18px;
+            border-radius: 10px;
+            margin: 15px 0;
+        }
+
+        .scheme {
+            background: #0f172a;
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            font-family: Consolas, monospace;
+            font-size: 18px;
+            line-height: 1.8;
+        }
+
+        @media(max-width: 700px) {
+            .container {
+                margin: 0;
+                padding: 20px;
+                border-radius: 0;
+            }
+
+            .header h1 {
+                font-size: 30px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="header">
+
+        <h1>Занятие №15 — Git и GitHub</h1>
+
+        <p>
+            Репозитории, commit, push и работа с историей проекта
+        </p>
+
+        <span class="badge">Git</span>
+        <span class="badge">GitHub</span>
+        <span class="badge">3 часа</span>
+
+    </div>
+
+
+    <div class="important">
+        <strong>Цель занятия:</strong>
+        научиться сохранять историю проекта
+        и загружать код на GitHub.
+    </div>
+
+
+    <h2>1. Зачем нужен Git?</h2>
+
+    <p>
+        Представим, что мы создаём сайт.
+    </p>
+
+    <p>
+        Сначала он работает.
+        Потом мы изменили код и случайно всё сломали.
+    </p>
+
+    <p>
+        Можно делать так:
+    </p>
+
+<pre><code>site-final
+site-final2
+site-final-new
+site-final-new2
+site-final-really-final</code></pre>
+
+    <p>
+        Но это неудобно.
+    </p>
+
+    <p>
+        Git решает эту проблему.
+    </p>
+
+
+    <div class="important">
+        Git хранит историю изменений проекта.
+    </div>
+
+
+    <h2>2. Что такое Git?</h2>
+
+    <p>
+        Git — система контроля версий.
+    </p>
+
+    <p>
+        Она позволяет:
+    </p>
+
+    <ul>
+        <li>сохранять изменения;</li>
+        <li>видеть историю проекта;</li>
+        <li>возвращаться к предыдущим версиям;</li>
+        <li>работать над проектом вместе;</li>
+        <li>отправлять код на GitHub.</li>
+    </ul>
+
+
+    <h2>3. Что такое GitHub?</h2>
+
+    <p>
+        Git и GitHub — не одно и то же.
+    </p>
+
+    <div class="scheme">
+Git
+↓
+работает с историей проекта
+<br>
+GitHub
+↓
+
+хранит Git-репозиторий в интернете
+    </div>
+
+
+    <p>
+        Git работает на нашем компьютере.
+    </p>
+
+    <p>
+        GitHub — сервис,
+        где можно хранить репозитории онлайн.
+    </p>
+
+
+    <h2>4. Что такое репозиторий?</h2>
+
+    <p>
+        Репозиторий — папка проекта,
+        за изменениями которой следит Git.
+    </p>
+
+    <p>
+        Например:
+    </p>
+
+<pre><code>my-site/
+
+├── index.html
+├── style.css
+└── script.js</code></pre>
+
+
+    <h2>5. Проверяем Git</h2>
+
+    <p>
+        Открой терминал:
+    </p>
+
+<pre><code>git --version</code></pre>
+
+    <p>
+        Если Git установлен,
+        появится его версия.
+    </p>
+
+
+    <h2>6. Имя пользователя</h2>
+
+    <p>
+        Git должен знать,
+        кто делает изменения.
+    </p>
+
+<pre><code>git config --global user.name "Ваше Имя"</code></pre>
+
+    <p>
+        Email:
+    </p>
+
+<pre><code>git config --global user.email "ваш@email.com"</code></pre>
+
+
+    <div class="warning">
+        Эти команды обычно достаточно выполнить
+        один раз на своём компьютере.
+    </div>
+
+
+    <h2>7. Создаём Git-репозиторий</h2>
+
+    <p>
+        Перейди в папку проекта.
+    </p>
+
+    <p>
+        Затем:
+    </p>
+
+<pre><code>git init</code></pre>
+
+    <p>
+        Git начинает следить за этой папкой.
+    </p>
+
+
+    <h2>8. git status</h2>
+
+<pre><code>git status</code></pre>
+
+    <p>
+        Эта команда показывает:
+    </p>
+
+    <ul>
+        <li>какие файлы изменены;</li>
+        <li>какие файлы новые;</li>
+        <li>что готово к commit;</li>
+        <li>что ещё не добавлено.</li>
+    </ul>
+
+
+    <div class="important">
+        <code>git status</code> —
+        одна из самых полезных команд Git.
+    </div>
+
+
+    <h2>9. git add</h2>
+
+    <p>
+        После изменений нужно сказать Git,
+        какие файлы мы хотим сохранить.
+    </p>
+
+    <p>
+        Один файл:
+    </p>
+
+<pre><code>git add index.html</code></pre>
+
+    <p>
+        Все изменения:
+    </p>
+
+<pre><code>git add .</code></pre>
+
+
+    <h2>10. Что такое commit?</h2>
+
+    <p>
+        Commit — сохранённая версия проекта.
+    </p>
+
+    <div class="scheme">
+изменили файлы
+↓<br>
+git add .
+↓<br>
+git commit
+↓<br>
+версия сохранена
+    </div>
+
+
+    <p>
+        Команда:
+    </p>
+
+<pre><code>git commit -m "Первый commit"</code></pre>
+
+
+    <p>
+        Текст после <code>-m</code> —
+        сообщение commit.
+    </p>
+
+
+    <h2>11. Хорошие сообщения commit</h2>
+
+    <p>
+        Лучше:
+    </p>
+
+<pre><code>git commit -m "Добавил меню"
+git commit -m "Исправил стили карточек"
+git commit -m "Добавил форму"</code></pre>
+
+    <p>
+        Хуже:
+    </p>
+
+<pre><code>git commit -m "что-то"
+git commit -m "123"
+git commit -m "изменения"</code></pre>
+
+
+    <h2>12. История commit</h2>
+
+<pre><code>git log</code></pre>
+
+    <p>
+        Git покажет историю сохранённых версий.
+    </p>
+
+
+    <h2>13. Основной рабочий цикл Git</h2>
+
+    <div class="scheme">
+изменил код
+↓<br>
+git status
+↓<br>
+git add .
+↓<br>
+git commit -m "Описание"
+↓<br>
+продолжаем работу
+    </div>
+
+
+    <h2>14. Теперь GitHub</h2>
+
+    <p>
+        На GitHub создаём новый репозиторий.
+    </p>
+
+    <p>
+        Например:
+    </p>
+
+<pre><code>my-first-site</code></pre>
+
+    <p>
+        После создания GitHub покажет адрес репозитория.
+    </p>
+
+
+    <h2>15. Связываем локальный проект с GitHub</h2>
+
+    <p>
+        Добавляем удалённый репозиторий:
+    </p>
+
+<pre><code>git remote add origin АДРЕС_РЕПОЗИТОРИЯ</code></pre>
+
+    <p>
+        Например:
+    </p>
+
+<pre><code>git remote add origin https://github.com/username/my-first-site.git</code></pre>
+
+
+    <h2>16. Основная ветка</h2>
+
+<pre><code>git branch -M main</code></pre>
+
+    <p>
+        Мы называем основную ветку:
+    </p>
+
+<pre><code>main</code></pre>
+
+
+    <h2>17. Первый push</h2>
+
+<pre><code>git push -u origin main</code></pre>
+
+    <p>
+        После этого код появится на GitHub.
+    </p>
+
+
+    <div class="scheme">
+наш компьютер
+↓
+git push
+↓
+GitHub
+    </div>
+
+
+    <h2>18. Следующие push</h2>
+
+    <p>
+        После первого раза обычно достаточно:
+    </p>
+
+<pre><code>git add .
+
+git commit -m "Добавил новый раздел"
+
+git push</code></pre>
+
+
+    <h2>19. Что такое push?</h2>
+
+    <p>
+        <code>push</code> отправляет наши commit
+        в удалённый репозиторий.
+    </p>
+
+    <div class="important">
+        Commit сохраняет изменения в Git
+        на компьютере.
+
+        <br><br>
+
+        Push отправляет эти commit на GitHub.
+    </div>
+
+
+    <h2>20. Что такое clone?</h2>
+
+    <p>
+        Если проект уже находится на GitHub,
+        его можно скачать через Git:
+    </p>
+
+<pre><code>git clone АДРЕС_РЕПОЗИТОРИЯ</code></pre>
+
+    <p>
+        Например:
+    </p>
+
+<pre><code>git clone https://github.com/username/my-first-site.git</code></pre>
+
+
+    <h2>21. Что такое pull?</h2>
+
+    <p>
+        <code>pull</code> получает новые изменения
+        из удалённого репозитория.
+    </p>
+
+<pre><code>git pull</code></pre>
+
+
+    <div class="scheme">
+GitHub
+↓
+git pull
+↓
+наш компьютер
+    </div>
+
+
+    <h2>22. Основные команды занятия</h2>
+
+<pre><code>git init
+
+git status
+
+git add .
+
+git commit -m "Сообщение"
+
+git log
+
+git remote add origin ...
+
+git branch -M main
+
+git push -u origin main
+
+git push
+
+git pull
+
+git clone ...</code></pre>
+
+
+    <h2>23. Не загружаем лишнее</h2>
+
+    <p>
+        Некоторые файлы
+        не нужно отправлять в Git.
+    </p>
+
+    <p>
+        Для этого существует:
+    </p>
+
+<pre><code>.gitignore</code></pre>
+
+    <p>
+        Например для Node.js:
+    </p>
+
+<pre><code>node_modules/</code></pre>
+
+
+    <div class="warning">
+        Папку <code>node_modules</code>
+        обычно не загружают на GitHub.
+    </div>
+
+
+    <h2>24. Быстрая проверка</h2>
+
+    <div class="question">
+        Что такое Git?
+    </div>
+
+    <div class="question">
+        Чем Git отличается от GitHub?
+    </div>
+
+    <div class="question">
+        Что делает git status?
+    </div>
+
+    <div class="question">
+        Для чего нужен git add?
+    </div>
+
+    <div class="question">
+        Что такое commit?
+    </div>
+
+    <div class="question">
+        Что делает git push?
+    </div>
+
+    <div class="question">
+        Что делает git pull?
+    </div>
+
+    <div class="question">
+        Что делает git clone?
+    </div>
+
+
+    <h2>Итог</h2>
+
+    <div class="important">
+
+        Основная схема:
+
+        <br><br>
+
+        изменение
+        <br>
+        ↓
+        git add .
+        <br>
+        ↓
+        git commit
+        <br>
+        ↓
+        git push
+        <br>
+        ↓
+        GitHub
+
+    </div>
+
+</div>
+
+</body>
+
+</html>
+```

@@ -1,0 +1,567 @@
+```html
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>GitHub Pages — Extra</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f8fafc;
+            color: #1e293b;
+            line-height: 1.7;
+        }
+
+        .container {
+            max-width: 950px;
+            margin: 30px auto;
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        .header {
+            background: linear-gradient(135deg, #475569, #0f172a);
+            color: white;
+            padding: 30px;
+            border-radius: 18px;
+        }
+
+        .header h1 {
+            margin: 0 0 10px;
+        }
+
+        h2 {
+            color: #334155;
+            margin-top: 40px;
+            border-bottom: 3px solid #cbd5e1;
+            padding-bottom: 10px;
+        }
+
+        p,
+        li {
+            font-size: 18px;
+        }
+
+        pre {
+            background: #0f172a;
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
+            overflow-x: auto;
+        }
+
+        code {
+            font-family: Consolas, monospace;
+        }
+
+        .task {
+            background: #f1f5f9;
+            border-left: 5px solid #64748b;
+            padding: 22px;
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+
+        .hint {
+            background: #eff6ff;
+            border-left: 5px solid #3b82f6;
+            padding: 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+
+        .hard {
+            background: #fef2f2;
+            border-left: 5px solid #ef4444;
+            padding: 22px;
+            border-radius: 12px;
+            margin-top: 30px;
+        }
+
+        .check {
+            background: #dcfce7;
+            border-left: 5px solid #22c55e;
+            padding: 20px;
+            border-radius: 12px;
+        }
+
+        @media(max-width: 700px) {
+            .container {
+                margin: 0;
+                padding: 20px;
+                border-radius: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="header">
+
+        <h1>GitHub Pages — Extra</h1>
+
+        <p>
+            Исправляем пути, создаём 404
+            и улучшаем опубликованный сайт
+        </p>
+
+    </div>
+
+
+    <h2>Задача</h2>
+
+    <p>
+        Основной сайт уже опубликован.
+    </p>
+
+    <p>
+        Теперь разберём несколько вещей,
+        которые часто встречаются
+        при настоящем деплое.
+    </p>
+
+
+    <div class="task">
+
+        Нужно:
+
+        <ol>
+            <li>проверить относительные пути;</li>
+            <li>добавить страницу 404;</li>
+            <li>добавить favicon;</li>
+            <li>проверить обновление через push;</li>
+            <li>посмотреть deployment в Actions.</li>
+        </ol>
+
+    </div>
+
+
+    <h2>1. Проверь относительные пути</h2>
+
+    <p>
+        Структура:
+    </p>
+
+<pre><code>site/
+
+├── index.html
+├── style.css
+│
+├── images/
+│   └── game.jpg
+│
+└── pages/
+    └── about.html</code></pre>
+
+
+    <p>
+        Из <code>index.html</code>:
+    </p>
+
+<pre><code>&lt;img
+    src="images/game.jpg"
+    alt="Игра"
+&gt;</code></pre>
+
+
+    <h2>2. Путь из вложенной страницы</h2>
+
+    <p>
+        Мы находимся здесь:
+    </p>
+
+<pre><code>pages/about.html</code></pre>
+
+    <p>
+        Чтобы вернуться на главную:
+    </p>
+
+<pre><code>&lt;a href="../index.html"&gt;
+    Главная
+&lt;/a&gt;</code></pre>
+
+
+    <p>
+        <code>..</code> означает:
+    </p>
+
+<pre><code>на одну папку выше</code></pre>
+
+
+    <h2>3. Подключение CSS из вложенной страницы</h2>
+
+    <p>
+        Если <code>style.css</code>
+        находится в корне:
+    </p>
+
+<pre><code>&lt;link
+    rel="stylesheet"
+    href="../style.css"
+&gt;</code></pre>
+
+
+    <div class="hint">
+        Это одна из самых частых проблем
+        после публикации сайта.
+    </div>
+
+
+    <h2>4. Создай страницу 404</h2>
+
+    <p>
+        В корне проекта создай:
+    </p>
+
+<pre><code>404.html</code></pre>
+
+    <p>
+        Например:
+    </p>
+
+<pre><code>&lt;!DOCTYPE html&gt;
+
+&lt;html lang="ru"&gt;
+
+&lt;head&gt;
+
+    &lt;meta charset="UTF-8"&gt;
+
+    &lt;title&gt;
+        Страница не найдена
+    &lt;/title&gt;
+
+&lt;/head&gt;
+
+&lt;body&gt;
+
+    &lt;h1&gt;
+        404
+    &lt;/h1&gt;
+
+    &lt;p&gt;
+        Такой страницы не существует.
+    &lt;/p&gt;
+
+    &lt;a href="index.html"&gt;
+        Вернуться на главную
+    &lt;/a&gt;
+
+&lt;/body&gt;
+
+&lt;/html&gt;</code></pre>
+
+
+    <h2>5. Проверь 404</h2>
+
+    <p>
+        После push попробуй открыть
+        несуществующую страницу сайта.
+    </p>
+
+    <p>
+        Например:
+    </p>
+
+<pre><code>https://username.github.io/site/abc123.html</code></pre>
+
+
+    <h2>6. Добавь favicon</h2>
+
+    <p>
+        Добавь картинку:
+    </p>
+
+<pre><code>favicon.png</code></pre>
+
+    <p>
+        В <code>&lt;head&gt;</code>:
+    </p>
+
+<pre><code>&lt;link
+    rel="icon"
+    href="favicon.png"
+&gt;</code></pre>
+
+
+    <h2>7. Добавь meta description</h2>
+
+<pre><code>&lt;meta
+    name="description"
+    content="Мой учебный сайт о компьютерных играх"
+&gt;</code></pre>
+
+
+    <h2>8. Добавь правильный title</h2>
+
+    <p>
+        Не:
+    </p>
+
+<pre><code>&lt;title&gt;
+    Document
+&lt;/title&gt;</code></pre>
+
+    <p>
+        А:
+    </p>
+
+<pre><code>&lt;title&gt;
+    Game Zone — Главная
+&lt;/title&gt;</code></pre>
+
+
+    <h2>9. Сделай новый commit</h2>
+
+<pre><code>git add .
+
+git commit -m "Добавил 404 и favicon"
+
+git push</code></pre>
+
+
+    <h2>10. Посмотри Actions</h2>
+
+    <p>
+        Открой:
+    </p>
+
+<pre><code>GitHub
+→ Repository
+→ Actions</code></pre>
+
+    <p>
+        Найди deployment GitHub Pages.
+    </p>
+
+    <p>
+        Посмотри его состояние.
+    </p>
+
+
+    <h2>11. Что означает успешный deployment?</h2>
+
+    <p>
+        Если публикация прошла успешно,
+        workflow будет завершён без ошибки.
+    </p>
+
+
+    <h2>12. Эксперимент с ошибкой</h2>
+
+    <p>
+        Временно измени путь к картинке:
+    </p>
+
+<pre><code>images/game.jpg</code></pre>
+
+    <p>
+        на неправильный:
+    </p>
+
+<pre><code>images/unknown.jpg</code></pre>
+
+    <p>
+        Сделай push
+        и посмотри результат.
+    </p>
+
+    <div class="task">
+        После эксперимента
+        обязательно исправь путь
+        и снова сделай commit + push.
+    </div>
+
+
+    <h2>13. Создай ссылку на исходный код</h2>
+
+<pre><code>&lt;a
+    href="https://github.com/USERNAME/REPOSITORY"
+    target="_blank"
+&gt;
+    Исходный код проекта
+&lt;/a&gt;</code></pre>
+
+
+    <h2>14. Создай ссылку на опубликованный сайт в README</h2>
+
+<pre><code>## Демо
+
+https://username.github.io/repository/</code></pre>
+
+
+    <h2>Проверка</h2>
+
+    <div class="check">
+
+        <p>Проверены относительные пути</p>
+
+        <p>Использован ../ для вложенной страницы</p>
+
+        <p>Создан 404.html</p>
+
+        <p>404 опубликован</p>
+
+        <p>Добавлен favicon</p>
+
+        <p>Добавлен meta description</p>
+
+        <p>У страниц нормальные title</p>
+
+        <p>Проверен GitHub Actions</p>
+
+        <p>Сделано минимум одно обновление через push</p>
+
+        <p>README содержит ссылку на сайт</p>
+
+    </div>
+
+
+    <div class="hard">
+
+        <h2>HARD — .nojekyll</h2>
+
+        <p>
+            Создай в корне проекта
+            пустой файл:
+        </p>
+
+<pre><code>.nojekyll</code></pre>
+
+        <p>
+            Самостоятельно узнай,
+            зачем он может использоваться
+            при публикации статического сайта
+            через GitHub Pages.
+        </p>
+
+        <p>
+            Подготовь короткое объяснение
+            преподавателю.
+        </p>
+
+    </div>
+
+
+    <div class="hard">
+
+        <h2>SUPER HARD — собственный домен</h2>
+
+        <p>
+            GitHub Pages позволяет подключить
+            собственный домен.
+        </p>
+
+        <p>
+            Например:
+        </p>
+
+<pre><code>myproject.ru
+
+myproject.com</code></pre>
+
+        <p>
+            Самостоятельно найди в:
+        </p>
+
+<pre><code>Settings → Pages</code></pre>
+
+        <p>
+            раздел:
+        </p>
+
+<pre><code>Custom domain</code></pre>
+
+        <p>
+            Пока ничего покупать
+            и подключать не нужно.
+        </p>
+
+        <p>
+            Нужно только понять:
+        </p>
+
+        <ol>
+            <li>что такое домен;</li>
+            <li>чем он отличается от github.io;</li>
+            <li>где он подключается;</li>
+            <li>что такое DNS.</li>
+        </ol>
+
+    </div>
+
+
+    <div class="hard">
+
+        <h2>ULTRA — сайт-портфолио</h2>
+
+        <p>
+            Создай новый репозиторий:
+        </p>
+
+<pre><code>USERNAME.github.io</code></pre>
+
+        <p>
+            Сделай в нём простую главную страницу:
+        </p>
+
+<pre><code>Имя
+
+Обо мне
+
+Мои технологии
+
+Мои проекты
+
+GitHub
+
+Контакты</code></pre>
+
+        <p>
+            Опубликуй её через GitHub Pages.
+        </p>
+
+        <p>
+            В результате у тебя появится
+            собственная страница разработчика.
+        </p>
+
+    </div>
+
+
+    <h2>Итог</h2>
+
+    <p>
+        После Extra ты умеешь:
+    </p>
+
+    <ul>
+        <li>публиковать сайт;</li>
+        <li>обновлять его через Git;</li>
+        <li>работать с относительными путями;</li>
+        <li>создавать 404;</li>
+        <li>добавлять favicon;</li>
+        <li>проверять deployment;</li>
+        <li>понимать назначение custom domain.</li>
+    </ul>
+
+</div>
+
+</body>
+
+</html>
+```

@@ -1,0 +1,468 @@
+```html
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Практика №16 — GitHub Pages</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f1f5f9;
+            color: #1e293b;
+            line-height: 1.7;
+        }
+
+        .container {
+            max-width: 950px;
+            margin: 30px auto;
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        .header {
+            background: linear-gradient(135deg, #475569, #0f172a);
+            color: white;
+            padding: 30px;
+            border-radius: 18px;
+        }
+
+        .header h1 {
+            margin: 0 0 10px;
+        }
+
+        h2 {
+            color: #334155;
+            margin-top: 40px;
+            border-bottom: 3px solid #cbd5e1;
+            padding-bottom: 10px;
+        }
+
+        p,
+        li {
+            font-size: 18px;
+        }
+
+        pre {
+            background: #0f172a;
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
+            overflow-x: auto;
+        }
+
+        code {
+            font-family: Consolas, monospace;
+        }
+
+        .task {
+            background: #f8fafc;
+            border-left: 5px solid #64748b;
+            padding: 22px;
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+
+        .hint {
+            background: #eff6ff;
+            border-left: 5px solid #3b82f6;
+            padding: 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+
+        .warning {
+            background: #fef3c7;
+            border-left: 5px solid #f59e0b;
+            padding: 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+
+        .check {
+            background: #dcfce7;
+            border-left: 5px solid #22c55e;
+            padding: 20px;
+            border-radius: 12px;
+        }
+
+        @media(max-width: 700px) {
+            .container {
+                margin: 0;
+                padding: 20px;
+                border-radius: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="header">
+
+        <h1>Практическая работа №16</h1>
+
+        <p>
+            Публикуем собственный сайт через GitHub Pages
+        </p>
+
+    </div>
+
+
+    <h2>Задача</h2>
+
+    <p>
+        Возьми свой готовый HTML/CSS/JavaScript-проект
+        и опубликуй его в интернете.
+    </p>
+
+
+    <div class="task">
+
+        В конце занятия у тебя должны быть:
+
+        <ul>
+            <li>GitHub-репозиторий;</li>
+            <li>index.html;</li>
+            <li>включённый GitHub Pages;</li>
+            <li>работающий публичный адрес;</li>
+            <li>минимум одно обновление после публикации.</li>
+        </ul>
+
+    </div>
+
+
+    <h2>1. Выбери проект</h2>
+
+    <p>
+        Можно использовать:
+    </p>
+
+    <ul>
+        <li>сайт о себе;</li>
+        <li>Game Zone;</li>
+        <li>портфолио;</li>
+        <li>лендинг;</li>
+        <li>другой HTML/CSS/JS-проект.</li>
+    </ul>
+
+
+    <h2>2. Проверь структуру</h2>
+
+<pre><code>my-site/
+
+├── index.html
+├── style.css
+├── script.js
+│
+└── images/
+    └── photo.jpg</code></pre>
+
+
+    <div class="warning">
+        Обязательно должен быть
+        файл index.html.
+    </div>
+
+
+    <h2>3. Проверь сайт локально</h2>
+
+    <p>
+        Открой <code>index.html</code>
+        в браузере.
+    </p>
+
+    <p>
+        Проверь:
+    </p>
+
+    <ul>
+        <li>картинки;</li>
+        <li>CSS;</li>
+        <li>ссылки;</li>
+        <li>JavaScript;</li>
+        <li>переходы между страницами.</li>
+    </ul>
+
+
+    <h2>4. Проверь Git</h2>
+
+<pre><code>git status</code></pre>
+
+
+    <h2>5. Сохрани последние изменения</h2>
+
+<pre><code>git add .
+
+git commit -m "Подготовил сайт к публикации"
+
+git push</code></pre>
+
+
+    <h2>6. Открой GitHub</h2>
+
+    <p>
+        Перейди в репозиторий проекта.
+    </p>
+
+    <p>
+        Убедись,
+        что файлы появились на GitHub.
+    </p>
+
+
+    <h2>7. Открой Settings</h2>
+
+    <p>
+        В репозитории:
+    </p>
+
+<pre><code>Settings</code></pre>
+
+
+    <h2>8. Открой Pages</h2>
+
+    <p>
+        В левом меню найди:
+    </p>
+
+<pre><code>Pages</code></pre>
+
+
+    <h2>9. Настрой публикацию</h2>
+
+    <p>
+        В разделе:
+    </p>
+
+<pre><code>Build and deployment</code></pre>
+
+    <p>
+        выбери:
+    </p>
+
+<pre><code>Source:
+Deploy from a branch</code></pre>
+
+
+    <h2>10. Выбери ветку</h2>
+
+<pre><code>Branch:
+main</code></pre>
+
+    <p>
+        Папка:
+    </p>
+
+<pre><code>/(root)</code></pre>
+
+    <p>
+        Нажми:
+    </p>
+
+<pre><code>Save</code></pre>
+
+
+    <h2>11. Найди адрес сайта</h2>
+
+    <p>
+        После публикации
+        в разделе Pages появится ссылка.
+    </p>
+
+    <p>
+        Она будет похожа на:
+    </p>
+
+<pre><code>https://username.github.io/my-site/</code></pre>
+
+
+    <h2>12. Открой опубликованный сайт</h2>
+
+    <p>
+        Проверь:
+    </p>
+
+    <ul>
+        <li>загружается ли главная страница;</li>
+        <li>есть ли стили;</li>
+        <li>загружаются ли картинки;</li>
+        <li>работают ли ссылки.</li>
+    </ul>
+
+
+    <h2>13. Если CSS не работает</h2>
+
+    <p>
+        Проверь:
+    </p>
+
+<pre><code>&lt;link
+    rel="stylesheet"
+    href="style.css"
+&gt;</code></pre>
+
+    <p>
+        Не используй без необходимости:
+    </p>
+
+<pre><code>href="/style.css"</code></pre>
+
+
+    <h2>14. Если картинка не работает</h2>
+
+    <p>
+        Проверь:
+    </p>
+
+<pre><code>&lt;img
+    src="images/photo.jpg"
+    alt="Фото"
+&gt;</code></pre>
+
+
+    <div class="warning">
+        Проверь регистр букв
+        в имени папки и файла.
+    </div>
+
+
+    <h2>15. Сделай первое обновление сайта</h2>
+
+    <p>
+        Измени заголовок:
+    </p>
+
+<pre><code>&lt;h1&gt;
+    Мой опубликованный сайт
+&lt;/h1&gt;</code></pre>
+
+    <p>
+        Или добавь новый раздел.
+    </p>
+
+
+    <h2>16. Отправь обновление</h2>
+
+<pre><code>git status
+
+git add .
+
+git commit -m "Обновил опубликованный сайт"
+
+git push</code></pre>
+
+
+    <h2>17. Проверь сайт ещё раз</h2>
+
+    <p>
+        Открой адрес GitHub Pages
+        и проверь изменение.
+    </p>
+
+
+    <h2>18. Добавь ссылку на GitHub</h2>
+
+    <p>
+        На сайт можно добавить:
+    </p>
+
+<pre><code>&lt;a
+    href="https://github.com/USERNAME/REPOSITORY"
+    target="_blank"
+&gt;
+    Репозиторий проекта
+&lt;/a&gt;</code></pre>
+
+
+    <h2>19. Добавь README.md</h2>
+
+    <p>
+        В репозитории создай:
+    </p>
+
+<pre><code>README.md</code></pre>
+
+    <p>
+        Например:
+    </p>
+
+<pre><code># Game Zone
+
+Учебный сайт о компьютерных играх.
+
+## Использовано
+
+- HTML
+- CSS
+- JavaScript
+
+## Сайт
+
+https://username.github.io/game-zone/</code></pre>
+
+
+    <h2>Проверка</h2>
+
+    <div class="check">
+
+        <p>Проект находится на GitHub</p>
+
+        <p>Есть index.html</p>
+
+        <p>Выбран Deploy from a branch</p>
+
+        <p>Выбрана ветка main</p>
+
+        <p>Выбрано /(root)</p>
+
+        <p>GitHub Pages включён</p>
+
+        <p>Получен публичный адрес</p>
+
+        <p>Сайт открывается</p>
+
+        <p>CSS работает</p>
+
+        <p>Картинки работают</p>
+
+        <p>Ссылки работают</p>
+
+        <p>После нового push сайт обновился</p>
+
+        <p>Есть README.md</p>
+
+    </div>
+
+
+    <h2>Готово?</h2>
+
+    <p>
+        Покажи преподавателю:
+    </p>
+
+    <ol>
+        <li>репозиторий GitHub;</li>
+        <li>настройки Pages;</li>
+        <li>открытый опубликованный сайт;</li>
+        <li>историю commit.</li>
+    </ol>
+
+</div>
+
+</body>
+
+</html>
+```

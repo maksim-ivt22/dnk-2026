@@ -1,0 +1,616 @@
+```html
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Занятие №4 — Первые стили CSS</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f1f5f9;
+            color: #1e293b;
+            line-height: 1.7;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 30px auto;
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        .header {
+            background: linear-gradient(135deg, #2563eb, #7c3aed);
+            color: white;
+            padding: 32px;
+            border-radius: 18px;
+        }
+
+        .header h1 {
+            margin: 0 0 10px;
+            font-size: 40px;
+        }
+
+        .badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.15);
+            padding: 6px 14px;
+            border-radius: 20px;
+            margin: 8px 6px 0 0;
+        }
+
+        h2 {
+            color: #1d4ed8;
+            margin-top: 45px;
+            border-bottom: 3px solid #dbeafe;
+            padding-bottom: 10px;
+        }
+
+        h3 {
+            margin-top: 28px;
+        }
+
+        p,
+        li {
+            font-size: 18px;
+        }
+
+        pre {
+            background: #0f172a;
+            color: white;
+            padding: 22px;
+            border-radius: 14px;
+            overflow-x: auto;
+            line-height: 1.6;
+        }
+
+        code {
+            font-family: Consolas, monospace;
+        }
+
+        .important {
+            background: #dcfce7;
+            border-left: 5px solid #22c55e;
+            padding: 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+
+        .info {
+            background: #eff6ff;
+            border-left: 5px solid #3b82f6;
+            padding: 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+
+        .warning {
+            background: #fef3c7;
+            border-left: 5px solid #f59e0b;
+            padding: 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+
+        .question {
+            background: #ede9fe;
+            border-left: 5px solid #7c3aed;
+            padding: 18px;
+            border-radius: 10px;
+            margin: 15px 0;
+        }
+
+        .scheme {
+            background: #0f172a;
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            font-family: Consolas, monospace;
+            font-size: 18px;
+            line-height: 1.8;
+        }
+
+        @media(max-width: 700px) {
+            .container {
+                margin: 0;
+                padding: 20px;
+                border-radius: 0;
+            }
+
+            .header h1 {
+                font-size: 30px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="header">
+
+        <h1>Занятие №4 — Первые стили CSS</h1>
+
+        <p>
+            Цвета, фон, шрифты и подключение CSS
+        </p>
+
+        <span class="badge">CSS</span>
+        <span class="badge">Стили</span>
+        <span class="badge">3 часа</span>
+
+    </div>
+
+
+    <div class="important">
+        <strong>Цель занятия:</strong>
+        научиться изменять внешний вид HTML-страницы
+        с помощью CSS.
+    </div>
+
+
+    <h2>1. Что такое CSS?</h2>
+
+    <p>
+        CSS отвечает за внешний вид сайта.
+    </p>
+
+    <div class="scheme">
+HTML
+↓
+Что находится на странице
+<br>
+
+CSS
+↓
+Как страница выглядит
+    </div>
+
+    <p>
+        Например, HTML:
+    </p>
+
+<pre><code>&lt;h1&gt;Мой сайт&lt;/h1&gt;</code></pre>
+
+    <p>
+        CSS:
+    </p>
+
+<pre><code>h1 {
+    color: blue;
+}</code></pre>
+
+    <p>
+        Теперь заголовок станет синим.
+    </p>
+
+
+    <h2>2. Как подключить CSS?</h2>
+
+    <p>
+        Есть несколько способов.
+        Пока изучим два.
+    </p>
+
+
+    <h3>Способ 1 — внутри HTML</h3>
+
+<pre><code>&lt;head&gt;
+
+    &lt;style&gt;
+
+        h1 {
+            color: blue;
+        }
+
+    &lt;/style&gt;
+
+&lt;/head&gt;</code></pre>
+
+
+    <h3>Способ 2 — отдельный файл</h3>
+
+    <p>
+        Создаём:
+    </p>
+
+<pre><code>style.css</code></pre>
+
+    <p>
+        И подключаем:
+    </p>
+
+<pre><code>&lt;link rel="stylesheet" href="style.css"&gt;</code></pre>
+
+
+    <div class="important">
+        На настоящих сайтах обычно удобнее
+        использовать отдельный CSS-файл.
+    </div>
+
+
+    <h2>3. Структура CSS</h2>
+
+<pre><code>h1 {
+    color: blue;
+}</code></pre>
+
+    <p>
+        Здесь:
+    </p>
+
+    <ul>
+        <li><code>h1</code> — что выбираем;</li>
+        <li><code>color</code> — что меняем;</li>
+        <li><code>blue</code> — новое значение.</li>
+    </ul>
+
+
+    <div class="scheme">
+selector {
+    property: value;
+}
+    </div>
+
+
+    <h2>4. Селектор по тегу</h2>
+
+<pre><code>p {
+    color: green;
+}</code></pre>
+
+    <p>
+        Все теги <code>&lt;p&gt;</code>
+        станут зелёными.
+    </p>
+
+
+    <h2>5. Цвет текста</h2>
+
+<pre><code>h1 {
+    color: red;
+}</code></pre>
+
+    <p>
+        Можно использовать:
+    </p>
+
+<pre><code>red
+blue
+green
+orange
+purple
+black</code></pre>
+
+    <p>
+        Или HEX:
+    </p>
+
+<pre><code>color: #2563eb;</code></pre>
+
+
+    <h2>6. Цвет фона</h2>
+
+<pre><code>body {
+    background: lightblue;
+}</code></pre>
+
+    <p>
+        Или:
+    </p>
+
+<pre><code>body {
+    background: #f1f5f9;
+}</code></pre>
+
+
+    <h2>7. Размер текста</h2>
+
+<pre><code>h1 {
+    font-size: 40px;
+}</code></pre>
+
+<pre><code>p {
+    font-size: 18px;
+}</code></pre>
+
+
+    <div class="info">
+        <code>px</code> — пиксели.
+    </div>
+
+
+    <h2>8. Шрифт</h2>
+
+<pre><code>body {
+    font-family: Arial, sans-serif;
+}</code></pre>
+
+    <p>
+        Можно использовать:
+    </p>
+
+<pre><code>Arial
+Verdana
+Georgia
+Tahoma
+Courier New</code></pre>
+
+
+    <h2>9. Выравнивание текста</h2>
+
+<pre><code>h1 {
+    text-align: center;
+}</code></pre>
+
+    <p>
+        Возможные значения:
+    </p>
+
+<pre><code>left
+center
+right</code></pre>
+
+
+    <h2>10. Ширина</h2>
+
+<pre><code>img {
+    width: 300px;
+}</code></pre>
+
+    <p>
+        Теперь все изображения будут шириной 300px.
+    </p>
+
+
+    <h2>11. Высота</h2>
+
+<pre><code>img {
+    width: 300px;
+    height: 200px;
+}</code></pre>
+
+
+    <div class="warning">
+        С изображениями высоту пока
+        лучше менять осторожно:
+        картинка может растянуться.
+    </div>
+
+
+    <h2>12. Скругление</h2>
+
+<pre><code>img {
+    border-radius: 20px;
+}</code></pre>
+
+    <p>
+        Чем больше значение,
+        тем сильнее скругление.
+    </p>
+
+
+    <h2>13. CSS-классы</h2>
+
+    <p>
+        Иногда мы не хотим менять
+        абсолютно все элементы одного типа.
+    </p>
+
+    <p>
+        Для этого есть <code>class</code>.
+    </p>
+
+    <p>
+        HTML:
+    </p>
+
+<pre><code>&lt;p class="important-text"&gt;
+    Очень важный текст
+&lt;/p&gt;</code></pre>
+
+    <p>
+        CSS:
+    </p>
+
+<pre><code>.important-text {
+    color: red;
+}</code></pre>
+
+
+    <div class="important">
+        Перед названием класса в CSS
+        ставится точка:
+        <code>.</code>
+    </div>
+
+
+    <h2>14. Один класс можно использовать много раз</h2>
+
+<pre><code>&lt;p class="game"&gt;
+    Elden Ring
+&lt;/p&gt;
+
+&lt;p class="game"&gt;
+    Minecraft
+&lt;/p&gt;
+
+&lt;p class="game"&gt;
+    Clash Royale
+&lt;/p&gt;</code></pre>
+
+    <p>
+        CSS:
+    </p>
+
+<pre><code>.game {
+    color: purple;
+    font-size: 20px;
+}</code></pre>
+
+
+    <h2>15. Несколько свойств</h2>
+
+<pre><code>h1 {
+    color: white;
+    background: #2563eb;
+    font-size: 40px;
+    text-align: center;
+}</code></pre>
+
+
+    <h2>16. Пример простой страницы</h2>
+
+<pre><code>body {
+    background: #f1f5f9;
+    font-family: Arial, sans-serif;
+}
+
+h1 {
+    color: #2563eb;
+    text-align: center;
+    font-size: 42px;
+}
+
+h2 {
+    color: #7c3aed;
+}
+
+p {
+    font-size: 18px;
+}
+
+img {
+    width: 300px;
+    border-radius: 20px;
+}
+
+.game {
+    color: #dc2626;
+}</code></pre>
+
+
+    <h2>17. Где лучше хранить CSS?</h2>
+
+    <p>
+        Структура проекта:
+    </p>
+
+<pre><code>my-site/
+
+├── index.html
+└── style.css</code></pre>
+
+    <p>
+        В HTML:
+    </p>
+
+<pre><code>&lt;head&gt;
+
+    &lt;meta charset="UTF-8"&gt;
+
+    &lt;title&gt;
+        Мой сайт
+    &lt;/title&gt;
+
+    &lt;link
+        rel="stylesheet"
+        href="style.css"
+    &gt;
+
+&lt;/head&gt;</code></pre>
+
+
+    <h2>18. Что пока НЕ изучаем?</h2>
+
+    <p>
+        Сегодня не нужны:
+    </p>
+
+    <ul>
+        <li>Flexbox;</li>
+        <li>Grid;</li>
+        <li>margin;</li>
+        <li>padding;</li>
+        <li>сложные анимации.</li>
+    </ul>
+
+    <div class="warning">
+        Сейчас главное —
+        понять принцип работы CSS.
+    </div>
+
+
+    <h2>19. Быстрая проверка</h2>
+
+    <div class="question">
+        За что отвечает HTML?
+    </div>
+
+    <div class="question">
+        За что отвечает CSS?
+    </div>
+
+    <div class="question">
+        Что делает color?
+    </div>
+
+    <div class="question">
+        Что делает background?
+    </div>
+
+    <div class="question">
+        Что делает font-size?
+    </div>
+
+    <div class="question">
+        Как выбрать class в CSS?
+    </div>
+
+    <div class="question">
+        Как подключить style.css?
+    </div>
+
+
+    <h2>Итог</h2>
+
+    <div class="important">
+
+        Сегодня изучили:
+
+        <br><br>
+
+        <code>color</code><br>
+        <code>background</code><br>
+        <code>font-size</code><br>
+        <code>font-family</code><br>
+        <code>text-align</code><br>
+        <code>width</code><br>
+        <code>height</code><br>
+        <code>border-radius</code><br>
+        <code>class</code>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>
+```

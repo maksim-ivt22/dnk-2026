@@ -1,0 +1,408 @@
+```html
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Практика №4 — CSS</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f1f5f9;
+            color: #1e293b;
+            line-height: 1.7;
+        }
+
+        .container {
+            max-width: 950px;
+            margin: 30px auto;
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        .header {
+            background: linear-gradient(135deg, #f59e0b, #f97316);
+            color: white;
+            padding: 30px;
+            border-radius: 18px;
+        }
+
+        .header h1 {
+            margin: 0 0 10px;
+        }
+
+        h2 {
+            color: #b45309;
+            margin-top: 40px;
+            border-bottom: 3px solid #fde68a;
+            padding-bottom: 10px;
+        }
+
+        p,
+        li {
+            font-size: 18px;
+        }
+
+        pre {
+            background: #0f172a;
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
+            overflow-x: auto;
+        }
+
+        code {
+            font-family: Consolas, monospace;
+        }
+
+        .task {
+            background: #fffbeb;
+            border-left: 5px solid #f59e0b;
+            padding: 22px;
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+
+        .hint {
+            background: #eff6ff;
+            border-left: 5px solid #3b82f6;
+            padding: 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+
+        .check {
+            background: #dcfce7;
+            border-left: 5px solid #22c55e;
+            padding: 20px;
+            border-radius: 12px;
+        }
+
+        @media(max-width: 700px) {
+            .container {
+                margin: 0;
+                padding: 20px;
+                border-radius: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="header">
+
+        <h1>Практическая работа №4</h1>
+
+        <p>
+            Оформляем сайт с помощью CSS
+        </p>
+
+    </div>
+
+
+    <h2>Задача</h2>
+
+    <p>
+        Возьми сайт с прошлого занятия
+        или создай новую страницу
+        «Мои любимые игры».
+    </p>
+
+    <p>
+        Теперь нужно сделать её красивее
+        с помощью CSS.
+    </p>
+
+
+    <h2>1. Создай style.css</h2>
+
+    <p>
+        Структура проекта:
+    </p>
+
+<pre><code>my-site/
+
+├── index.html
+└── style.css</code></pre>
+
+
+    <h2>2. Подключи CSS</h2>
+
+    <p>
+        Внутри <code>&lt;head&gt;</code>:
+    </p>
+
+<pre><code>&lt;link rel="stylesheet" href="style.css"&gt;</code></pre>
+
+
+    <h2>3. Измени фон сайта</h2>
+
+    <p>
+        В <code>style.css</code>:
+    </p>
+
+<pre><code>body {
+    background: #f1f5f9;
+}</code></pre>
+
+    <div class="task">
+        Выбери свой цвет фона.
+    </div>
+
+
+    <h2>4. Измени шрифт</h2>
+
+<pre><code>body {
+    background: #f1f5f9;
+    font-family: Arial, sans-serif;
+}</code></pre>
+
+
+    <h2>5. Оформи главный заголовок</h2>
+
+<pre><code>h1 {
+    color: #2563eb;
+    font-size: 42px;
+    text-align: center;
+}</code></pre>
+
+    <div class="task">
+        Выбери свой цвет заголовка.
+    </div>
+
+
+    <h2>6. Оформи h2</h2>
+
+<pre><code>h2 {
+    color: #7c3aed;
+    font-size: 28px;
+}</code></pre>
+
+
+    <h2>7. Измени текст</h2>
+
+<pre><code>p {
+    font-size: 18px;
+}</code></pre>
+
+
+    <h2>8. Оформи изображение</h2>
+
+<pre><code>img {
+    width: 350px;
+    border-radius: 20px;
+}</code></pre>
+
+
+    <div class="hint">
+        Попробуй менять
+        <code>border-radius</code>
+        и посмотри на результат.
+    </div>
+
+
+    <h2>9. Создай класс</h2>
+
+    <p>
+        В HTML:
+    </p>
+
+<pre><code>&lt;p class="favorite"&gt;
+    Это моя любимая игра!
+&lt;/p&gt;</code></pre>
+
+    <p>
+        В CSS:
+    </p>
+
+<pre><code>.favorite {
+    color: red;
+    font-size: 22px;
+}</code></pre>
+
+
+    <h2>10. Сделай класс для игрового списка</h2>
+
+    <p>
+        HTML:
+    </p>
+
+<pre><code>&lt;li class="game"&gt;
+    Clash Royale
+&lt;/li&gt;
+
+&lt;li class="game"&gt;
+    Elden Ring
+&lt;/li&gt;
+
+&lt;li class="game"&gt;
+    League of Legends
+&lt;/li&gt;</code></pre>
+
+    <p>
+        CSS:
+    </p>
+
+<pre><code>.game {
+    color: #2563eb;
+    font-size: 20px;
+}</code></pre>
+
+
+    <h2>11. Оформи ссылку</h2>
+
+<pre><code>a {
+    color: #7c3aed;
+    font-size: 18px;
+}</code></pre>
+
+
+    <h2>12. Итоговый CSS</h2>
+
+    <p>
+        Пример структуры:
+    </p>
+
+<pre><code>body {
+    background: #f1f5f9;
+    font-family: Arial, sans-serif;
+}
+
+h1 {
+    color: #2563eb;
+    font-size: 42px;
+    text-align: center;
+}
+
+h2 {
+    color: #7c3aed;
+    font-size: 28px;
+}
+
+p {
+    font-size: 18px;
+}
+
+img {
+    width: 350px;
+    border-radius: 20px;
+}
+
+a {
+    color: #7c3aed;
+}
+
+.favorite {
+    color: red;
+    font-size: 22px;
+}
+
+.game {
+    color: #2563eb;
+    font-size: 20px;
+}</code></pre>
+
+
+    <div class="task">
+
+        <h3>Обязательно измени пример под себя</h3>
+
+        <p>
+            Не оставляй все цвета
+            такими же, как в подсказке.
+        </p>
+
+        <p>
+            Сделай свой дизайн.
+        </p>
+
+    </div>
+
+
+    <h2>13. Проверь другие страницы</h2>
+
+    <p>
+        Если у тебя есть:
+    </p>
+
+<pre><code>index.html
+games.html
+about.html</code></pre>
+
+    <p>
+        подключи один <code>style.css</code>
+        ко всем страницам.
+    </p>
+
+    <p>
+        Например:
+    </p>
+
+<pre><code>&lt;link rel="stylesheet" href="style.css"&gt;</code></pre>
+
+
+    <div class="hint">
+        Один CSS-файл может оформлять
+        сразу несколько HTML-страниц.
+    </div>
+
+
+    <h2>Проверка</h2>
+
+    <div class="check">
+
+        <p>☐ Создан style.css</p>
+
+        <p>☐ CSS подключён через link</p>
+
+        <p>☐ Изменён фон страницы</p>
+
+        <p>☐ Изменён шрифт</p>
+
+        <p>☐ Оформлен h1</p>
+
+        <p>☐ Оформлен h2</p>
+
+        <p>☐ Изменён размер текста</p>
+
+        <p>☐ Картинка имеет заданную ширину</p>
+
+        <p>☐ Использован border-radius</p>
+
+        <p>☐ Использован минимум один class</p>
+
+        <p>☐ Есть свой дизайн, а не полная копия примера</p>
+
+    </div>
+
+
+    <h2>Готово?</h2>
+
+    <p>
+        Покажи сайт преподавателю.
+    </p>
+
+    <p>
+        Если стили подключены правильно —
+        получи пароль от Extra.
+    </p>
+
+</div>
+
+</body>
+
+</html>
+```
