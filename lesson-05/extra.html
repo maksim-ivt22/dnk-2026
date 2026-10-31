@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CSS Box Model — Extra</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f8fafc;
+            color: #1e293b;
+            line-height: 1.7;
+        }
+
+        .container {
+            max-width: 950px;
+            margin: 30px auto;
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        .header {
+            background: linear-gradient(135deg, #475569, #0f172a);
+            color: white;
+            padding: 30px;
+            border-radius: 18px;
+        }
+
+        .header h1 {
+            margin: 0 0 10px;
+        }
+
+        h2 {
+            color: #334155;
+            margin-top: 40px;
+            border-bottom: 3px solid #cbd5e1;
+            padding-bottom: 10px;
+        }
+
+        p,
+        li {
+            font-size: 18px;
+        }
+
+        pre {
+            background: #0f172a;
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
+            overflow-x: auto;
+        }
+
+        code {
+            font-family: Consolas, monospace;
+        }
+
+        .task {
+            background: #f1f5f9;
+            border-left: 5px solid #64748b;
+            padding: 22px;
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+
+        .hint {
+            background: #eff6ff;
+            border-left: 5px solid #3b82f6;
+            padding: 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+
+        .hard {
+            background: #fef2f2;
+            border-left: 5px solid #ef4444;
+            padding: 22px;
+            border-radius: 12px;
+            margin-top: 30px;
+        }
+
+        .check {
+            background: #dcfce7;
+            border-left: 5px solid #22c55e;
+            padding: 20px;
+            border-radius: 12px;
+        }
+
+        @media(max-width: 700px) {
+            .container {
+                margin: 0;
+                padding: 20px;
+                border-radius: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="header">
+
+        <h1>CSS Box Model — Extra</h1>
+
+        <p>
+            Создаём страницу профиля и информационные блоки
+        </p>
+
+    </div>
+
+
+    <h2>Задача</h2>
+
+    <p>
+        Создай небольшую страницу
+        профиля участника кружка.
+    </p>
+
+    <p>
+        На этот раз не делаем
+        набор одинаковых карточек.
+    </p>
+
+
+    <div class="task">
+
+        На странице должны появиться:
+
+        <ol>
+            <li>главный профильный блок;</li>
+            <li>блок «О себе»;</li>
+            <li>блок «Навыки»;</li>
+            <li>информационное сообщение;</li>
+            <li>кнопка-ссылка.</li>
+        </ol>
+
+    </div>
+
+
+    <h2>1. Создай профильный блок</h2>
+
+<pre><code>&lt;section class="profile"&gt;
+
+    &lt;img src="avatar.jpg" alt="Фото участника"&gt;
+
+    &lt;h1&gt;
+        Максим Иванов
+    &lt;/h1&gt;
+
+    &lt;p&gt;
+        Ученик 10 класса
+    &lt;/p&gt;
+
+    &lt;p&gt;
+        Изучаю веб-разработку.
+    &lt;/p&gt;
+
+&lt;/section&gt;</code></pre>
+
+
+    <h2>2. Оформи профиль</h2>
+
+<pre><code>.profile {
+    width: 500px;
+
+    margin: 30px auto;
+    padding: 30px;
+
+    border: 1px solid #cbd5e1;
+    border-radius: 20px;
+
+    background: white;
+}</code></pre>
+
+
+    <h2>3. Оформи изображение</h2>
+
+<pre><code>.profile img {
+    width: 150px;
+    height: 150px;
+
+    border-radius: 50%;
+}</code></pre>
+
+
+    <div class="hint">
+        Значение
+        <code>border-radius: 50%</code>
+        превращает квадратное изображение
+        в круг.
+    </div>
+
+
+    <h2>4. Добавь блок «О себе»</h2>
+
+<pre><code>&lt;section class="info-block"&gt;
+
+    &lt;h2&gt;
+        О себе
+    &lt;/h2&gt;
+
+    &lt;p&gt;
+        Мне нравится создавать сайты
+        и изучать новые технологии.
+    &lt;/p&gt;
+
+&lt;/section&gt;</code></pre>
+
+
+    <h2>5. Оформи info-block</h2>
+
+<pre><code>.info-block {
+    max-width: 700px;
+
+    margin: 20px auto;
+    padding: 25px;
+
+    border-left: 5px solid #2563eb;
+
+    background: white;
+}</code></pre>
+
+
+    <h2>6. Добавь блок «Навыки»</h2>
+
+<pre><code>&lt;section class="info-block"&gt;
+
+    &lt;h2&gt;
+        Навыки
+    &lt;/h2&gt;
+
+    &lt;ul&gt;
+
+        &lt;li&gt;HTML&lt;/li&gt;
+        &lt;li&gt;CSS&lt;/li&gt;
+        &lt;li&gt;JavaScript&lt;/li&gt;
+
+    &lt;/ul&gt;
+
+&lt;/section&gt;</code></pre>
+
+
+    <h2>7. Сделай информационное сообщение</h2>
+
+<pre><code>&lt;div class="notice"&gt;
+
+    Сейчас изучаю CSS Box Model.
+
+&lt;/div&gt;</code></pre>
+
+
+    <p>
+        CSS:
+    </p>
+
+<pre><code>.notice {
+    max-width: 700px;
+
+    margin: 20px auto;
+    padding: 20px;
+
+    border: 2px solid #2563eb;
+    border-radius: 12px;
+
+    background: #eff6ff;
+}</code></pre>
+
+
+    <h2>8. Добавь кнопку-ссылку</h2>
+
+<pre><code>&lt;a
+    class="button"
+    href="#"
+&gt;
+    Посмотреть мои работы
+&lt;/a&gt;</code></pre>
+
+
+    <p>
+        CSS:
+    </p>
+
+<pre><code>.button {
+    display: inline-block;
+
+    padding: 12px 20px;
+    margin-top: 15px;
+
+    border: 2px solid #2563eb;
+    border-radius: 10px;
+
+    color: #2563eb;
+
+    text-decoration: none;
+}</code></pre>
+
+
+    <h2>9. Эксперимент с padding</h2>
+
+    <p>
+        Для блока profile попробуй:
+    </p>
+
+<pre><code>padding: 5px;</code></pre>
+
+    <p>
+        Потом:
+    </p>
+
+<pre><code>padding: 50px;</code></pre>
+
+    <p>
+        Сравни результат.
+    </p>
+
+
+    <h2>10. Эксперимент с margin</h2>
+
+    <p>
+        Для info-block попробуй:
+    </p>
+
+<pre><code>margin: 5px auto;</code></pre>
+
+    <p>
+        Затем:
+    </p>
+
+<pre><code>margin: 60px auto;</code></pre>
+
+
+    <h2>11. Сделай разные информационные блоки</h2>
+
+    <p>
+        Добавь:
+    </p>
+
+<pre><code>&lt;div class="message success"&gt;
+    Работа сохранена
+&lt;/div&gt;
+
+&lt;div class="message warning"&gt;
+    Осталось закончить проект
+&lt;/div&gt;</code></pre>
+
+
+    <p>
+        Общий CSS:
+    </p>
+
+<pre><code>.message {
+    max-width: 700px;
+
+    margin: 15px auto;
+    padding: 18px;
+
+    border-radius: 10px;
+}</code></pre>
+
+
+    <p>
+        Отдельные стили придумай самостоятельно:
+    </p>
+
+<pre><code>.success {
+
+}
+
+.warning {
+
+}</code></pre>
+
+
+    <h2>12. Используй border с одной стороны</h2>
+
+    <p>
+        Например:
+    </p>
+
+<pre><code>.success {
+    border-left: 6px solid green;
+}</code></pre>
+
+    <p>
+        Для warning подбери свой цвет.
+    </p>
+
+
+    <h2>13. Проверь box-sizing</h2>
+
+    <p>
+        Временно убери:
+    </p>
+
+<pre><code>* {
+    box-sizing: border-box;
+}</code></pre>
+
+    <p>
+        Для profile установи:
+    </p>
+
+<pre><code>width: 500px;
+padding: 50px;
+border: 10px solid black;</code></pre>
+
+    <p>
+        Посмотри ширину через DevTools.
+    </p>
+
+    <p>
+        Затем верни:
+    </p>
+
+<pre><code>* {
+    box-sizing: border-box;
+}</code></pre>
+
+
+    <div class="task">
+        Объясни преподавателю,
+        почему размер изменился.
+    </div>
+
+
+    <h2>14. Самостоятельная часть</h2>
+
+    <p>
+        Добавь ещё один смысловой блок.
+    </p>
+
+    <p>
+        Например:
+    </p>
+
+    <ul>
+        <li>«Мои цели»;</li>
+        <li>«Мои проекты»;</li>
+        <li>«Контакты»;</li>
+        <li>«Что хочу изучить».</li>
+    </ul>
+
+    <p>
+        Но HTML и CSS
+        напиши самостоятельно.
+    </p>
+
+
+    <h2>Проверка</h2>
+
+    <div class="check">
+
+        <p>Есть главный профильный блок</p>
+
+        <p>Использован width</p>
+
+        <p>Использован max-width</p>
+
+        <p>Использован padding</p>
+
+        <p>Использован margin</p>
+
+        <p>Использован border</p>
+
+        <p>Использован border-left</p>
+
+        <p>Использован border-radius</p>
+
+        <p>Есть круглая картинка</p>
+
+        <p>Есть кнопка-ссылка</p>
+
+        <p>Есть минимум два информационных сообщения</p>
+
+        <p>Проведён эксперимент с box-sizing</p>
+
+        <p>Добавлен самостоятельный блок</p>
+
+    </div>
+
+
+    <div class="hard">
+
+        <h2>HARD — max-width</h2>
+
+        <p>
+            Сделай основной блок:
+        </p>
+
+<pre><code>.profile {
+    width: 100%;
+    max-width: 600px;
+}</code></pre>
+
+        <p>
+            Изменяй ширину браузера
+            и наблюдай за поведением блока.
+        </p>
+
+        <p>
+            Объясни разницу между:
+        </p>
+
+<pre><code>width: 600px;</code></pre>
+
+        <p>
+            и:
+        </p>
+
+<pre><code>width: 100%;
+max-width: 600px;</code></pre>
+
+    </div>
+
+
+    <div class="hard">
+
+        <h2>SUPER HARD — min-height</h2>
+
+        <p>
+            Создай два блока
+            с разным количеством текста.
+        </p>
+
+        <p>
+            Добавь:
+        </p>
+
+<pre><code>min-height: 180px;</code></pre>
+
+        <p>
+            Затем сравни с:
+        </p>
+
+<pre><code>height: 180px;</code></pre>
+
+        <p>
+            Объясни разницу.
+        </p>
+
+    </div>
+
+
+    <div class="hard">
+
+        <h2>ULTRA — overflow</h2>
+
+        <p>
+            Создай блок:
+        </p>
+
+<pre><code>.bio {
+    width: 300px;
+    height: 100px;
+}</code></pre>
+
+        <p>
+            Добавь много текста.
+        </p>
+
+        <p>
+            Затем проверь:
+        </p>
+
+<pre><code>overflow: hidden;
+
+overflow: auto;
+
+overflow: scroll;</code></pre>
+
+        <p>
+            Объясни,
+            чем отличаются эти значения.
+        </p>
+
+    </div>
+
+
+    <h2>Итог</h2>
+
+    <p>
+        После Extra ты применил Box Model
+        уже не к игровым карточкам,
+        а к полноценному интерфейсу:
+    </p>
+
+    <ul>
+        <li>профиль;</li>
+        <li>информационные блоки;</li>
+        <li>уведомления;</li>
+        <li>кнопка;</li>
+        <li>контентные секции.</li>
+    </ul>
+
+</div>
+
+</body>
+
+</html>

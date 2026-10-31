@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>React №4 — Мини-проект</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f1f5f9;
+            color: #1e293b;
+            line-height: 1.7;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 30px auto;
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        .header {
+            background: linear-gradient(135deg, #334155, #0f172a);
+            color: white;
+            padding: 32px;
+            border-radius: 18px;
+        }
+
+        .header h1 {
+            margin: 0 0 10px;
+            font-size: 40px;
+        }
+
+        h2 {
+            color: #334155;
+            margin-top: 45px;
+            border-bottom: 3px solid #cbd5e1;
+            padding-bottom: 10px;
+        }
+
+        h3 {
+            margin-top: 28px;
+        }
+
+        p,
+        li {
+            font-size: 18px;
+        }
+
+        pre {
+            background: #0f172a;
+            color: white;
+            padding: 22px;
+            border-radius: 14px;
+            overflow-x: auto;
+            line-height: 1.6;
+        }
+
+        code {
+            font-family: Consolas, monospace;
+        }
+
+        .important {
+            background: #dcfce7;
+            border-left: 5px solid #22c55e;
+            padding: 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+
+        .info {
+            background: #eff6ff;
+            border-left: 5px solid #3b82f6;
+            padding: 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+
+        .question {
+            background: #f1f5f9;
+            border-left: 5px solid #64748b;
+            padding: 18px;
+            border-radius: 10px;
+            margin: 15px 0;
+        }
+
+        .scheme {
+            background: #0f172a;
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            font-family: Consolas, monospace;
+            font-size: 18px;
+            line-height: 1.8;
+        }
+
+        @media(max-width: 700px) {
+            .container {
+                margin: 0;
+                padding: 20px;
+                border-radius: 0;
+            }
+
+            .header h1 {
+                font-size: 30px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="header">
+
+        <h1>React №4 — Мини-проект</h1>
+
+        <p>
+            Собираем полноценное React-приложение
+        </p>
+
+    </div>
+
+
+    <div class="important">
+        <strong>Цель:</strong>
+        объединить компоненты, props, useState,
+        map(), filter(), формы, useEffect и fetch
+        в одном проекте.
+    </div>
+
+
+    <h2>1. Что будем делать?</h2>
+
+    <p>
+        Проект называется:
+    </p>
+
+<pre><code>Study Planner</code></pre>
+
+    <p>
+        Это приложение для учебных задач.
+    </p>
+
+    <p>
+        Пользователь сможет:
+    </p>
+
+    <ul>
+        <li>видеть список задач;</li>
+        <li>добавлять новые задачи;</li>
+        <li>отмечать выполненные;</li>
+        <li>удалять задачи;</li>
+        <li>искать задачи;</li>
+        <li>фильтровать их;</li>
+        <li>загружать стартовые задачи с API.</li>
+    </ul>
+
+
+    <h2>2. Структура приложения</h2>
+
+<pre><code>src/
+
+├── components/
+│   ├── TaskForm.jsx
+│   ├── TaskItem.jsx
+│   └── FilterBar.jsx
+│
+├── App.jsx
+├── main.jsx
+└── index.css</code></pre>
+
+
+    <h2>3. Главный компонент App</h2>
+
+    <p>
+        App будет хранить основные данные:
+    </p>
+
+<pre><code>const [tasks, setTasks] = useState([]);
+
+const [search, setSearch] = useState("");
+
+const [filter, setFilter] = useState("all");</code></pre>
+
+
+    <h2>4. Как выглядят данные?</h2>
+
+<pre><code>{
+    id: 1,
+    title: "Подготовиться к контрольной",
+    completed: false
+}</code></pre>
+
+    <p>
+        Каждая задача — объект.
+    </p>
+
+    <p>
+        Все задачи находятся в массиве.
+    </p>
+
+
+    <h2>5. Компонент TaskItem</h2>
+
+    <p>
+        Одна задача — отдельный компонент.
+    </p>
+
+<pre><code>function TaskItem({
+    task,
+    toggleTask,
+    deleteTask
+}) {
+
+    return (
+
+        &lt;div className="task"&gt;
+
+            &lt;h3&gt;
+                {task.title}
+            &lt;/h3&gt;
+
+            &lt;p&gt;
+                {task.completed
+                    ? "Выполнено"
+                    : "Не выполнено"}
+            &lt;/p&gt;
+
+        &lt;/div&gt;
+
+    );
+
+}</code></pre>
+
+
+    <h2>6. Props</h2>
+
+    <p>
+        App передаёт данные в TaskItem:
+    </p>
+
+<pre><code>&lt;TaskItem
+    task={task}
+    toggleTask={toggleTask}
+    deleteTask={deleteTask}
+/&gt;</code></pre>
+
+
+    <h2>7. Выводим задачи через map()</h2>
+
+<pre><code>{tasks.map(task =&gt; (
+
+    &lt;TaskItem
+        key={task.id}
+        task={task}
+        toggleTask={toggleTask}
+        deleteTask={deleteTask}
+    /&gt;
+
+))}</code></pre>
+
+
+    <h2>8. Добавление задачи</h2>
+
+    <p>
+        Форма будет отдельным компонентом:
+    </p>
+
+<pre><code>&lt;TaskForm
+    addTask={addTask}
+/&gt;</code></pre>
+
+
+    <p>
+        В App:
+    </p>
+
+<pre><code>function addTask(title) {
+
+    const newTask = {
+
+        id: Date.now(),
+
+        title: title,
+
+        completed: false
+
+    };
+
+
+    setTasks([
+        ...tasks,
+        newTask
+    ]);
+
+}</code></pre>
+
+
+    <h2>9. Удаление</h2>
+
+<pre><code>function deleteTask(id) {
+
+    setTasks(
+        tasks.filter(
+            task =&gt; task.id !== id
+        )
+    );
+
+}</code></pre>
+
+
+    <h2>10. Выполнено / не выполнено</h2>
+
+<pre><code>function toggleTask(id) {
+
+    setTasks(
+
+        tasks.map(task =&gt;
+
+            task.id === id
+
+                ? {
+                    ...task,
+                    completed: !task.completed
+                }
+
+                : task
+
+        )
+
+    );
+
+}</code></pre>
+
+
+    <h2>11. Что здесь происходит?</h2>
+
+    <div class="scheme">
+нашли нужную задачу
+↓
+создали её копию
+↓
+completed меняется
+↓
+setTasks()
+↓
+React обновляет интерфейс
+    </div>
+
+
+    <h2>12. Поиск</h2>
+
+<pre><code>const searchedTasks = tasks.filter(
+
+    task =&gt;
+
+        task.title
+            .toLowerCase()
+            .includes(
+                search.toLowerCase()
+            )
+
+);</code></pre>
+
+
+    <h2>13. Фильтр</h2>
+
+<pre><code>const filteredTasks =
+    searchedTasks.filter(task =&gt; {
+
+        if (filter === "done") {
+            return task.completed;
+        }
+
+        if (filter === "active") {
+            return !task.completed;
+        }
+
+        return true;
+
+    });</code></pre>
+
+
+    <h2>14. Фильтры</h2>
+
+<pre><code>Все
+
+Активные
+
+Выполненные</code></pre>
+
+
+    <h2>15. API</h2>
+
+    <p>
+        Стартовые задачи можно получить отсюда:
+    </p>
+
+<pre><code>https://jsonplaceholder.typicode.com/todos?_limit=5</code></pre>
+
+
+    <h2>16. useEffect</h2>
+
+<pre><code>useEffect(() =&gt; {
+
+    async function loadTasks() {
+
+        const response = await fetch(
+            "https://jsonplaceholder.typicode.com/todos?_limit=5"
+        );
+
+        const data = await response.json();
+
+        setTasks(data);
+
+    }
+
+    loadTasks();
+
+}, []);</code></pre>
+
+
+    <h2>17. Общая схема проекта</h2>
+
+    <div class="scheme">
+API
+↓<br>
+useEffect + fetch
+↓<br>
+tasks
+↓<br>
+filter()
+↓<br>
+map()
+↓<br>
+TaskItem
+    </div>
+
+
+    <h2>18. Компоненты проекта</h2>
+
+    <pre><code>
+App
+│
+├── TaskForm
+│
+├── FilterBar
+│
+└── TaskItem
+    </code>
+    </pre>
+
+    <h2>Итог</h2>
+
+    <div class="important">
+
+        На этом занятии
+        мы почти не изучаем новые команды.
+
+        <br><br>
+
+        Главная задача —
+        собрать из знакомых технологий
+        полноценное приложение.
+
+    </div>
+
+</div>
+
+</body>
+
+</html>

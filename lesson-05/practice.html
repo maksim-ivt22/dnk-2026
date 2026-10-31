@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Практика №5 — CSS Box Model</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f1f5f9;
+            color: #1e293b;
+            line-height: 1.7;
+        }
+
+        .container {
+            max-width: 950px;
+            margin: 30px auto;
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        .header {
+            background: linear-gradient(135deg, #475569, #0f172a);
+            color: white;
+            padding: 30px;
+            border-radius: 18px;
+        }
+
+        .header h1 {
+            margin: 0 0 10px;
+        }
+
+        h2 {
+            color: #334155;
+            margin-top: 40px;
+            border-bottom: 3px solid #cbd5e1;
+            padding-bottom: 10px;
+        }
+
+        p,
+        li {
+            font-size: 18px;
+        }
+
+        pre {
+            background: #0f172a;
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
+            overflow-x: auto;
+        }
+
+        code {
+            font-family: Consolas, monospace;
+        }
+
+        .task {
+            background: #f8fafc;
+            border-left: 5px solid #64748b;
+            padding: 22px;
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+
+        .hint {
+            background: #eff6ff;
+            border-left: 5px solid #3b82f6;
+            padding: 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+
+        .check {
+            background: #dcfce7;
+            border-left: 5px solid #22c55e;
+            padding: 20px;
+            border-radius: 12px;
+        }
+
+        @media(max-width: 700px) {
+            .container {
+                margin: 0;
+                padding: 20px;
+                border-radius: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="header">
+
+        <h1>Практическая работа №5</h1>
+
+        <p>
+            Создаём карточки мероприятий с помощью CSS Box Model
+        </p>
+
+    </div>
+
+
+    <h2>Задача</h2>
+
+    <p>
+        Создай страницу
+        «Афиша мероприятий».
+    </p>
+
+    <p>
+        На странице должны быть
+        три разные карточки мероприятий.
+    </p>
+
+
+    <div class="task">
+
+        Каждая карточка должна содержать:
+
+        <ul>
+            <li>название мероприятия;</li>
+            <li>дату;</li>
+            <li>место проведения;</li>
+            <li>небольшое описание;</li>
+            <li>ссылку «Подробнее».</li>
+        </ul>
+
+        В CSS обязательно используй:
+
+        <ul>
+            <li>width;</li>
+            <li>padding;</li>
+            <li>margin;</li>
+            <li>border;</li>
+            <li>border-radius;</li>
+            <li>box-sizing.</li>
+        </ul>
+
+    </div>
+
+
+    <h2>1. Создай первую карточку</h2>
+
+<pre><code>&lt;div class="event-card"&gt;
+
+    &lt;h2&gt;
+        День открытых дверей
+    &lt;/h2&gt;
+
+    &lt;p class="date"&gt;
+        15 ноября
+    &lt;/p&gt;
+
+    &lt;p&gt;
+        Актовый зал
+    &lt;/p&gt;
+
+    &lt;p&gt;
+        Знакомство с направлениями,
+        преподавателями и проектами.
+    &lt;/p&gt;
+
+    &lt;a href="#"&gt;
+        Подробнее
+    &lt;/a&gt;
+
+&lt;/div&gt;</code></pre>
+
+
+    <h2>2. Создай три карточки</h2>
+
+    <p>
+        Темы придумай самостоятельно.
+    </p>
+
+    <p>
+        Например:
+    </p>
+
+<pre><code>День открытых дверей
+
+Мастер-класс по робототехнике
+
+Школьный фестиваль проектов</code></pre>
+
+    <div class="hint">
+        Не обязательно использовать эти варианты.
+        Можно придумать свои мероприятия.
+    </div>
+
+
+    <h2>3. Добавь box-sizing</h2>
+
+<pre><code>* {
+    box-sizing: border-box;
+}</code></pre>
+
+
+    <h2>4. Ограничь ширину страницы</h2>
+
+<pre><code>.events {
+    max-width: 900px;
+    margin: 0 auto;
+}</code></pre>
+
+
+    <p>
+        HTML:
+    </p>
+
+<pre><code>&lt;main class="events"&gt;
+
+    ...
+
+&lt;/main&gt;</code></pre>
+
+
+    <h2>5. Задай ширину карточки</h2>
+
+<pre><code>.event-card {
+    width: 400px;
+}</code></pre>
+
+    <p>
+        Попробуй затем:
+    </p>
+
+<pre><code>width: 320px;</code></pre>
+
+    <p>
+        Сравни результат.
+    </p>
+
+
+    <h2>6. Добавь внутренний отступ</h2>
+
+<pre><code>.event-card {
+    width: 400px;
+    padding: 24px;
+}</code></pre>
+
+
+    <div class="task">
+        Сначала поставь
+        <code>padding: 5px;</code>.
+
+        Потом
+        <code>padding: 30px;</code>.
+
+        Сравни внешний вид.
+    </div>
+
+
+    <h2>7. Добавь рамку</h2>
+
+<pre><code>.event-card {
+    width: 400px;
+    padding: 24px;
+
+    border: 1px solid #cbd5e1;
+}</code></pre>
+
+
+    <h2>8. Скругли углы</h2>
+
+<pre><code>.event-card {
+    border-radius: 16px;
+}</code></pre>
+
+
+    <h2>9. Добавь расстояние между карточками</h2>
+
+<pre><code>.event-card {
+    margin-bottom: 25px;
+}</code></pre>
+
+
+    <h2>10. Добавь фон</h2>
+
+<pre><code>.event-card {
+    background: white;
+}</code></pre>
+
+
+    <h2>11. Выдели дату</h2>
+
+    <p>
+        HTML:
+    </p>
+
+<pre><code>&lt;p class="date"&gt;
+    15 ноября
+&lt;/p&gt;</code></pre>
+
+    <p>
+        CSS:
+    </p>
+
+<pre><code>.date {
+    color: #2563eb;
+    font-weight: bold;
+}</code></pre>
+
+
+    <h2>12. Оформи ссылку</h2>
+
+<pre><code>.event-card a {
+    color: #2563eb;
+    text-decoration: none;
+}</code></pre>
+
+
+    <h2>13. Сделай одну карточку особенной</h2>
+
+    <p>
+        Добавь второй класс:
+    </p>
+
+<pre><code>&lt;div class="event-card important-event"&gt;</code></pre>
+
+    <p>
+        CSS:
+    </p>
+
+<pre><code>.important-event {
+    border: 3px solid #2563eb;
+}</code></pre>
+
+
+    <h2>14. Эксперимент с margin</h2>
+
+    <p>
+        Попробуй:
+    </p>
+
+<pre><code>margin-bottom: 5px;</code></pre>
+
+    <p>
+        Затем:
+    </p>
+
+<pre><code>margin-bottom: 50px;</code></pre>
+
+    <p>
+        Оставь подходящее значение.
+    </p>
+
+
+    <h2>15. Эксперимент с border</h2>
+
+<pre><code>border: 2px solid #334155;</code></pre>
+
+<pre><code>border: 2px dashed #334155;</code></pre>
+
+<pre><code>border: 2px dotted #334155;</code></pre>
+
+    <p>
+        Выбери вариант,
+        который подходит дизайну.
+    </p>
+
+
+    <h2>16. Итоговый пример CSS</h2>
+
+<pre><code>* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: #f1f5f9;
+    font-family: Arial, sans-serif;
+}
+
+.events {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.event-card {
+    width: 400px;
+
+    padding: 24px;
+    margin-bottom: 25px;
+
+    background: white;
+
+    border: 1px solid #cbd5e1;
+    border-radius: 16px;
+}
+
+.date {
+    color: #2563eb;
+    font-weight: bold;
+}
+
+.event-card a {
+    color: #2563eb;
+    text-decoration: none;
+}
+
+.important-event {
+    border: 3px solid #2563eb;
+}</code></pre>
+
+
+    <div class="task">
+
+        Не оставляй пример без изменений.
+
+        <p>
+            Самостоятельно измени минимум:
+        </p>
+
+        <ul>
+            <li>цвет страницы;</li>
+            <li>ширину карточек;</li>
+            <li>padding;</li>
+            <li>border;</li>
+            <li>border-radius.</li>
+        </ul>
+
+    </div>
+
+
+    <h2>17. Проверь через DevTools</h2>
+
+    <p>
+        Выбери одну карточку
+        через инструменты разработчика.
+    </p>
+
+    <p>
+        Найди схему:
+    </p>
+
+<pre><code>margin
+border
+padding
+content</code></pre>
+
+
+    <h2>Проверка</h2>
+
+    <div class="check">
+
+        <p>Есть три разных мероприятия</p>
+
+        <p>Используется box-sizing</p>
+
+        <p>Есть width</p>
+
+        <p>Есть padding</p>
+
+        <p>Есть margin</p>
+
+        <p>Есть border</p>
+
+        <p>Есть border-radius</p>
+
+        <p>Одна карточка выделяется</p>
+
+        <p>Есть отдельный класс для даты</p>
+
+        <p>Использован общий контейнер</p>
+
+        <p>Box Model проверен через DevTools</p>
+
+        <p>Дизайн изменён самостоятельно</p>
+
+    </div>
+
+
+    <h2>Готово?</h2>
+
+    <p>
+        Покажи преподавателю одну карточку
+        через DevTools.
+    </p>
+
+    <p>
+        Объясни разницу между:
+    </p>
+
+    <ul>
+        <li>padding;</li>
+        <li>border;</li>
+        <li>margin.</li>
+    </ul>
+
+</div>
+
+</body>
+
+</html>

@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Занятие №5 — CSS Box Model</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f1f5f9;
+            color: #1e293b;
+            line-height: 1.7;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 30px auto;
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        .header {
+            background: linear-gradient(135deg, #334155, #0f172a);
+            color: white;
+            padding: 32px;
+            border-radius: 18px;
+        }
+
+        .header h1 {
+            margin: 0 0 10px;
+            font-size: 40px;
+        }
+
+        .badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.12);
+            padding: 6px 14px;
+            border-radius: 20px;
+            margin: 8px 6px 0 0;
+        }
+
+        h2 {
+            color: #334155;
+            margin-top: 45px;
+            border-bottom: 3px solid #cbd5e1;
+            padding-bottom: 10px;
+        }
+
+        h3 {
+            margin-top: 28px;
+        }
+
+        p,
+        li {
+            font-size: 18px;
+        }
+
+        pre {
+            background: #0f172a;
+            color: white;
+            padding: 22px;
+            border-radius: 14px;
+            overflow-x: auto;
+            line-height: 1.6;
+        }
+
+        code {
+            font-family: Consolas, monospace;
+        }
+
+        .important {
+            background: #dcfce7;
+            border-left: 5px solid #22c55e;
+            padding: 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+
+        .info {
+            background: #eff6ff;
+            border-left: 5px solid #3b82f6;
+            padding: 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+
+        .warning {
+            background: #fef3c7;
+            border-left: 5px solid #f59e0b;
+            padding: 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+
+        .question {
+            background: #f1f5f9;
+            border-left: 5px solid #64748b;
+            padding: 18px;
+            border-radius: 10px;
+            margin: 15px 0;
+        }
+
+        .scheme {
+            background: #0f172a;
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            font-family: Consolas, monospace;
+            font-size: 18px;
+            line-height: 1.9;
+            margin: 20px 0;
+        }
+
+        @media(max-width: 700px) {
+            .container {
+                margin: 0;
+                padding: 20px;
+                border-radius: 0;
+            }
+
+            .header h1 {
+                font-size: 30px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="header">
+
+        <h1>Занятие №5 — CSS Box Model</h1>
+
+        <p>
+            Margin, padding, border, width и карточки
+        </p>
+
+        <span class="badge">CSS</span>
+        <span class="badge">Box Model</span>
+
+    </div>
+
+
+    <div class="important">
+        <strong>Цель занятия:</strong>
+        понять, из чего состоит каждый HTML-элемент
+        и научиться управлять его размером,
+        внутренними и внешними отступами.
+    </div>
+
+
+    <h2>1. Что такое Box Model?</h2>
+
+    <p>
+        Браузер рассматривает каждый HTML-элемент
+        как прямоугольную коробку.
+    </p>
+
+    <p>
+        У этой коробки есть несколько слоёв.
+    </p>
+
+
+    <div class="scheme">
+margin<br>
+└── border<br>
+    ....└── padding<br>
+        .......└── content
+    </div>
+
+
+    <p>
+        То есть:
+    </p>
+
+    <ul>
+        <li>content — содержимое;</li>
+        <li>padding — внутренний отступ;</li>
+        <li>border — рамка;</li>
+        <li>margin — внешний отступ.</li>
+    </ul>
+
+
+    <h2>2. Content</h2>
+
+    <p>
+        Content — содержимое элемента.
+    </p>
+
+    <p>
+        Например:
+    </p>
+
+<pre><code>&lt;div&gt;
+    Clash Royale
+&lt;/div&gt;</code></pre>
+
+    <p>
+        Текст Clash Royale — это content.
+    </p>
+
+
+    <h2>3. Width</h2>
+
+    <p>
+        <code>width</code> задаёт ширину элемента.
+    </p>
+
+<pre><code>.card {
+    width: 300px;
+}</code></pre>
+
+
+    <h2>4. Height</h2>
+
+    <p>
+        <code>height</code> задаёт высоту.
+    </p>
+
+<pre><code>.card {
+    height: 200px;
+}</code></pre>
+
+
+    <div class="warning">
+        Высоту карточек не всегда нужно задавать вручную.
+        Часто лучше позволить содержимому
+        определить высоту автоматически.
+    </div>
+
+
+    <h2>5. Padding</h2>
+
+    <p>
+        <code>padding</code> —
+        расстояние между содержимым
+        и границей элемента.
+    </p>
+
+<pre><code>.card {
+    padding: 20px;
+}</code></pre>
+
+
+    <div class="scheme">
+border
+|
+|   padding
+|   |
+|   |   TEXT
+|   |
+|
+    </div>
+
+
+    <p>
+        Чем больше padding,
+        тем больше воздуха внутри элемента.
+    </p>
+
+
+    <h2>6. Padding по сторонам</h2>
+
+<pre><code>.card {
+    padding-top: 20px;
+    padding-right: 30px;
+    padding-bottom: 20px;
+    padding-left: 30px;
+}</code></pre>
+
+
+    <h2>7. Короткая запись padding</h2>
+
+<pre><code>.card {
+    padding: 20px 30px;
+}</code></pre>
+
+    <p>
+        Здесь:
+    </p>
+
+<pre><code>20px → сверху и снизу
+30px → слева и справа</code></pre>
+
+
+    <h2>8. Border</h2>
+
+    <p>
+        <code>border</code> создаёт рамку.
+    </p>
+
+<pre><code>.card {
+    border: 2px solid black;
+}</code></pre>
+
+
+    <p>
+        Здесь:
+    </p>
+
+    <ul>
+        <li><code>2px</code> — толщина;</li>
+        <li><code>solid</code> — тип линии;</li>
+        <li><code>black</code> — цвет.</li>
+    </ul>
+
+
+    <h2>9. Другие виды border</h2>
+
+<pre><code>border: 2px solid black;
+
+border: 2px dashed blue;
+
+border: 2px dotted red;</code></pre>
+
+
+    <h2>10. Border-radius</h2>
+
+    <p>
+        Мы уже встречали:
+    </p>
+
+<pre><code>border-radius: 16px;</code></pre>
+
+    <p>
+        Это скругляет углы коробки.
+    </p>
+
+
+    <h2>11. Margin</h2>
+
+    <p>
+        <code>margin</code> —
+        внешний отступ между элементами.
+    </p>
+
+<pre><code>.card {
+    margin: 20px;
+}</code></pre>
+
+
+    <div class="scheme">
+CARD 1
+
+margin
+
+CARD 2
+    </div>
+
+
+    <h2>12. Margin по сторонам</h2>
+
+<pre><code>.card {
+    margin-top: 20px;
+    margin-right: 10px;
+    margin-bottom: 20px;
+    margin-left: 10px;
+}</code></pre>
+
+
+    <h2>13. Центрирование блока</h2>
+
+    <p>
+        Очень полезная запись:
+    </p>
+
+<pre><code>.container {
+    width: 800px;
+    margin: 0 auto;
+}</code></pre>
+
+    <p>
+        <code>auto</code> слева и справа
+        помогает разместить блок по центру.
+    </p>
+
+
+    <h2>14. В чём разница margin и padding?</h2>
+
+    <div class="scheme">
+padding
+↓<br>
+пространство ВНУТРИ элемента
+<br>
+margin
+↓<br>
+пространство СНАРУЖИ элемента
+    </div>
+
+
+    <div class="important">
+        Если текст слишком близко к рамке —
+        нужен padding.
+
+        <br><br>
+
+        Если два блока слишком близко друг к другу —
+        нужен margin.
+    </div>
+
+
+    <h2>15. Пример карточки</h2>
+
+    <p>
+        HTML:
+    </p>
+
+<pre><code>&lt;div class="card"&gt;
+
+    &lt;h2&gt;
+        Elden Ring
+    &lt;/h2&gt;
+
+    &lt;p&gt;
+        Action RPG
+    &lt;/p&gt;
+
+&lt;/div&gt;</code></pre>
+
+
+    <p>
+        CSS:
+    </p>
+
+<pre><code>.card {
+    width: 300px;
+    padding: 20px;
+    margin: 20px;
+    border: 2px solid #cbd5e1;
+    border-radius: 16px;
+}</code></pre>
+
+
+    <h2>16. Проблема с width</h2>
+
+    <p>
+        Допустим:
+    </p>
+
+<pre><code>.card {
+    width: 300px;
+    padding: 20px;
+    border: 5px solid black;
+}</code></pre>
+
+    <p>
+        Без дополнительных настроек
+        реальный размер может оказаться больше 300px.
+    </p>
+
+
+    <h2>17. box-sizing</h2>
+
+    <p>
+        Поэтому часто используют:
+    </p>
+
+<pre><code>* {
+    box-sizing: border-box;
+}</code></pre>
+
+
+    <p>
+        Тогда <code>width</code>
+        включает padding и border.
+    </p>
+
+
+    <div class="important">
+        В наших проектах удобно сразу писать:
+
+        <br><br>
+
+        <code>* { box-sizing: border-box; }</code>
+    </div>
+
+
+    <h2>18. Без border-box</h2>
+
+<pre><code>width: 300px + padding + border = реальный размер больше 300px</code></pre>
+
+
+    <h2>19. С border-box</h2>
+
+<pre><code>width: 300px
+↓
+content + padding + border
+↓
+всё помещается в 300px</code></pre>
+
+
+    <h2>20. max-width</h2>
+
+    <p>
+        Часто полезнее использовать:
+    </p>
+
+<pre><code>.container {
+    max-width: 1000px;
+}</code></pre>
+
+    <p>
+        Это означает:
+        элемент может быть меньше,
+        но не шире 1000px.
+    </p>
+
+
+    <h2>21. width: 100%</h2>
+
+<pre><code>img {
+    width: 100%;
+}</code></pre>
+
+    <p>
+        Изображение займёт
+        всю доступную ширину родителя.
+    </p>
+
+
+    <h2>22. Карточка с изображением</h2>
+
+<pre><code>&lt;div class="card"&gt;
+
+    &lt;img src="game.jpg" alt="Elden Ring"&gt;
+
+    &lt;h2&gt;
+        Elden Ring
+    &lt;/h2&gt;
+
+    &lt;p&gt;
+        Action RPG
+    &lt;/p&gt;
+
+&lt;/div&gt;</code></pre>
+
+
+    <p>
+        CSS:
+    </p>
+
+<pre><code>.card {
+    width: 300px;
+    padding: 20px;
+    border: 1px solid #cbd5e1;
+    border-radius: 16px;
+    margin-bottom: 20px;
+}
+
+.card img {
+    width: 100%;
+    border-radius: 10px;
+}</code></pre>
+
+
+    <h2>23. Почему .card img?</h2>
+
+    <p>
+        Запись:
+    </p>
+
+<pre><code>.card img</code></pre>
+
+    <p>
+        означает:
+    </p>
+
+    <div class="info">
+        выбрать изображения,
+        которые находятся внутри элемента
+        с классом card.
+    </div>
+
+
+    <h2>24. Пример layout без Flexbox</h2>
+
+<pre><code>&lt;main class="container"&gt;
+
+    &lt;div class="card"&gt;
+        ...
+    &lt;/div&gt;
+
+    &lt;div class="card"&gt;
+        ...
+    &lt;/div&gt;
+
+&lt;/main&gt;</code></pre>
+
+
+    <p>
+        CSS:
+    </p>
+
+<pre><code>.container {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.card {
+    margin-bottom: 20px;
+}</code></pre>
+
+
+    <h2>25. Частая ошибка</h2>
+
+<pre><code>.card {
+    margin: 50px;
+    padding: 50px;
+}</code></pre>
+
+    <p>
+        Слишком большие отступы
+        могут сделать страницу неудобной.
+    </p>
+
+    <div class="warning">
+        Не ставь случайные огромные значения.
+        Меняй отступы постепенно
+        и смотри на результат.
+    </div>
+</div>
+
+</body>
+
+</html>

@@ -618,7 +618,7 @@
 
       <!-- УРОК 5 -->
 
-      <article class="lesson future">
+      <article class="lesson">
 
         <div class="lesson-number">
           Занятие №5
@@ -634,11 +634,32 @@
 
         <div class="links">
 
-          <span class="btn disabled">
-            ⏳ Материалы скоро появятся
-          </span>
+        <a
+            class="btn btn-theory"
+            href="lesson-05/theory.html"
+        >
+            📘 Теория
+        </a>
 
-        </div>
+        <a
+            class="btn btn-practice"
+            href="lesson-05/practice.html"
+        >
+            💻 Практика
+        </a>
+
+        <button
+            class="btn btn-extra"
+            onclick="openLockedPage(
+                'lesson-05/extra.html',
+                'lesson5'
+            )"
+        >
+            🔥 Дополнительное задание
+            <span class="lock">🔒</span>
+        </button>
+
+      </div>
 
       </article>
 
@@ -1135,7 +1156,49 @@
 
       </div>
       </article>
+      <article class="lesson">
 
+        <div class="lesson-number">
+            React — Занятие №4
+        </div>
+
+        <h3>
+            Мини-проект
+        </h3>
+
+        <p>
+            Работа над проектом
+        </p>
+
+        <div class="links">
+
+        <a
+              class="btn btn-theory"
+              href="react-04/theory.html"
+          >
+              📘 Теория
+          </a>
+
+          <a
+              class="btn btn-practice"
+              href="react-04/practice.html"
+          >
+              💻 Практика
+          </a>
+
+          <button
+              class="btn btn-extra"
+              onclick="openLockedPage(
+                  'react-04/extra.html',
+                  'react4'
+              )"
+          >
+              🔥 Дополнительное задание
+              <span class="lock">🔒</span>
+          </button>
+
+      </div>
+      </article>
 
       <article class="lesson future">
 
@@ -1355,12 +1418,14 @@
 
     lesson3: "html3",
     lesson4: "css1",
+    lesson5: "flexbox1",
     lesson15: "git1",
     lesson16: "git2",
 
     react1: "react1",
     react2: "react2",
-    react3: "react3"
+    react3: "react3",
+    react4: "react 4"
 
   };
 

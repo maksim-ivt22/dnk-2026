@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>React №4 — Extra</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f8fafc;
+            color: #1e293b;
+            line-height: 1.7;
+        }
+
+        .container {
+            max-width: 950px;
+            margin: 30px auto;
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        .header {
+            background: linear-gradient(135deg, #475569, #0f172a);
+            color: white;
+            padding: 30px;
+            border-radius: 18px;
+        }
+
+        .header h1 {
+            margin: 0 0 10px;
+        }
+
+        h2 {
+            color: #334155;
+            margin-top: 40px;
+            border-bottom: 3px solid #cbd5e1;
+            padding-bottom: 10px;
+        }
+
+        p,
+        li {
+            font-size: 18px;
+        }
+
+        pre {
+            background: #0f172a;
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
+            overflow-x: auto;
+        }
+
+        code {
+            font-family: Consolas, monospace;
+        }
+
+        .task {
+            background: #f1f5f9;
+            border-left: 5px solid #64748b;
+            padding: 22px;
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+
+        .hint {
+            background: #eff6ff;
+            border-left: 5px solid #3b82f6;
+            padding: 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+
+        .hard {
+            background: #fef2f2;
+            border-left: 5px solid #ef4444;
+            padding: 22px;
+            border-radius: 12px;
+            margin-top: 30px;
+        }
+
+        .check {
+            background: #dcfce7;
+            border-left: 5px solid #22c55e;
+            padding: 20px;
+            border-radius: 12px;
+        }
+
+        @media(max-width: 700px) {
+            .container {
+                margin: 0;
+                padding: 20px;
+                border-radius: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="header">
+
+        <h1>React №4 — Extra</h1>
+
+        <p>
+            Развиваем мини-проект Study Planner
+        </p>
+
+    </div>
+
+
+    <h2>Задача</h2>
+
+    <p>
+        Основной планировщик уже работает.
+        Теперь добавь дополнительные возможности.
+    </p>
+
+
+    <div class="task">
+
+        Нужно добавить:
+
+        <ol>
+            <li>приоритет задачи;</li>
+            <li>статистику;</li>
+            <li>кнопку очистки выполненных;</li>
+            <li>сохранение задач в localStorage.</li>
+        </ol>
+
+    </div>
+
+
+    <h2>1. Добавь priority</h2>
+
+    <p>
+        Новая задача:
+    </p>
+
+<pre><code>{
+    id: Date.now(),
+    title: title,
+    completed: false,
+    priority: priority
+}</code></pre>
+
+
+    <h2>2. Создай state</h2>
+
+<pre><code>const [priority, setPriority] =
+    useState("normal");</code></pre>
+
+
+    <h2>3. Добавь select</h2>
+
+<pre><code>&lt;select
+    value={priority}
+    onChange={(event) =&gt;
+        setPriority(event.target.value)
+    }
+&gt;
+
+    &lt;option value="low"&gt;
+        Низкий
+    &lt;/option&gt;
+
+    &lt;option value="normal"&gt;
+        Обычный
+    &lt;/option&gt;
+
+    &lt;option value="high"&gt;
+        Высокий
+    &lt;/option&gt;
+
+&lt;/select&gt;</code></pre>
+
+
+    <h2>4. Покажи priority</h2>
+
+<pre><code>&lt;p&gt;
+    Приоритет: {task.priority}
+&lt;/p&gt;</code></pre>
+
+
+    <h2>5. Статистика</h2>
+
+    <p>
+        Всего задач:
+    </p>
+
+<pre><code>const total = tasks.length;</code></pre>
+
+
+    <p>
+        Выполнено:
+    </p>
+
+<pre><code>const done =
+    tasks.filter(
+        task =&gt; task.completed
+    ).length;</code></pre>
+
+
+    <p>
+        Осталось:
+    </p>
+
+<pre><code>const active =
+    tasks.filter(
+        task =&gt; !task.completed
+    ).length;</code></pre>
+
+
+    <h2>6. Покажи статистику</h2>
+
+<pre><code>&lt;div&gt;
+
+    &lt;p&gt;
+        Всего: {total}
+    &lt;/p&gt;
+
+    &lt;p&gt;
+        Выполнено: {done}
+    &lt;/p&gt;
+
+    &lt;p&gt;
+        Осталось: {active}
+    &lt;/p&gt;
+
+&lt;/div&gt;</code></pre>
+
+
+    <h2>7. Очистить выполненные</h2>
+
+<pre><code>function clearCompleted() {
+
+    setTasks(
+
+        tasks.filter(
+            task =&gt; !task.completed
+        )
+
+    );
+
+}</code></pre>
+
+
+    <p>
+        Кнопка:
+    </p>
+
+<pre><code>&lt;button
+    onClick={clearCompleted}
+&gt;
+    Удалить выполненные
+&lt;/button&gt;</code></pre>
+
+
+    <h2>8. localStorage</h2>
+
+    <p>
+        Сейчас после обновления страницы
+        добавленные задачи исчезают.
+    </p>
+
+    <p>
+        Браузер умеет хранить небольшие данные:
+    </p>
+
+<pre><code>localStorage</code></pre>
+
+
+    <h2>9. Сохраняем задачи</h2>
+
+<pre><code>useEffect(() =&gt; {
+
+    localStorage.setItem(
+        "tasks",
+        JSON.stringify(tasks)
+    );
+
+}, [tasks]);</code></pre>
+
+
+    <h2>10. Что такое JSON.stringify?</h2>
+
+    <p>
+        localStorage хранит строки.
+    </p>
+
+    <p>
+        Поэтому массив превращаем
+        в строку:
+    </p>
+
+<pre><code>JSON.stringify(tasks)</code></pre>
+
+
+    <h2>11. Получаем сохранённые задачи</h2>
+
+<pre><code>const savedTasks =
+    localStorage.getItem("tasks");</code></pre>
+
+
+    <p>
+        Если они есть:
+    </p>
+
+<pre><code>JSON.parse(savedTasks)</code></pre>
+
+
+    <h2>12. Начальное значение useState</h2>
+
+<pre><code>const [tasks, setTasks] = useState(() =&gt; {
+
+    const saved =
+        localStorage.getItem("tasks");
+
+    return saved
+        ? JSON.parse(saved)
+        : [];
+
+});</code></pre>
+
+
+    <div class="hint">
+        После этого добавленные задачи
+        смогут оставаться
+        даже после обновления страницы.
+    </div>
+
+
+    <h2>13. Важный момент</h2>
+
+    <p>
+        Если используешь localStorage,
+        подумай:
+        нужен ли теперь первоначальный fetch
+        при каждом запуске.
+    </p>
+
+    <p>
+        Один из вариантов:
+    </p>
+
+<pre><code>если localStorage пуст
+↓
+загрузить API
+
+если задачи уже сохранены
+↓
+использовать localStorage</code></pre>
+
+
+    <h2>14. Очистка всех задач</h2>
+
+<pre><code>function clearAll() {
+
+    if (
+        confirm(
+            "Удалить все задачи?"
+        )
+    ) {
+
+        setTasks([]);
+
+    }
+
+}</code></pre>
+
+
+    <h2>Проверка</h2>
+
+    <div class="check">
+
+        <p>У задачи есть priority</p>
+
+        <p>Приоритет выбирается через select</p>
+
+        <p>Показывается общее количество задач</p>
+
+        <p>Показывается количество выполненных</p>
+
+        <p>Показывается количество активных</p>
+
+        <p>Работает очистка выполненных</p>
+
+        <p>Используется localStorage</p>
+
+        <p>Используется JSON.stringify</p>
+
+        <p>Используется JSON.parse</p>
+
+        <p>Задачи остаются после обновления страницы</p>
+
+    </div>
+
+
+    <div class="hard">
+
+        <h2>HARD — сортировка по приоритету</h2>
+
+        <p>
+            Сделай порядок:
+        </p>
+
+<pre><code>high
+normal
+low</code></pre>
+
+        <p>
+            Самостоятельно изучи:
+        </p>
+
+<pre><code>sort()</code></pre>
+
+        <p>
+            И попробуй
+            отсортировать задачи.
+        </p>
+
+    </div>
+
+
+    <div class="hard">
+
+        <h2>SUPER HARD — редактирование задачи</h2>
+
+        <p>
+            Добавь кнопку:
+        </p>
+
+<pre><code>Редактировать</code></pre>
+
+        <p>
+            После нажатия пользователь
+            должен иметь возможность
+            изменить название задачи.
+        </p>
+
+        <p>
+            Подумай,
+            какие state понадобятся.
+        </p>
+
+    </div>
+
+
+    <div class="hard">
+
+        <h2>ULTRA — срок выполнения</h2>
+
+        <p>
+            Добавь в форму:
+        </p>
+
+<pre><code>&lt;input type="date"&gt;</code></pre>
+
+        <p>
+            Новая задача должна иметь:
+        </p>
+
+<pre><code>deadline</code></pre>
+
+        <p>
+            И отображать срок выполнения
+            в TaskItem.
+        </p>
+
+    </div>
+
+
+    <h2>Итог</h2>
+
+    <p>
+        Теперь приложение умеет:
+    </p>
+
+    <ul>
+        <li>получать данные;</li>
+        <li>создавать данные;</li>
+        <li>изменять данные;</li>
+        <li>удалять данные;</li>
+        <li>искать;</li>
+        <li>фильтровать;</li>
+        <li>считать статистику;</li>
+        <li>сохранять данные в браузере.</li>
+    </ul>
+
+</div>
+
+</body>
+
+</html>
