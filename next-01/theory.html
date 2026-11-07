@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Страницы и маршруты — Теория</title>
+  <link rel="stylesheet" href="../course-lesson.css">
+</head>
+<body>
+  <nav aria-label="Материалы занятия"><a href="../index.html">Программа курса</a> <a href="practice.html">Практика</a></nav>
+  <main>
+    <header><p>Next.js — занятие №1 · Теория</p><h1>Страницы и маршруты</h1></header>
+    <section>
+      <h2>Как адрес связан с файлом</h2>
+      <p>В Next.js компонент React можно сделать страницей с помощью файловой маршрутизации App Router. Файл page.tsx описывает содержимое страницы, а имена вложенных папок определяют её адрес.</p>
+      <pre><code>app/
+  layout.tsx       // общая разметка
+  page.tsx         // /
+  courses/
+    page.tsx       // /courses</code></pre>
+    </section>
+    <section>
+      <h2>Компонент страницы</h2>
+      <p>Создайте в app/courses/page.tsx компонент со стандартным экспортом. При открытии /courses Next.js поместит результат этого компонента в общую разметку.</p>
+      <pre><code>export default function Courses() {
+  return &lt;h1&gt;Каталог курсов&lt;/h1&gt;;
+}</code></pre>
+    </section>
+    <section>
+      <h2>Общая навигация</h2>
+      <p>Корневой layout.tsx содержит html и body. Параметр children получает содержимое текущей страницы. Внутри body перед children поместите навигацию, чтобы ссылки были доступны на обоих маршрутах. Для переходов внутри приложения используйте Link.</p>
+      <pre><code>import Link from 'next/link';
+
+// Навигация внутри компонента разметки
+&lt;nav aria-label="Основная навигация"&gt;
+  &lt;Link href="/"&gt;Главная&lt;/Link&gt;{' · '}
+  &lt;Link href="/courses"&gt;Каталог&lt;/Link&gt;
+&lt;/nav&gt;</code></pre>
+    </section>
+    <p><a href="https://nextjs.org/docs/app/getting-started/installation">Документация Next.js по установке и запуску</a></p>
+    <section>
+<h2>Проследите путь от адреса до экрана</h2><ol><li>При открытии /courses система находит папку app/courses и её файл page.tsx.</li><li>Компонент Courses возвращает заголовок каталога. Имя функции можно изменить: маршрут определяет положение файла.</li><li>Корневая разметка получает содержимое страницы через children. На экране появляются меню из layout.tsx и заголовок из page.tsx.</li></ol>
+<h2>Как выглядит корневая разметка целиком</h2><pre><code>import type { ReactNode } from 'react';
+import Link from 'next/link';
+
+export default function RootLayout({ children }: { children: ReactNode }) {
+  return (
+    &lt;html lang="ru"&gt;
+      &lt;body&gt;
+        &lt;nav aria-label="Основная навигация"&gt;
+          &lt;Link href="/"&gt;Главная&lt;/Link&gt;{' · '}
+          &lt;Link href="/courses"&gt;Каталог&lt;/Link&gt;
+        &lt;/nav&gt;
+        {children}
+      &lt;/body&gt;
+    &lt;/html&gt;
+  );
+}</code></pre><p>Тип ReactNode позволяет передать в children содержимое страницы. Если убрать {children}, навигация останется на экране, но заголовок маршрута исчезнет. В созданном проекте сохраните импорт глобальных стилей при редактировании разметки.</p>
+<h2>Предскажите адрес</h2><details><summary>Какой файл создаст страницу /courses/design?</summary><p>app/courses/design/page.tsx. Папки courses и design образуют сегменты адреса. Файл app/courses/design.tsx сам по себе страницу по этому адресу не создаёт.</p></details>
+    </section>
+  </main>
+</body>
+</html>

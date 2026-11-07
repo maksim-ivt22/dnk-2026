@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Flexbox — Теория</title>
+  <link rel="stylesheet" href="../course-lesson.css">
+</head>
+<body>
+  <nav aria-label="Материалы занятия"><a href="../index.html">Программа курса</a> <a href="practice.html">Практика</a></nav>
+  <main>
+    <header><p>Занятие №6 · Теория</p><h1>Flexbox</h1></header>
+    <section>
+      <h2>Контейнер и его элементы</h2>
+      <p>В расписании три занятия. Чтобы расположить их рядом, задайте display: flex общему родителю. Его непосредственные дочерние элементы станут участниками раскладки. Текст внутри каждой карточки сохранит обычный порядок.</p>
+      <pre><code>&lt;section class="schedule"&gt;
+  &lt;article&gt;Математика&lt;/article&gt;
+  &lt;article&gt;История&lt;/article&gt;
+  &lt;article&gt;Информатика&lt;/article&gt;
+&lt;/section&gt;</code></pre>
+    </section>
+    <section>
+      <h2>Две оси выравнивания</h2>
+      <p>При обычном горизонтальном письме значение row направляет главную ось вдоль строки. justify-content распределяет свободное место вдоль этой оси, а align-items выравнивает карточки поперёк неё. Замените row на column и проследите, куда сместится группа.</p>
+      <pre><code>.schedule {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  min-height: 10rem;
+  gap: 1rem;
+}</code></pre>
+    </section>
+    <section>
+      <h2>Перенос строк</h2>
+      <p>Свойство gap задаёт расстояние между соседними элементами. Добавьте flex-wrap: wrap, чтобы при нехватке места следующая карточка начинала новый ряд. Значение flex-basis задаёт исходный размер карточки вдоль главной оси.</p>
+      <pre><code>.schedule { flex-wrap: wrap; }
+.schedule &gt; article { flex-basis: 12rem; }</code></pre>
+    </section>
+    <section>
+<h2>Как распределяется свободное место</h2>
+<p>Пусть внутренняя ширина расписания равна 640 px. Три карточки по 180 px и два промежутка по 20 px займут 580 px. Останется 60 px. При <code>justify-content: center</code> по краям ряда появится по 30 px. При <code>space-between</code> свободное место разделится между двумя промежутками: каждый увеличится с 20 до 50 px.</p>
+<h2>Когда карточке можно менять ширину</h2>
+<pre><code>.schedule &gt; article {
+  flex: 1 1 180px;
+}</code></pre>
+<p>Числа читаются по порядку. <code>flex-grow: 1</code> позволяет карточке получить долю свободного места. <code>flex-shrink: 1</code> разрешает уменьшить её при нехватке места. <code>flex-basis: 180px</code> задаёт начальный размер для расчёта. У одинаковых карточек в примере выше прибавка составит по 20 px. После роста свободного места для центрирования уже не останется.</p>
+<div class="info">Размеры в расчёте предполагают отсутствие внешних отступов и включают границы и padding карточек. Задайте карточкам <code>box-sizing: border-box</code>, как в предыдущем занятии.</div>
+<h2>Посмотрите, как образуются строки</h2>
+<p>Ниже расписание использует перенос и центрирование. Сужайте окно: когда три карточки перестанут помещаться, третья займёт место в центре следующего ряда. Расширьте окно и проследите обратный переход.</p>
+<div class="schedule-demo"><span>Математика</span><span>История</span><span>Информатика</span></div>
+<h2>Вопрос для самопроверки</h2>
+<details><summary>Почему align-items: center иногда ничего не меняет на экране?</summary><p>Если высота строки совпадает с высотой каждой карточки, свободного пространства для смещения нет. Задайте контейнеру min-height: 150px при одном ряде и сравните center с flex-start.</p></details>
+    </section>
+  </main>
+</body>
+</html>
