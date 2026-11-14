@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Grid и адаптивность — Практика</title>
+  <link rel="stylesheet" href="../course-lesson.css">
+</head>
+<body>
+  <nav aria-label="Материалы занятия"><a href="../index.html">Программа курса</a> <a href="theory.html">Теория и план занятия</a></nav>
+  <main>
+    <header><p>Занятие №7 · Практика</p><h1>Страница школьных кружков</h1></header>
+    <p>Создайте отдельную папку <code>grid-practice</code>, а в ней файлы <code>index.html</code> и <code>style.css</code>. Это будет ваша учебная страница. План занятия с перерывом приведён в теории.</p>
+    <section>
+      <h2>1. Подготовьте разметку</h2>
+      <p>Вставьте в <code>grid-practice/index.html</code> код ниже. Он содержит три карточки. Скопируйте одну из них и замените её содержимое так, чтобы получилось не меньше шести разных кружков.</p>
+      <pre><code>&lt;!doctype html&gt;
+&lt;html lang="ru"&gt;
+&lt;head&gt;
+  &lt;meta charset="utf-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;
+  &lt;title&gt;Кружки школы&lt;/title&gt;
+  &lt;link rel="stylesheet" href="style.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;div class="layout" id="top"&gt;
+    &lt;header class="site-header"&gt;
+      &lt;a class="brand" href="#top"&gt;Школьные кружки&lt;/a&gt;
+      &lt;nav aria-label="Разделы страницы"&gt;
+        &lt;a href="#clubs"&gt;Кружки&lt;/a&gt;
+        &lt;a href="#contacts"&gt;Контакты&lt;/a&gt;
+      &lt;/nav&gt;
+    &lt;/header&gt;
+    &lt;main id="clubs"&gt;
+      &lt;h1&gt;Выберите кружок&lt;/h1&gt;
+      &lt;p&gt;Занятия для тех, кто любит создавать и исследовать.&lt;/p&gt;
+      &lt;div class="cards"&gt;
+        &lt;article class="card"&gt;&lt;h2&gt;Робототехника&lt;/h2&gt;&lt;p&gt;Собираем модели.&lt;/p&gt;&lt;p&gt;Понедельник, 16:00&lt;/p&gt;&lt;/article&gt;
+        &lt;article class="card"&gt;&lt;h2&gt;Дизайн&lt;/h2&gt;&lt;p&gt;Изучаем цвет и форму.&lt;/p&gt;&lt;p&gt;Вторник, 15:00&lt;/p&gt;&lt;/article&gt;
+        &lt;article class="card"&gt;&lt;h2&gt;Программирование&lt;/h2&gt;&lt;p&gt;Создаём сайты.&lt;/p&gt;&lt;p&gt;Среда, 16:00&lt;/p&gt;&lt;/article&gt;
+      &lt;/div&gt;
+    &lt;/main&gt;
+    &lt;aside class="notice"&gt;
+      &lt;h2&gt;Как записаться&lt;/h2&gt;
+      &lt;p&gt;Выберите кружок и обратитесь к преподавателю.&lt;/p&gt;
+    &lt;/aside&gt;
+    &lt;footer class="site-footer" id="contacts"&gt;
+      &lt;p&gt;Контакты: кабинет 101, после уроков.&lt;/p&gt;
+    &lt;/footer&gt;
+  &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+      <p>Откройте страницу в браузере. Пока блоки идут один за другим — это ожидаемо. Убедитесь, что ссылки меню переходят к разделам страницы.</p>
+    </section>
+    <section>
+      <h2>2. Задайте базовое оформление</h2>
+      <p>Вставьте в <code>style.css</code> базовые правила. Контейнер с классом layout ограничивает ширину страницы. Шапка использует Flexbox; карточки пока выстраиваются в одну колонку с помощью Grid.</p>
+      <pre><code>* { box-sizing: border-box; }
+body { margin: 0; font-family: Arial, sans-serif; line-height: 1.5; background: #f1f5f9; color: #1e293b; }
+.layout { max-width: 1100px; margin: 0 auto; padding: 16px; display: grid; gap: 16px; }
+.site-header, .site-footer { padding: 20px; background: #0f172a; color: white; border-radius: 12px; }
+.site-header { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px; }
+.site-header a { color: white; }
+.site-header nav { display: flex; flex-wrap: wrap; gap: 16px; }
+.brand { font-weight: bold; }
+.cards { display: grid; grid-template-columns: 1fr; gap: 16px; }
+.card, .notice { min-width: 0; padding: 16px; background: white; border: 1px solid #cbd5e1; border-radius: 12px; overflow-wrap: anywhere; }
+.card h2 { margin-top: 0; font-size: 1.2rem; }</code></pre>
+      <p>Обновите браузер и проверьте, что стили применились. Если нет, сверьте имя CSS-файла и путь в теге link.</p>
+    </section>
+    <section>
+      <h2>3. Исследуйте сетку</h2>
+      <ol>
+        <li>Временно замените <code>1fr</code> у .cards на <code>repeat(3, 1fr)</code>. Как разместились шесть карточек?</li>
+        <li>Поменяйте <code>gap: 16px</code> у .cards на 32px и найдите промежутки между строками и колонками.</li>
+        <li>Верните <code>1fr</code> и <code>gap: 16px</code>. На следующем шаге вы настроите количество колонок для разных экранов.</li>
+      </ol>
+    </section>
+    <section>
+      <h2>4. Сделайте карточки адаптивными</h2>
+      <p>В конце CSS добавьте условия: от 600 px — две колонки, от 900 px — три. При меньшей ширине остаётся одна колонка из базового правила.</p>
+      <pre><code>@media (min-width: 600px) {
+  .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (min-width: 900px) {
+  .cards { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}</code></pre>
+      <p>Сохраните файл и изменяйте ширину окна. Обратите внимание, что условие проверяет ширину окна, а ширина самих карточек зависит от свободного места внутри .cards.</p>
+    </section>
+    <section>
+      <h2>5. Перестройте страницу целиком</h2>
+      <p>Внутрь уже созданного условия <code>@media (min-width: 900px)</code> добавьте правила ниже, рядом с правилом .cards. На узком экране .layout по умолчанию остаётся одноколоночной сеткой.</p>
+      <pre><code>.layout { grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); }
+.site-header, .site-footer { grid-column: 1 / -1; }</code></pre>
+      <p>На широком экране шапка и подвал должны занимать две колонки, main — левую, aside — правую. Проверьте, что в HTML эти элементы являются непосредственными потомками .layout и идут в указанном порядке.</p>
+    </section>
+    <section>
+      <h2>6. Проверьте разные экраны</h2>
+      <p>В браузере откройте инструменты разработчика клавишей F12 или Ctrl+Shift+I и включите режим устройства кнопкой с изображением телефона и планшета. Выставьте ширину окна страницы и проверьте:</p>
+      <ul>
+        <li><strong>375 px:</strong> одна колонка карточек, информационный блок под ними.</li>
+        <li><strong>768 px:</strong> две колонки карточек, информационный блок под ними.</li>
+        <li><strong>1200 px:</strong> три колонки карточек, информационный блок справа.</li>
+      </ul>
+      <p>Для каждого размера проверьте шапку, читаемость текста и отсутствие горизонтальной прокрутки всей страницы. Увеличьте масштаб браузера до 200%, затем верните обычный масштаб.</p>
+    </section>
+    <section>
+      <h2>7. Найдите и исправьте проблему</h2>
+      <ol>
+        <li>Временно добавьте в одну карточку очень длинное слово без пробелов. Убедитесь, что оно переносится и не раздвигает страницу. Отключите <code>overflow-wrap</code>, сравните и верните правило.</li>
+        <li>В инструментах разработчика выделите .cards и отключите <code>display: grid</code>. Что произошло? Включите правило обратно.</li>
+        <li>Если число колонок не меняется, проверьте закрывающие фигурные скобки, порядок media queries и ширину окна страницы. Если боковой блок оказался не там, проверьте порядок элементов и <code>grid-column</code> шапки и подвала.</li>
+      </ol>
+    </section>
+    <section>
+      <h2>8. Самостоятельное изменение и сдача</h2>
+      <p>Сделайте первую карточку заметнее: добавьте ей класс <code>featured</code>, измените цвет границы и внутри условия от 600 px растяните её на две колонки с помощью <code>grid-column: span 2</code>. На узком экране она должна занимать одну колонку. Добавьте седьмую карточку и проверьте, как сетка размещает её без дополнительных правил.</p>
+      <p>Покажите преподавателю страницу на трёх размерах и код обоих файлов. Объясните, почему на широком экране используются и Grid, и Flexbox, что делает viewport и какое правило переносит длинное слово.</p>
+    </section>
+  </main>
+</body>
+</html>

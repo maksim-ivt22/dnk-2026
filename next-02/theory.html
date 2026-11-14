@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Layout и компоненты — Теория</title>
+  <link rel="stylesheet" href="../course-lesson.css">
+</head>
+<body>
+  <nav aria-label="Материалы занятия"><a href="../index.html">Программа курса</a> <a href="practice.html">Практика</a></nav>
+  <main>
+    <header><p>Next.js — занятие №2</p><h1>Layout и компоненты</h1></header>
+    <section>
+      <h2>Результат занятия</h2>
+      <p>Вы продолжите сайт учебного центра из первого занятия. Вынесете шапку и подвал в компоненты, добавите общую разметку раздела курсов и соберёте карточки из массива данных.</p>
+      <p>Понадобится проект <code>school-site</code> с TypeScript и App Router, запущенный на предыдущем занятии. Вспомните React-компоненты, props, массивы и <code>map</code>, а также маршруты <code>/</code> и <code>/courses</code>.</p>
+      <p>Дополнительное задание выполняется после основной работы и не входит в эти 180 минут.</p>
+    </section>
+    <section>
+      <h2>Страница и общая разметка</h2>
+      <p>В App Router файл <code>page.tsx</code> описывает содержимое конкретного маршрута. Файл <code>layout.tsx</code> задаёт общее оформление для своего раздела и вложенных маршрутов. Корневой <code>app/layout.tsx</code> обязателен и содержит элементы <code>html</code> и <code>body</code>.</p>
+      <pre><code>app/
+  layout.tsx          // общая разметка всего сайта
+  page.tsx            // /
+  courses/
+    layout.tsx        // общая разметка раздела курсов
+    page.tsx          // /courses
+    web/
+      page.tsx        // /courses/web</code></pre>
+      <p>При открытии <code>/courses/web</code> корневой layout оборачивает layout раздела, а тот — страницу курса. Главная страница <code>/</code> находится вне папки courses и не получает layout раздела.</p>
+      <pre><code>Корневой layout
+  Шапка
+  Layout раздела courses
+    Страница /courses/web
+  Подвал</code></pre>
+    </section>
+    <section>
+      <h2>Зачем нужен children</h2>
+      <p>В параметре <code>children</code> layout получает вложенную страницу или другую разметку. React подставляет это содержимое в место, где написано <code>{children}</code>.</p>
+      <pre><code>import type { ReactNode } from 'react';
+
+export default function CoursesLayout({ children }: { children: ReactNode }) {
+  return (
+    &lt;div&gt;
+      &lt;p&gt;Раздел курсов&lt;/p&gt;
+      {children}
+    &lt;/div&gt;
+  );
+}</code></pre>
+      <p>Этот пример предназначен для <code>app/courses/layout.tsx</code>: повторно добавлять в него <code>html</code> и <code>body</code> не нужно. Если забыть <code>{children}</code>, общий текст появится, а содержимое вложенных страниц не отобразится.</p>
+      <div class="info">Layout раздела нужен для общего содержимого нескольких страниц раздела. Заголовок конкретной страницы и её основной текст остаются в соответствующем page.tsx.</div>
+    </section>
+    <section>
+      <h2>Разделите страницу на компоненты</h2>
+      <p>Компонент — функция React, возвращающая разметку. Её можно описать в отдельном файле, экспортировать и использовать в других компонентах. Например, шапку с навигацией можно подключить один раз в корневом layout.</p>
+      <pre><code>import Link from 'next/link';
+
+export default function SiteHeader() {
+  return (
+    &lt;header&gt;
+      &lt;Link href="/"&gt;Учебный центр&lt;/Link&gt;
+    &lt;/header&gt;
+  );
+}</code></pre>
+      <p>Чтобы карточки отличались содержимым, передавайте в них props. Пример с двумя строковыми свойствами:</p>
+      <pre><code>type CardProps = {
+  title: string;
+  description: string;
+};
+
+function Card({ title, description }: CardProps) {
+  return &lt;article&gt;&lt;h2&gt;{title}&lt;/h2&gt;&lt;p&gt;{description}&lt;/p&gt;&lt;/article&gt;;
+}
+
+// Внутри другой разметки:
+&lt;Card title="HTML" description="Создаём первую страницу" /&gt;</code></pre>
+      <p>Если карточек много, удобно хранить данные в массиве и создавать элементы через <code>map</code>. Укажите стабильный <code>key</code> на элементе, который возвращает map, например уникальный идентификатор курса.</p>
+    </section>
+    <section>
+      <h2>Стили компонента</h2>
+      <p>В Next.js файл <code>Card.module.css</code> можно импортировать в компонент. Имена классов из CSS-модуля локальны для него, поэтому класс <code>card</code> не конфликтует с одноимённым классом из другого модуля.</p>
+      <pre><code>/* Card.module.css */
+.card { padding: 16px; border: 1px solid #94a3b8; }</code></pre>
+      <pre><code>import styles from './Card.module.css';
+
+// В разметке компонента:
+&lt;article className={styles.card}&gt;Карточка&lt;/article&gt;</code></pre>
+      <p>Для разметки React используйте <code>className</code>. Общие стили вашего проекта в <code>app/globals.css</code> и его импорт в корневом layout сохраняются.</p>
+    </section>
+    <section>
+      <h2>Где выполняются компоненты</h2>
+      <p>В App Router страницы и layout по умолчанию являются Server Components. Для статической шапки, текста и списка карточек на этом занятии достаточно серверных компонентов. Для состояния, обработчиков нажатия и браузерных API нужен Client Component: его файл начинается с <code>'use client';</code> до импортов.</p>
+      <p>Интерактивный компонент можно вложить в серверную страницу или карточку. Пример будет в дополнительном задании; для основной работы директива не требуется.</p>
+      <details><summary>Самопроверка: где разместить подпись, общую только для /courses и /courses/web?</summary><p>В <code>app/courses/layout.tsx</code>. Корневой layout добавит её и на главную, а только <code>app/courses/page.tsx</code> — не добавит на страницу <code>/courses/web</code>.</p></details>
+      <p>Документация Next.js: <a href="https://nextjs.org/docs/app/getting-started/layouts-and-pages">страницы и layout</a>, <a href="https://nextjs.org/docs/app/getting-started/css">стили</a>, <a href="https://nextjs.org/docs/app/getting-started/server-and-client-components">серверные и клиентские компоненты</a>.</p>
+    </section>
+  </main>
+</body>
+</html>

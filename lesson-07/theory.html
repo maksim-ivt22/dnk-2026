@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Grid и адаптивность — Теория</title>
+  <link rel="stylesheet" href="../course-lesson.css">
+  <style>
+    .grid-demo { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 12rem), 1fr)); gap: 1rem; padding: 1rem; background: #eff6ff; }
+    .grid-demo div { padding: 1rem; border: 1px solid #94a3b8; border-radius: 8px; background: white; }
+  </style>
+</head>
+<body>
+  <nav aria-label="Материалы занятия"><a href="../index.html">Программа курса</a> <a href="practice.html">Практика</a></nav>
+  <main>
+    <header><p>Занятие №7 · Теория · 3 часа</p><h1>Grid и адаптивность</h1></header>
+    <section>
+      <h2>Результат занятия</h2>
+      <p>Вы построите страницу кружков: карточки будут занимать одну, две или три колонки в зависимости от ширины экрана, а боковой блок на широком экране окажется рядом с основным содержимым.</p>
+      <p>До начала вспомните HTML, подключение CSS, модель блока и Flexbox из предыдущих занятий. Нужны редактор кода и браузер.</p>
+      <p>Дополнительное задание выполняется после основной работы и не входит в эти 180 минут.</p>
+    </section>
+    <section>
+      <h2>Как работает Grid</h2>
+      <p>Grid раскладывает непосредственных потомков контейнера по строкам и колонкам. Например, три элемента article попадут в сетку после того, как их родителю class="cards" задано <code>display: grid</code>.</p>
+      <pre><code>&lt;div class="cards"&gt;
+  &lt;article&gt;Робототехника&lt;/article&gt;
+  &lt;article&gt;Дизайн&lt;/article&gt;
+  &lt;article&gt;Программирование&lt;/article&gt;
+&lt;/div&gt;</code></pre>
+      <pre><code>.cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}</code></pre>
+      <p><code>repeat(3, 1fr)</code> создаёт три одинаковые колонки. Единица <code>fr</code> обозначает долю доступного пространства после вычета промежутков. Свойство <code>gap</code> задаёт расстояние между строками и между колонками.</p>
+      <div class="info">Пример: ширина самой сетки — 1000 px, два промежутка по 20 px. На колонки остаётся 960 px, поэтому каждая из трёх занимает 320 px. Если у сетки есть padding, сначала учитывают и его.</div>
+      <p>Карточек может быть больше, чем колонок: дополнительные элементы автоматически переходят на следующую строку. Их порядок в HTML при этом сохраняется.</p>
+    </section>
+    <section>
+      <h2>Гибкие размеры и занимаемые колонки</h2>
+      <p>Запись <code>minmax(0, 2fr) minmax(0, 1fr)</code> создаёт две колонки: первая получает две доли, вторая — одну. Минимум 0 разрешает колонке сужаться; длинному тексту внутри также может понадобиться <code>overflow-wrap: anywhere</code>.</p>
+      <pre><code>.layout {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+  gap: 16px;
+}
+
+.site-header, .site-footer {
+  grid-column: 1 / -1;
+}</code></pre>
+      <p>Правило <code>grid-column: 1 / -1</code> растягивает элемент от первой до последней линии явной сетки. Здесь шапка и подвал занимают всю ширину, а основной раздел и боковой блок могут стоять рядом. Расположение зависит и от порядка элементов в HTML.</p>
+    </section>
+    <section>
+      <h2>Адаптивная страница</h2>
+      <p>Адаптивность помогает странице оставаться удобной при разной ширине окна. Сначала зададим одну колонку для узкого экрана, затем добавим изменения для более широких экранов.</p>
+      <pre><code>.cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+@media (min-width: 600px) {
+  .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (min-width: 900px) {
+  .cards { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}</code></pre>
+      <p>При ширине окна от 600 px действуют правила для двух колонок; от 900 px действуют оба условия, но последнее правило с той же специфичностью задаёт три. Значения 600 и 900 px выбраны для этого макета: проверяйте, где именно вашему содержимому становится тесно.</p>
+      <p>Поместите в <code>&lt;head&gt;</code> страницы строку ниже, чтобы мобильный браузер использовал ширину устройства как ширину области просмотра:</p>
+      <pre><code>&lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;</code></pre>
+    </section>
+    <section>
+      <h2>Сетка, которая сама выбирает число колонок</h2>
+      <p>Иногда удобно задавать минимальную ширину карточки, а не количество колонок на каждом размере. Сузьте окно браузера и посмотрите, как перестроится пример.</p>
+      <div class="grid-demo"><div>Робототехника</div><div>Дизайн</div><div>Программирование</div></div>
+      <pre><code>.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 12rem), 1fr));
+  gap: 1rem;
+}</code></pre>
+      <p><code>auto-fit</code> подбирает число колонок по доступной ширине; <code>minmax</code> задаёт их пределы. Вложенный <code>min(100%, 12rem)</code> позволяет одной колонке уместиться даже в контейнере уже 12rem. Такой способ зависит от ширины контейнера, а приведённые выше media queries — от ширины окна.</p>
+    </section>
+    <section>
+      <h2>Grid и Flexbox вместе</h2>
+      <p>Grid удобен для строк и колонок всей страницы или набора карточек. Flexbox удобен, например, для выравнивания ссылок меню в одной строке с переносом. В одной странице можно использовать оба способа: Grid снаружи, Flexbox внутри шапки.</p>
+      <details><summary>Самопроверка: сколько колонок будет при ширине окна 768 px в примере с media queries?</summary><p>Две: условие от 600 px выполнено, а от 900 px — ещё нет. При 375 px останется одна, при 1200 px будет три.</p></details>
+      <p>Справка: <a href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/CSS_layout/Grids">основы Grid на MDN</a> и <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_media_queries/Using_media_queries">media queries на MDN</a>.</p>
+    </section>
+  </main>
+</body>
+</html>

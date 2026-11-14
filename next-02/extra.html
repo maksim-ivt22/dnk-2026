@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Layout и компоненты — Дополнительное задание</title>
+  <link rel="stylesheet" href="../course-lesson.css">
+</head>
+<body>
+  <nav aria-label="Материалы занятия"><a href="../index.html">Программа курса</a> <a href="practice.html">Практика</a></nav>
+  <main>
+    <header><p>Next.js — занятие №2 · Дополнительное задание</p><h1>Кнопка избранного</h1></header>
+    <section>
+      <h2>Задача</h2>
+      <p>После основной работы добавьте в каждую карточку кнопку избранного. По нажатию она меняет состояние и текст. Для каждой карточки состояние должно быть независимым. Это задание выполняется дополнительно к трёхчасовому занятию.</p>
+    </section>
+    <section>
+      <h2>1. Создайте интерактивный компонент</h2>
+      <p>Создайте <code>components/FavoriteButton.tsx</code>. Директива в первой строке объявляет клиентский компонент, который может использовать состояние и обработчик нажатия.</p>
+      <pre><code>'use client';
+
+import { useState } from 'react';
+
+export default function FavoriteButton({ title }: { title: string }) {
+  const [favorite, setFavorite] = useState(false);
+
+  return (
+    &lt;button
+      type="button"
+      aria-label={'Избранное: ' + title}
+      aria-pressed={favorite}
+      onClick={() =&gt; setFavorite(!favorite)}
+    &gt;
+      {favorite ? 'В избранном' : 'В избранное'}
+    &lt;/button&gt;
+  );
+}</code></pre>
+      <p><code>aria-pressed</code> сообщает вспомогательным технологиям состояние кнопки. Состояние хранится в памяти компонента и после обновления страницы сбросится; постоянное хранение здесь не предусмотрено.</p>
+    </section>
+    <section>
+      <h2>2. Подключите кнопку к карточке</h2>
+      <p>В <code>components/CourseCard.tsx</code> добавьте импорт <code>import FavoriteButton from './FavoriteButton';</code>. Внутри article после описания курса разместите <code>&lt;FavoriteButton title={course.title} /&gt;</code>. Карточку, страницу и layout менять на клиентские компоненты не нужно.</p>
+      <p>Добавьте собственные стили кнопки. Проверьте видимый фокус клавиатуры и читаемость текста.</p>
+    </section>
+    <section>
+      <h2>3. Проверьте</h2>
+      <ol>
+        <li>Нажмите кнопку одной карточки, затем другой. Убедитесь, что состояние первой не изменилось.</li>
+        <li>Найдите кнопку клавишей Tab и переключите её клавишей Enter или пробелом.</li>
+        <li>Обновите страницу и объясните, почему отметки исчезли. Выполните <code>npm run build</code> после остановки сервера разработки.</li>
+      </ol>
+      <p>Объясните, в каком файле находится директива <code>'use client'</code> и почему она нужна кнопке. Справка: <a href="https://nextjs.org/docs/app/getting-started/server-and-client-components">Server и Client Components</a>.</p>
+    </section>
+  </main>
+</body>
+</html>

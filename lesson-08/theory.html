@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bootstrap — Теория</title>
+  <link rel="stylesheet" href="../course-lesson.css">
+</head>
+<body>
+  <nav aria-label="Материалы занятия"><a href="../index.html">Программа курса</a> <a href="practice.html">Практика</a></nav>
+  <main>
+    <header><p>Занятие №8</p><h1>Bootstrap</h1></header>
+    <section>
+      <h2>Результат занятия</h2>
+      <p>Вы создадите адаптивную страницу школьных кружков с помощью Bootstrap: подключите библиотеку, расположите карточки в сетке, оформите навигацию и форму. Сравните результат со страницей на Grid из занятия №7.</p>
+      <p>Понадобятся редактор кода, браузер, интернет для загрузки библиотеки и знания HTML, CSS, Flexbox и адаптивной вёрстки.</p>
+      <p>Дополнительное задание выполняется после основной работы и не входит в эти 180 минут.</p>
+    </section>
+    <section>
+      <h2>Что даёт Bootstrap</h2>
+      <p>Bootstrap — библиотека готовых CSS-стилей и JavaScript-компонентов. Её классы помогают оформить кнопки и формы, задать отступы и построить адаптивную сетку. HTML по-прежнему описывает содержание страницы; собственный CSS можно подключать для оформления проекта.</p>
+      <p>На занятии используется Bootstrap 5.3.9. В практике библиотека подключается по CDN: браузер загружает файлы по интернету. Для работы без интернета можно заранее скачать файлы с <a href="https://getbootstrap.com/docs/5.3/getting-started/download/">официальной страницы загрузки</a> и подключить локальные копии.</p>
+      <div class="info">CSS нужен для внешнего вида и сетки. Кнопки, которые раскрывают меню или блок, дополнительно используют JavaScript Bootstrap. Обычная ссылка или кнопка со стилем <code>btn</code> не требует JavaScript библиотеки.</div>
+    </section>
+    <section>
+      <h2>Контейнер, строка и колонки</h2>
+      <p><code>container</code> ограничивает и центрирует содержимое. Внутри него <code>row</code> объединяет колонки, а классы <code>col-*</code> задают их ширину. Обычная сетка Bootstrap основана на Flexbox и делит строку на 12 условных долей.</p>
+      <pre><code>&lt;div class="container"&gt;
+  &lt;div class="row g-3"&gt;
+    &lt;div class="col-12 col-md-6 col-lg-4"&gt;Первая карточка&lt;/div&gt;
+    &lt;div class="col-12 col-md-6 col-lg-4"&gt;Вторая карточка&lt;/div&gt;
+    &lt;div class="col-12 col-md-6 col-lg-4"&gt;Третья карточка&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+      <p>На узком экране <code>col-12</code> занимает всю строку. С 768 px класс <code>col-md-6</code> отводит колонке половину строки, а с 992 px <code>col-lg-4</code> — треть. Классы срабатывают от указанной ширины и выше, пока их не переопределит следующий. <code>g-3</code> задаёт промежутки между колонками и строками.</p>
+      <p>Это другой способ получить адаптивные колонки: в прошлом занятии вы сами задавали CSS Grid и media queries, а здесь используете готовые правила Bootstrap.</p>
+    </section>
+    <section>
+      <h2>Готовые компоненты и отступы</h2>
+      <pre><code>&lt;article class="card h-100"&gt;
+  &lt;div class="card-body"&gt;
+    &lt;h2 class="card-title h5"&gt;Робототехника&lt;/h2&gt;
+    &lt;p class="card-text"&gt;Собираем модели.&lt;/p&gt;
+    &lt;a class="btn btn-primary" href="#contacts"&gt;Как записаться&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/article&gt;</code></pre>
+      <p><code>card</code> оформляет карточку, <code>card-body</code> добавляет внутренние отступы, а <code>h-100</code> помогает карточкам в одной строке занять высоту своих колонок. У заголовка тег <code>h2</code> сохраняет смысл, а класс <code>h5</code> меняет его размер.</p>
+      <p>Служебные классы задают отдельные свойства: <code>mt-3</code> — верхний внешний отступ, <code>py-4</code> — внутренние отступы сверху и снизу, <code>text-center</code> — выравнивание текста. Числа в классах отступов — ступени шкалы Bootstrap, а не количество пикселей.</p>
+    </section>
+    <section>
+      <h2>Формы и собственный CSS</h2>
+      <p>Для поля используйте <code>form-control</code>, а для подписи — <code>form-label</code>. Свяжите label с полем через одинаковые значения <code>for</code> и <code>id</code>. Внешний вид формы сам по себе не отправляет данные: для настоящей отправки нужна отдельная обработка.</p>
+      <p>Чтобы изменить оформление, подключите свой CSS после Bootstrap. Например, создайте класс <code>club-hero</code> и задайте ему фон. Старайтесь выбирать осмысленные имена собственных классов, чтобы их было легко найти.</p>
+      <details><summary>Самопроверка: сколько карточек в строке на ширине 800 px в примере выше?</summary><p>Две: действует <code>col-md-6</code>. При 375 px будет одна, при 1200 px — три.</p></details>
+      <p>Справка: <a href="https://getbootstrap.com/docs/5.3/getting-started/introduction/">подключение Bootstrap</a>, <a href="https://getbootstrap.com/docs/5.3/layout/grid/">сетка</a>, <a href="https://getbootstrap.com/docs/5.3/components/card/">карточки</a>.</p>
+    </section>
+  </main>
+</body>
+</html>

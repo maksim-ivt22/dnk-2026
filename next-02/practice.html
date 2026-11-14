@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Layout и компоненты — Практика</title>
+  <link rel="stylesheet" href="../course-lesson.css">
+</head>
+<body>
+  <nav aria-label="Материалы занятия"><a href="../index.html">Программа курса</a> <a href="theory.html">Теория и план занятия</a></nav>
+  <main>
+    <header><p>Next.js — занятие №2 · Практика</p><h1>Улучшаем сайт учебного центра</h1></header>
+    <p>Работайте в проекте <code>school-site</code> из первого занятия Next.js. Используются TypeScript, App Router и папка <code>app</code> в корне проекта. Если в вашем проекте выбрана папка <code>src</code>, создавайте папки <code>app</code>, <code>components</code> и <code>lib</code> внутри <code>src</code>, сохраняя показанные относительные импорты.</p>
+    <section>
+      <h2>1. Запустите существующий проект</h2>
+      <ol>
+        <li>Откройте папку проекта в редакторе. В терминале перейдите в неё: рядом должен находиться <code>package.json</code>.</li>
+        <li>Выполните <code>npm run dev</code>. Откройте адрес из строки Local и проверьте главную страницу и <code>/courses</code>.</li>
+        <li>Найдите текущее меню в <code>app/layout.tsx</code> и заголовок каталога в <code>app/courses/page.tsx</code>. Если проекта нет, сначала выполните шаги создания проекта и двух страниц из <a href="../next-01/practice.html">первого занятия</a>.</li>
+      </ol>
+      <p>Для сохранности своей работы можно сделать копию проекта до изменений. Рабочий сервер разработки оставьте запущенным.</p>
+      <pre><code>school-site/
+  app/
+    layout.tsx
+    page.tsx
+    courses/
+      layout.tsx          // создадим
+      page.tsx
+      courses.module.css  // создадим
+      web/page.tsx        // проверочная страница, если её ещё нет
+  components/             // создадим
+    SiteHeader.tsx
+    SiteFooter.tsx
+    SiteChrome.module.css
+    CourseCard.tsx
+    CourseCard.module.css
+  lib/
+    courses.ts            // создадим</code></pre>
+    </section>
+    <section>
+      <h2>2. Вынесите шапку в компонент</h2>
+      <p>Создайте папку <code>components</code> рядом с <code>app</code> и файл <code>components/SiteHeader.tsx</code>. Если в старом меню есть ссылки на другие уже созданные страницы, добавьте их в новое меню.</p>
+      <pre><code>import Link from 'next/link';
+import styles from './SiteChrome.module.css';
+
+export default function SiteHeader() {
+  return (
+    &lt;header className={styles.header}&gt;
+      &lt;Link className={styles.brand} href="/"&gt;Учебный центр&lt;/Link&gt;
+      &lt;nav className={styles.nav} aria-label="Основная навигация"&gt;
+        &lt;Link href="/"&gt;Главная&lt;/Link&gt;
+        &lt;Link href="/courses"&gt;Каталог&lt;/Link&gt;
+      &lt;/nav&gt;
+    &lt;/header&gt;
+  );
+}</code></pre>
+    </section>
+    <section>
+      <h2>3. Добавьте подвал и стили</h2>
+      <p>Создайте <code>components/SiteFooter.tsx</code>:</p>
+      <pre><code>import styles from './SiteChrome.module.css';
+
+export default function SiteFooter() {
+  return (
+    &lt;footer className={styles.footer}&gt;
+      &lt;p&gt;Учебный центр · Вопросы о курсах задавайте преподавателю.&lt;/p&gt;
+    &lt;/footer&gt;
+  );
+}</code></pre>
+      <p>Создайте общий для этих двух компонентов CSS-модуль <code>components/SiteChrome.module.css</code>:</p>
+      <pre><code>.header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 20px;
+  background: #0f172a;
+}
+.header a { color: white; }
+.brand { font-weight: bold; }
+.nav { display: flex; flex-wrap: wrap; gap: 16px; }
+.footer { margin-top: 32px; padding: 20px; background: #e2e8f0; color: #0f172a; }</code></pre>
+    </section>
+    <section>
+      <h2>4. Подключите компоненты к корневому layout</h2>
+      <p>В начале <code>app/layout.tsx</code> добавьте импорты:</p>
+      <pre><code>import SiteHeader from '../components/SiteHeader';
+import SiteFooter from '../components/SiteFooter';</code></pre>
+      <p>Внутри существующего <code>body</code> замените старый блок навигации на <code>&lt;SiteHeader /&gt;</code>, а после <code>{children}</code> добавьте <code>&lt;SiteFooter /&gt;</code>. Не создавайте второй body и не удаляйте его существующие атрибуты. Сохраните <code>html</code>, <code>children</code>, импорт <code>globals.css</code>, метаданные и другие настройки проекта. Если старый импорт <code>Link</code> больше нигде в этом файле не используется, удалите его.</p>
+      <pre><code>{/* Порядок содержимого внутри существующего body: */}
+&lt;SiteHeader /&gt;
+{children}
+&lt;SiteFooter /&gt;</code></pre>
+      <p>Откройте <code>/</code> и <code>/courses</code>. На обеих страницах должны быть одна шапка, одна навигация и один подвал. Перейдите по обеим ссылкам. Если видите две навигации, проверьте, удалён ли старый блок из layout.</p>
+    </section>
+    <section>
+      <h2>5. Создайте layout раздела курсов</h2>
+      <p>Создайте <code>app/courses/layout.tsx</code>:</p>
+      <pre><code>import type { ReactNode } from 'react';
+import styles from './courses.module.css';
+
+export default function CoursesLayout({ children }: { children: ReactNode }) {
+  return (
+    &lt;div className={styles.section}&gt;
+      &lt;p className={styles.note}&gt;Раздел курсов учебного центра&lt;/p&gt;
+      {children}
+    &lt;/div&gt;
+  );
+}</code></pre>
+      <p>Создайте <code>app/courses/courses.module.css</code>. Позже в этот же файл добавим стиль сетки.</p>
+      <pre><code>.section { max-width: 1100px; margin: 0 auto; padding: 24px 16px; }
+.note { padding: 12px; background: #dbeafe; color: #1e3a8a; border-radius: 8px; }</code></pre>
+      <p>Откройте <code>/courses</code>: над содержимым появилась подпись раздела. На главной её быть не должно. Чтобы проверить вложенную страницу, откройте <code>/courses/web</code>. Если она уже есть после первого занятия, сохраните её; если её нет, создайте <code>app/courses/web/page.tsx</code>:</p>
+      <pre><code>export default function WebCourse() {
+  return &lt;main&gt;&lt;h1&gt;Основы HTML&lt;/h1&gt;&lt;p&gt;Создаём первую веб-страницу.&lt;/p&gt;&lt;/main&gt;;
+}</code></pre>
+      <p>При прямом открытии и обновлении <code>/courses/web</code> должны отображаться шапка, подпись раздела, содержимое курса и подвал. Объясните, какой из двух layout добавил каждый общий элемент.</p>
+    </section>
+    <section>
+      <h2>6. Отделите данные курсов</h2>
+      <p>Создайте папку <code>lib</code> рядом с <code>app</code> и файл <code>lib/courses.ts</code>. Тип описывает поля каждой записи; <code>id</code> будет уникальным ключом карточки.</p>
+      <pre><code>export type Course = {
+  id: string;
+  title: string;
+  description: string;
+  duration: string;
+};
+
+export const courses: Course[] = [
+  { id: 'html', title: 'Основы HTML', description: 'Создаём структуру страницы.', duration: '4 занятия' },
+  { id: 'css', title: 'Вёрстка с CSS', description: 'Оформляем и размещаем блоки.', duration: '6 занятий' },
+  { id: 'react', title: 'Компоненты React', description: 'Собираем интерфейс из компонентов.', duration: '4 занятия' },
+];</code></pre>
+      <p>Добавьте четвёртый курс со своим уникальным id. В этом упражнении данные находятся в файле, поэтому сервер API и база данных не требуются.</p>
+    </section>
+    <section>
+      <h2>7. Сделайте компонент карточки</h2>
+      <p>Создайте <code>components/CourseCard.tsx</code>. Он получает один объект типа Course через props и показывает все поля, кроме служебного id.</p>
+      <pre><code>import type { Course } from '../lib/courses';
+import styles from './CourseCard.module.css';
+
+export default function CourseCard({ course }: { course: Course }) {
+  return (
+    &lt;article className={styles.card}&gt;
+      &lt;h2&gt;{course.title}&lt;/h2&gt;
+      &lt;p&gt;{course.description}&lt;/p&gt;
+      &lt;p&gt;Продолжительность: {course.duration}&lt;/p&gt;
+    &lt;/article&gt;
+  );
+}</code></pre>
+      <p>Создайте <code>components/CourseCard.module.css</code>:</p>
+      <pre><code>.card {
+  min-width: 0;
+  padding: 20px;
+  border: 1px solid #cbd5e1;
+  border-radius: 12px;
+  background: #f8fafc;
+  color: #1e293b;
+  overflow-wrap: anywhere;
+}
+.card h2 { margin-top: 0; }</code></pre>
+    </section>
+    <section>
+      <h2>8. Соберите каталог из карточек</h2>
+      <p>Замените содержимое <code>app/courses/page.tsx</code> следующим кодом. Если на странице есть ваша собственная важная информация, сохраните её внутри main после заголовка.</p>
+      <pre><code>import CourseCard from '../../components/CourseCard';
+import { courses } from '../../lib/courses';
+import styles from './courses.module.css';
+
+export default function Courses() {
+  return (
+    &lt;main&gt;
+      &lt;h1&gt;Каталог курсов&lt;/h1&gt;
+      &lt;div className={styles.grid}&gt;
+        {courses.map((course) =&gt; (
+          &lt;CourseCard key={course.id} course={course} /&gt;
+        ))}
+      &lt;/div&gt;
+    &lt;/main&gt;
+  );
+}</code></pre>
+      <p>В конец <code>app/courses/courses.module.css</code> добавьте сетку:</p>
+      <pre><code>.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
+  gap: 16px;
+}</code></pre>
+      <p>В каталоге должно появиться четыре карточки. Поменяйте описание одного курса в <code>lib/courses.ts</code> и убедитесь, что изменилось содержимое нужной карточки. Измените рамку в CSS-модуле карточки — оформление изменится у всех карточек.</p>
+    </section>
+    <section>
+      <h2>9. Самостоятельно примените компонент</h2>
+      <ol>
+        <li>Добавьте на главную страницу блок «Рекомендуемый курс». Импортируйте <code>CourseCard</code> из <code>../components/CourseCard</code> и массив <code>courses</code> из <code>../lib/courses</code>. Передайте в карточку <code>courses[0]</code>. Сохраните существующее содержимое главной страницы.</li>
+        <li>Измените название первого курса в массиве. Проверьте, что оно изменилось и на главной, и в каталоге.</li>
+        <li>Добавьте в подвал название вашей школы. Проверьте его на главной, в каталоге и на странице курса.</li>
+      </ol>
+      <p>Если проект использует строгую проверку доступа к элементам массива и редактор сообщает, что <code>courses[0]</code> может отсутствовать, сначала проверьте его: <code>{courses[0] &amp;&amp; &lt;CourseCard course={courses[0]} /&gt;}</code>.</p>
+    </section>
+    <section>
+      <h2>10. Проверьте и покажите результат</h2>
+      <ol>
+        <li>Откройте напрямую <code>/</code>, <code>/courses</code> и <code>/courses/web</code>, обновите каждую страницу и проверьте переходы меню. Подпись раздела должна появляться только на двух адресах с <code>/courses</code>.</li>
+        <li>Проверьте каталог при ширине 375 и 1200 px: карточки должны перестраиваться без горизонтальной прокрутки.</li>
+        <li>Остановите сервер клавишами Ctrl+C. В папке с <code>package.json</code> выполните <code>npm run build</code>. Если сборка сообщает об ошибке, прочитайте путь и первое сообщение, исправьте файл и повторите сборку. После успешной сборки можно запустить <code>npm start</code> и проверить страницы ещё раз; завершите сервер через Ctrl+C.</li>
+      </ol>
+      <p>Покажите дерево файлов и объясните, где изменить общую навигацию, подпись раздела, данные одного курса и внешний вид всех карточек.</p>
+      <details><summary>Если что-то не работает</summary><ul>
+        <li><strong>Module not found:</strong> сверьте имена папок, регистр букв и относительный путь импорта. При использовании src все три папки должны находиться внутри src.</li>
+        <li><strong>Виден только текст layout:</strong> проверьте <code>{children}</code> в корневом и вложенном layout.</li>
+        <li><strong>Стили карточки отсутствуют:</strong> файл должен называться <code>CourseCard.module.css</code>; проверьте импорт и <code>className={styles.card}</code>.</li>
+        <li><strong>Карточка не появилась:</strong> сохраните файл данных, проверьте запятые в массиве и уникальность каждого id.</li>
+      </ul></details>
+    </section>
+  </main>
+</body>
+</html>

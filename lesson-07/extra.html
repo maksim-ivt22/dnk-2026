@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Grid и адаптивность — Дополнительное задание</title>
+  <link rel="stylesheet" href="../course-lesson.css">
+</head>
+<body>
+  <nav aria-label="Материалы занятия"><a href="../index.html">Программа курса</a> <a href="practice.html">Практика</a></nav>
+  <main>
+    <header><p>Занятие №7 · Дополнительное задание</p><h1>Афиша школьных событий</h1></header>
+    <section>
+      <h2>Задача</h2>
+      <p>После основной работы создайте в отдельной папке страницу афиши: шапку, сетку из шести событий, блок с адресом школы и подвал. У каждого события должны быть название, дата и короткое описание. Это задание выполняется дополнительно к трёхчасовому занятию.</p>
+    </section>
+    <section>
+      <h2>Условия</h2>
+      <ol>
+        <li>На узком экране расположите все блоки друг под другом, а на широком — афишу и адрес рядом. Примените <code>grid-template-areas</code> к общему контейнеру и назовите области <code>header</code>, <code>events</code>, <code>address</code>, <code>footer</code>.</li>
+        <li>Для карточек событий используйте <code>repeat(auto-fit, minmax(min(100%, 14rem), 1fr))</code>. Добавьте промежутки и проверьте перенос карточек при изменении ширины.</li>
+        <li>Одна карточка должна содержать описание из трёх строк. Текст должен оставаться читаемым, а страница — не создавать горизонтальную прокрутку.</li>
+      </ol>
+      <details><summary>Подсказка для широкого экрана</summary><pre><code>grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+grid-template-areas:
+  "header header"
+  "events address"
+  "footer footer";</code></pre><p>Соответствующим дочерним элементам задайте <code>grid-area: header</code>, <code>events</code>, <code>address</code> и <code>footer</code>. Для узкого экрана перечислите эти области по одной в каждой строке.</p></details>
+    </section>
+    <section>
+      <h2>Самопроверка</h2>
+      <p>Проверьте страницу на ширине 375, 768 и 1200 px, а также клавишей Tab. Сравните порядок блоков в HTML с визуальным порядком и объясните, почему посетителю с клавиатурой важно сохранять понятную последовательность.</p>
+    </section>
+  </main>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bootstrap — Дополнительное задание</title>
+  <link rel="stylesheet" href="../course-lesson.css">
+</head>
+<body>
+  <nav aria-label="Материалы занятия"><a href="../index.html">Программа курса</a> <a href="practice.html">Практика</a></nav>
+  <main>
+    <header><p>Занятие №8 · Дополнительное задание</p><h1>Раскрывающийся блок вопросов</h1></header>
+    <section>
+      <h2>Задача</h2>
+      <p>После основной работы добавьте на страницу кружков раздел с ответами на частые вопросы. Это задание выполняется дополнительно к трёхчасовому занятию.</p>
+      <p>Добавьте этот пример внутрь main перед разделом контактов:</p>
+      <pre><code>&lt;section class="container pb-5" aria-labelledby="faq-title"&gt;
+  &lt;h2 id="faq-title"&gt;Частые вопросы&lt;/h2&gt;
+  &lt;p&gt;
+    &lt;button class="btn btn-outline-primary" type="button"
+      data-bs-toggle="collapse" data-bs-target="#faq-age"
+      aria-expanded="false" aria-controls="faq-age"&gt;
+      Кто может заниматься?
+    &lt;/button&gt;
+  &lt;/p&gt;
+  &lt;div class="collapse" id="faq-age"&gt;
+    &lt;div class="card card-body"&gt;Условия участия можно уточнить у преподавателя.&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/section&gt;</code></pre>
+      <p>Кнопка и раскрывающийся блок связаны по id. Компоненту нужен <code>bootstrap.bundle.min.js</code>, уже подключённый в конце страницы в шаге 1 практики, и доступ к нему по сети.</p>
+    </section>
+    <section>
+      <h2>Самостоятельно</h2>
+      <ol>
+        <li>Добавьте ещё два вопроса с собственными ответами. Каждой паре кнопки и блока задайте уникальный id; сверьте его с <code>data-bs-target</code> и <code>aria-controls</code>.</li>
+        <li>Откройте и закройте ответы мышью и клавиатурой. Проверьте, что состояние <code>aria-expanded</code> меняется при нажатии.</li>
+        <li>Временно отключите подключение JavaScript bundle и сравните поведение. Затем верните подключение и снова проверьте вопросы.</li>
+      </ol>
+      <p>Объясните, какие классы отвечают за оформление, а какой файл обеспечивает раскрытие. Справка: <a href="https://getbootstrap.com/docs/5.3/components/collapse/">Bootstrap Collapse</a>.</p>
+    </section>
+  </main>
+</body>
+</html>

@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bootstrap — Практика</title>
+  <link rel="stylesheet" href="../course-lesson.css">
+</head>
+<body>
+  <nav aria-label="Материалы занятия"><a href="../index.html">Программа курса</a> <a href="theory.html">Теория и план занятия</a></nav>
+  <main>
+    <header><p>Занятие №8 · Практика</p><h1>Страница кружков на Bootstrap</h1></header>
+    <p>Создайте новую папку <code>bootstrap-practice</code>. Работа из прошлого занятия останется под рукой для сравнения. Полный план трёхчасового занятия находится в теории.</p>
+    <section>
+      <h2>1. Подключите библиотеку</h2>
+      <p>Создайте в новой папке <code>index.html</code> и вставьте заготовку. Для подключения CDN нужен интернет. Значение integrity проверяет загруженный файл; если меняете версию, возьмите соответствующие ей ссылки и значения с официальной страницы Bootstrap.</p>
+      <pre><code>&lt;!doctype html&gt;
+&lt;html lang="ru"&gt;
+&lt;head&gt;
+  &lt;meta charset="utf-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;
+  &lt;title&gt;Школьные кружки&lt;/title&gt;
+  &lt;link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.9/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-yEPZ7jP9S0QKiUQ0m3jjsO4ProIW7wvR9gXkI7JOGa2XVsw53Yke2bsdkBbjmmiX" crossorigin="anonymous"&gt;
+  &lt;link href="style.css" rel="stylesheet"&gt;
+&lt;/head&gt;
+&lt;body id="top"&gt;
+  &lt;!-- Здесь будет шапка --&gt;
+  &lt;main&gt;
+    &lt;!-- Здесь будут разделы страницы --&gt;
+  &lt;/main&gt;
+  &lt;footer class="bg-dark text-white py-4"&gt;
+    &lt;div class="container"&gt;Школьные кружки&lt;/div&gt;
+  &lt;/footer&gt;
+  &lt;script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.9/dist/js/bootstrap.bundle.min.js" integrity="sha384-WyOxWvTyr1QaMPfiPJSv76iReVthorl5uWlFtZPyK0IEB0hGzo9y5Bp9mYanr8Bu" crossorigin="anonymous"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+      <p>Создайте пока пустой <code>style.css</code> рядом с HTML. Откройте страницу: подвал должен стать тёмным. Если нет, проверьте интернет и адрес CSS. JavaScript bundle понадобится для раскрывающихся компонентов в дополнительном задании.</p>
+    </section>
+    <section>
+      <h2>2. Добавьте шапку и навигацию</h2>
+      <p>Замените комментарий о шапке следующим кодом:</p>
+      <pre><code>&lt;header class="bg-dark py-3"&gt;
+  &lt;nav class="container d-flex flex-wrap align-items-center justify-content-between gap-3" aria-label="Разделы страницы"&gt;
+    &lt;a class="text-white fw-bold text-decoration-none" href="#top"&gt;Школьные кружки&lt;/a&gt;
+    &lt;div class="d-flex flex-wrap gap-3"&gt;
+      &lt;a class="text-white" href="#clubs"&gt;Кружки&lt;/a&gt;
+      &lt;a class="text-white" href="#contacts"&gt;Контакты&lt;/a&gt;
+    &lt;/div&gt;
+  &lt;/nav&gt;
+&lt;/header&gt;</code></pre>
+      <p>Найдите классы, которые включают Flexbox, разрешают перенос и добавляют промежуток. Ссылки заработают, когда вы создадите разделы с соответствующими id.</p>
+    </section>
+    <section>
+      <h2>3. Создайте приветственный блок</h2>
+      <p>Добавьте этот раздел внутрь <code>main</code>:</p>
+      <pre><code>&lt;section class="club-hero py-5"&gt;
+  &lt;div class="container"&gt;
+    &lt;h1&gt;Найдите свой кружок&lt;/h1&gt;
+    &lt;p class="lead"&gt;Изучаем новое, создаём проекты и работаем в команде.&lt;/p&gt;
+    &lt;a class="btn btn-primary" href="#clubs"&gt;Посмотреть кружки&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/section&gt;</code></pre>
+      <p>Сохраните файл. Попробуйте заменить <code>py-5</code> на <code>py-3</code>, сравните отступы и верните исходное значение.</p>
+    </section>
+    <section>
+      <h2>4. Создайте адаптивную сетку</h2>
+      <p>После приветственного блока, внутри main, добавьте раздел каталога. Пока в сетке одна колонка с текстом:</p>
+      <pre><code>&lt;section class="container py-5" id="clubs"&gt;
+  &lt;h2 class="mb-4"&gt;Наши кружки&lt;/h2&gt;
+  &lt;div class="row g-3"&gt;
+    &lt;div class="col-12 col-md-6 col-lg-4"&gt;
+      Здесь будет карточка
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/section&gt;</code></pre>
+      <p>Скопируйте колонку ещё два раза, временно добавьте каждому тексту свой номер и проверьте расположение на ширине 375, 800 и 1200 px. На каждой ширине сколько колонок занимает одна строка?</p>
+    </section>
+    <section>
+      <h2>5. Заполните карточки</h2>
+      <p>Замените текст внутри первой колонки карточкой ниже. Затем замените содержимое остальных колонок по её образцу и добавьте ещё три: всего должно получиться шесть разных кружков.</p>
+      <pre><code>&lt;article class="card h-100"&gt;
+  &lt;div class="card-body"&gt;
+    &lt;h3 class="card-title h5"&gt;Робототехника&lt;/h3&gt;
+    &lt;p class="card-text"&gt;Собираем и программируем модели.&lt;/p&gt;
+    &lt;p&gt;Понедельник, 16:00&lt;/p&gt;
+    &lt;a href="#contacts" class="btn btn-primary"&gt;Как записаться&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/article&gt;</code></pre>
+      <p>Разместите каждую карточку внутри отдельной колонки. В одной из них сделайте описание длиннее и посмотрите, как <code>h-100</code> влияет на высоту карточек в строке.</p>
+    </section>
+    <section>
+      <h2>6. Добавьте контакты и форму</h2>
+      <p>После каталога, внутри main, вставьте раздел. Это учебный макет: кнопка не отправляет и не сохраняет данные. Используйте вымышленные данные при проверке.</p>
+      <pre><code>&lt;section class="container pb-5" id="contacts"&gt;
+  &lt;h2&gt;Как записаться&lt;/h2&gt;
+  &lt;p&gt;Обратитесь к преподавателю в кабинете 101.&lt;/p&gt;
+  &lt;form&gt;
+    &lt;div class="mb-3"&gt;
+      &lt;label class="form-label" for="student-name"&gt;Имя&lt;/label&gt;
+      &lt;input class="form-control" id="student-name" name="student-name" type="text"&gt;
+    &lt;/div&gt;
+    &lt;div class="mb-3"&gt;
+      &lt;label class="form-label" for="club-choice"&gt;Кружок&lt;/label&gt;
+      &lt;select class="form-select" id="club-choice" name="club-choice"&gt;
+        &lt;option&gt;Робототехника&lt;/option&gt;
+        &lt;option&gt;Дизайн&lt;/option&gt;
+        &lt;option&gt;Программирование&lt;/option&gt;
+      &lt;/select&gt;
+    &lt;/div&gt;
+    &lt;button class="btn btn-secondary" type="button"&gt;Отправить (макет)&lt;/button&gt;
+  &lt;/form&gt;
+&lt;/section&gt;</code></pre>
+      <p>Добавьте остальные кружки в список. Проверьте, что нажатие на подпись «Имя» переводит фокус в поле, а ссылки из шапки и карточек ведут к нужным разделам.</p>
+    </section>
+    <section>
+      <h2>7. Добавьте собственный стиль</h2>
+      <p>В файл <code>style.css</code> запишите:</p>
+      <pre><code>.club-hero {
+  background: #e0f2fe;
+  color: #0f172a;
+}
+
+.card {
+  border-radius: 1rem;
+}</code></pre>
+      <p>Свой файл подключён после Bootstrap, поэтому эти правила при равной специфичности применятся позже. Измените цвет фона и убедитесь, что текст остаётся читаемым. Временно отключите свой CSS и сравните результат.</p>
+    </section>
+    <section>
+      <h2>8. Самостоятельное изменение</h2>
+      <ol>
+        <li>Добавьте седьмую карточку и проверьте её перенос в сетке.</li>
+        <li>Добавьте над карточками пояснение в блоке с классами <code>alert alert-info</code>. Объясните, как эти классы повлияли на оформление.</li>
+        <li>Выберите один кружок и оформите в его карточке ссылку классом <code>btn btn-outline-primary</code>. Проверьте, что она по-прежнему ведёт к контактам.</li>
+      </ol>
+    </section>
+    <section>
+      <h2>9. Проверьте и покажите результат</h2>
+      <ol>
+        <li>В режиме устройства браузера проверьте страницу на ширине 375, 800 и 1200 px: ожидаются одна, две и три карточки в строке. Убедитесь, что нет горизонтальной прокрутки страницы.</li>
+        <li>Пройдите по ссылкам и полям клавишей Tab. Проверьте видимость фокуса, подписи формы и читаемость на узком экране.</li>
+        <li>Сравните страницу с работой из занятия №7. Покажите, где в прежнем проекте задавались колонки, а какие классы отвечают за них теперь.</li>
+      </ol>
+      <details><summary>Если результат отличается</summary><ul>
+        <li>Стили Bootstrap не видны: проверьте интернет, адрес CDN и атрибут integrity; версия и хеш должны соответствовать друг другу.</li>
+        <li>Карточки не выстраиваются: проверьте вложенность <code>container → row → col</code>, имена классов и закрывающие теги.</li>
+        <li>Ссылка не работает: проверьте совпадение её <code>href="#..."</code> и <code>id</code> раздела.</li>
+        <li>Форма не отправляет данные: это ожидаемое поведение учебного макета, обработчик и сервер в этой работе не создаются.</li>
+      </ul></details>
+      <p>Для сдачи покажите оба файла и страницу на трёх ширинах. Объясните, что делают <code>container</code>, <code>row</code>, <code>col-md-6</code> и почему собственный CSS подключён последним.</p>
+    </section>
+  </main>
+</body>
+</html>
